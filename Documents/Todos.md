@@ -9,4 +9,4 @@
 
 # Infrastructure
 - Build Pipeline
-- Change log?
+- Resolve Conflict Warning
