@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A4D728E6-3B83-4E4A-BB6B-EE346D30541D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mmu.Sms.Application</RootNamespace>
+    <AssemblyName>Mmu.Sms.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Engine, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=4.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\StructureMap.4.5.3\lib\net45\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Linq, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Linq.4.1.0\lib\net463\System.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata, Version=1.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Reflection.Metadata.1.3.0\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.4.1.0\lib\net462\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.InteropServices.4.1.0\lib\net462\System.Runtime.InteropServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Thread, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Threading.Thread.4.0.0\lib\net46\System.Threading.Thread.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\App\Informations\Models\InformationType.cs" />
+    <Compile Include="Areas\App\Informations\Services\Implementation\Models\InfoCallbackByTypes.cs" />
+    <Compile Include="Areas\Domain\Common\Project\Factories\Implementation\ProjectConfigurationDocumentFactory.cs" />
+    <Compile Include="Areas\Domain\Common\Project\Factories\IProjectConfigurationDocumentFactory.cs" />
+    <Compile Include="Areas\Domain\Common\Project\Factories\SubFactories\Implementation\XmlProjectAssemblyReferenceFactory.cs" />
+    <Compile Include="Areas\Domain\Common\Project\Factories\SubFactories\IXmlProjectAssemblyReferenceFactory.cs" />
+    <Compile Include="Areas\Domain\Common\Solution\Factories\Implementation\SolutionConfigurationDataFactory.cs" />
+    <Compile Include="Areas\Domain\Common\Solution\Factories\ISolutionConfigurationDataFactory.cs" />
+    <Compile Include="Areas\Domain\Confguration\Dtos\Profiles\SolutionModeConfigurationDtoProfile.cs" />
+    <Compile Include="Areas\Domain\ProjectBuilding\Dtos\BuildableProjectDto.cs" />
+    <Compile Include="Areas\Domain\ProjectBuilding\Dtos\Profiles\BuildableProjectDtoProfile.cs" />
+    <Compile Include="Areas\Domain\ProjectBuilding\Services\Implementation\ProjectBuildService.cs" />
+    <Compile Include="Areas\Domain\ProjectBuilding\Services\Implementation\ProjectSearchService.cs" />
+    <Compile Include="Areas\Domain\ProjectBuilding\Services\IProjectBuildService.cs" />
+    <Compile Include="Areas\Domain\Confguration\Dtos\Profiles\ProjectReferenceConfigurationDtoProfile.cs" />
+    <Compile Include="Areas\Domain\Confguration\Dtos\ProjectReferenceConfigurationDto.cs" />
+    <Compile Include="Areas\Domain\Confguration\Dtos\SolutionModeConfigurationDto.cs" />
+    <Compile Include="Areas\Domain\Confguration\Services\Implementation\ProjectSelectionService.cs" />
+    <Compile Include="Areas\Domain\Confguration\Services\Implementation\SolutionModeConfigurationService.cs" />
+    <Compile Include="Areas\Domain\Confguration\Services\IProjectSelectionService.cs" />
+    <Compile Include="Areas\Domain\Confguration\Services\ISolutionModeConfigurationService.cs" />
+    <Compile Include="Areas\Domain\ModeSwitching\Services\Implementation\SolutionSwitchingService.cs" />
+    <Compile Include="Areas\Domain\ModeSwitching\Services\ISolutionSwitchingService.cs" />
+    <Compile Include="Areas\Domain\ProjectBuilding\Services\IProjectSearchService.cs" />
+    <Compile Include="Areas\App\Informations\Models\Information.cs" />
+    <Compile Include="Areas\App\Informations\Services\IInformationConfigurationService.cs" />
+    <Compile Include="Areas\App\Informations\Services\IInformationPublishingService.cs" />
+    <Compile Include="Areas\App\Informations\Services\Implementation\InformationConfigurationService.cs" />
+    <Compile Include="Areas\App\Informations\Services\Implementation\InformationPublishingService.cs" />
+    <Compile Include="Infrastructure\Ioc\Handlers\AssemblyHandler.cs" />
+    <Compile Include="Infrastructure\Ioc\IocInitialization.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Mmu.Sms.Common.csproj">
+      <Project>{6fd0058a-97f4-4742-b674-d32632583819}</Project>
+      <Name>Mmu.Sms.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DomainServices\Mmu.Sms.DomainServices.csproj">
+      <Project>{8F2D99F3-85FA-42F1-BEBC-F3E8295B429B}</Project>
+      <Name>Mmu.Sms.DomainServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Mmu.Sms.Domain.csproj">
+      <Project>{05977f16-73a4-4544-80b9-aeeb2fd02b19}</Project>
+      <Name>Mmu.Sms.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

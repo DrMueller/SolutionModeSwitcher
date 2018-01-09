@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{C99282D0-EFBB-4A9E-9457-5B7EE96C3052}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\Todos.md = Documents\Todos.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{237D1660-C9C5-4233-829B-7F877622235D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		CA_ProductionCode.ruleset = CA_ProductionCode.ruleset
+		CA_UnitTests.ruleset = CA_UnitTests.ruleset
+		Settings.StyleCop = Settings.StyleCop
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{95004B3A-9B13-4427-94FA-75E1963912E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{05BA5DBF-891A-4074-9E7C-CA2B434954B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Sms.Common", "Sources\Application\Common\Mmu.Sms.Common.csproj", "{6FD0058A-97F4-4742-B674-D32632583819}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Sms.Domain", "Sources\Application\Domain\Mmu.Sms.Domain.csproj", "{05977F16-73A4-4544-80B9-AEEB2FD02B19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Sms.Domain.UnitTests", "Sources\Tests\UnitTests\Domain.UnitTests\Mmu.Sms.Domain.UnitTests.csproj", "{1C0A0C8C-1C86-4E92-BE02-2184045F9A42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Sms.WpfUI", "Sources\Application\WpfUI\Mmu.Sms.WpfUI.csproj", "{60DC8134-EBA5-43B8-BCC9-BB4BC16C2548}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Sms.Application", "Sources\Application\Application\Mmu.Sms.Application.csproj", "{A4D728E6-3B83-4E4A-BB6B-EE346D30541D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Sms.DomainServices", "Sources\Application\DomainServices\Mmu.Sms.DomainServices.csproj", "{8F2D99F3-85FA-42F1-BEBC-F3E8295B429B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Sms.DomainServices.Shell", "Sources\Application\DomainServices.Infrastructure\Mmu.Sms.DomainServices.Shell.csproj", "{9DD2BEAA-BBD1-47A8-869D-5AC230D256BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6FD0058A-97F4-4742-B674-D32632583819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FD0058A-97F4-4742-B674-D32632583819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FD0058A-97F4-4742-B674-D32632583819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FD0058A-97F4-4742-B674-D32632583819}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05977F16-73A4-4544-80B9-AEEB2FD02B19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05977F16-73A4-4544-80B9-AEEB2FD02B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05977F16-73A4-4544-80B9-AEEB2FD02B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05977F16-73A4-4544-80B9-AEEB2FD02B19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C0A0C8C-1C86-4E92-BE02-2184045F9A42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C0A0C8C-1C86-4E92-BE02-2184045F9A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C0A0C8C-1C86-4E92-BE02-2184045F9A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C0A0C8C-1C86-4E92-BE02-2184045F9A42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60DC8134-EBA5-43B8-BCC9-BB4BC16C2548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60DC8134-EBA5-43B8-BCC9-BB4BC16C2548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60DC8134-EBA5-43B8-BCC9-BB4BC16C2548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60DC8134-EBA5-43B8-BCC9-BB4BC16C2548}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4D728E6-3B83-4E4A-BB6B-EE346D30541D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4D728E6-3B83-4E4A-BB6B-EE346D30541D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4D728E6-3B83-4E4A-BB6B-EE346D30541D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4D728E6-3B83-4E4A-BB6B-EE346D30541D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F2D99F3-85FA-42F1-BEBC-F3E8295B429B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F2D99F3-85FA-42F1-BEBC-F3E8295B429B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F2D99F3-85FA-42F1-BEBC-F3E8295B429B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F2D99F3-85FA-42F1-BEBC-F3E8295B429B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DD2BEAA-BBD1-47A8-869D-5AC230D256BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DD2BEAA-BBD1-47A8-869D-5AC230D256BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DD2BEAA-BBD1-47A8-869D-5AC230D256BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DD2BEAA-BBD1-47A8-869D-5AC230D256BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{05BA5DBF-891A-4074-9E7C-CA2B434954B2} = {95004B3A-9B13-4427-94FA-75E1963912E2}
+		{1C0A0C8C-1C86-4E92-BE02-2184045F9A42} = {05BA5DBF-891A-4074-9E7C-CA2B434954B2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26412650-2170-4F23-A028-C5909CDF67D0}
+	EndGlobalSection
+EndGlobal

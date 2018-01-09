@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{60DC8134-EBA5-43B8-BCC9-BB4BC16C2548}</ProjectGuid>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mmu.Sms.WpfUI</RootNamespace>
+    <AssemblyName>Mmu.Sms.WpfUI</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>Mmu.Sms.WpfUI.Infrastructure.Wpf.AppStart.App</StartupObject>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Assets\MainIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors">
+      <HintPath>..\..\..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\packages\MaterialDesignThemes.2.3.2-ci1016\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NLog.4.5.0-rc03\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=4.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\StructureMap.4.5.3\lib\net45\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--No Folder START-->
+    <Compile Include="Areas\Common\ValidationExpressions\StringNotNullOrEmptyValidationExpression.cs" />
+    <Compile Include="Areas\Configuration\Dtos\SelectProjectDto.cs" />
+    <Compile Include="Areas\Configuration\ValidationExpressions\FileIsSolutionFileValidationExpression.cs" />
+    <Compile Include="Areas\ProjectBuilding\Models\BuildableProjectVm.cs" />
+    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\BuildInProgressState.cs">
+      <Generator>Extended PublicResXFileCodeGenerator</Generator>
+    </Compile>
+    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\BuildErrorState.cs" />
+    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\ReadyToBuildState.cs" />
+    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\IProjectBuildState.cs" />
+    <Compile Include="Areas\ProjectBuilding\Services\Implementation\ProjectBuildingService.cs" />
+    <Compile Include="Areas\ProjectBuilding\Services\IProjectBuildingService.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildingViewModel.cs" />
+    <Compile Include="Areas\ProjectBuilding\Views\ProjectBuildingView.xaml.cs">
+      <DependentUpon>ProjectBuildingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\Services\FileDialog\Models\FileDialogResult.cs" />
+    <Compile Include="Infrastructure\Ioc\WpfUiRegistry.cs" />
+    <Compile Include="Infrastructure\Services\Appearance\Services\Handlers\IRegistryHandler.cs" />
+    <Compile Include="Infrastructure\Services\AppSettings\IAppSettingsService.cs" />
+    <Compile Include="Infrastructure\Services\FileDialog\Services\IFileDialogService.cs" />
+    <Compile Include="Infrastructure\Services\AppSettings\Implementation\AppSettingsService.cs" />
+    <Compile Include="Infrastructure\Services\FileDialog\Services\Implementation\FileDialogService.cs" />
+    <Compile Include="Infrastructure\Services\Threading\Implementation\ThreadingService.cs" />
+    <Compile Include="Infrastructure\Services\Threading\IThreadingService.cs" />
+    <Compile Include="Infrastructure\Wpf\DependencyProperties\DataGridDoubleClickCommandBinding.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\Factories\IViewModelFactory.cs" />
+    <Compile Include="Areas\Configuration\ValidationExpressions\FileExistsValidationExpression.cs" />
+    <Compile Include="Infrastructure\Wpf\Validation\Interfaces\IValidationExpression.cs" />
+    <Compile Include="Infrastructure\Wpf\Validation\Models\PropertyValidation.cs">
+      <Generator>Extended PublicResXFileCodeGenerator</Generator>
+    </Compile>
+    <Compile Include="Infrastructure\Wpf\Validation\Models\PropertyValidationsContainer.cs" />
+    <Compile Include="Infrastructure\Wpf\Validation\Models\ValidationContainer.cs" />
+    <Compile Include="Infrastructure\Wpf\Validation\Models\ValidationErrors.cs" />
+    <Compile Include="Infrastructure\Wpf\Validation\Models\ValidationResult.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Areas\Configuration\Services\IConfigurationNavigationService.cs" />
+    <Compile Include="Areas\Configuration\Services\IConfigurationService.cs" />
+    <Compile Include="Areas\Configuration\Services\Implementation\ConfigurationNavigationService.cs" />
+    <Compile Include="Areas\Configuration\Services\Implementation\ConfigurationService.cs" />
+    <Compile Include="Areas\Configuration\Services\Implementation\ProjectSelectionNavigationService.cs" />
+    <Compile Include="Areas\Configuration\Services\IProjectSelectionNavigationService.cs" />
+    <Compile Include="Areas\Configuration\ViewModels\ConfigurationDetailsViewModel.cs" />
+    <Compile Include="Areas\Configuration\ViewModels\ConfigurationOverviewViewModel.cs" />
+    <Compile Include="Areas\Configuration\Services\Handlers\Implementation\SelectProjectDtoMappingHandler.cs" />
+    <Compile Include="Areas\Configuration\Services\Handlers\ISelectProjectDtoMappingHandler.cs" />
+    <Compile Include="Areas\Configuration\ViewModels\ProjectSelectionViewModel.cs" />
+    <Compile Include="Areas\ModeSwitching\ViewModels\SolutionModeSwitchingViewModel.cs" />
+    <Compile Include="Areas\Configuration\Views\ConfigurationDetailsView.xaml.cs">
+      <DependentUpon>ConfigurationDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Configuration\Views\ConfigurationOverviewView.xaml.cs">
+      <DependentUpon>ConfigurationOverviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Configuration\Views\ProjectSelectionView.xaml.cs">
+      <DependentUpon>ProjectSelectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\ModeSwitching\Views\SolutionModeSwitchingView.xaml.cs">
+      <DependentUpon>SolutionModeSwitchingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\Areas\Informations\UserControls\InformationGridControl.xaml.cs">
+      <DependentUpon>InformationGridControl.xaml</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <Page Include="Areas\Configuration\Views\ConfigurationDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\Configuration\Views\ConfigurationOverviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\Configuration\Views\ProjectSelectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\ModeSwitching\Views\SolutionModeSwitchingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Infrastructure\Areas\Informations\UserControls\InformationGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Resource Include="FodyWeavers.xml" />
+    <Resource Include="Assets\MainIcon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\FA_Cog_Green.png" />
+    <Resource Include="Assets\FA_Exclamation_Red.png" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <!--No Folder Ënd-->
+    <!--AppStart START-->
+    <ApplicationDefinition Include="Infrastructure\Wpf\AppStart\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Infrastructure\Wpf\AppStart\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Wpf\AppStart\BootstrapService.cs">
+      <SubType>Code</SubType>
+      <Generator>Extended PublicResXFileCodeGenerator</Generator>
+    </Compile>
+    <Compile Include="Infrastructure\Wpf\AppStart\ViewModelMappingInitializationService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--AppStart END-->
+    <!--Commands START-->
+    <Compile Include="Infrastructure\Wpf\Commands\RelayCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Wpf\Commands\ParametredRelayCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--Commands END-->
+    <!--Infrastructure Start-->
+    <!--Converters START-->
+    <Compile Include="Infrastructure\Wpf\Converters\AppearanceThemeDarkToBooleanConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Wpf\Converters\AppearanceThemeLightToBooleanConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--Converters END-->
+    <!--Dictionaries START-->
+    <None Include="Infrastructure\Wpf\Dictionaries\_Conventions.txt" />
+    <Page Include="Areas\ProjectBuilding\Views\ProjectBuildingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Infrastructure\Wpf\Dictionaries\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Infrastructure\Wpf\Dictionaries\ControlTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Infrastructure\Wpf\Dictionaries\Converters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Infrastructure\Wpf\Dictionaries\CoreStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Infrastructure\Wpf\Dictionaries\DataTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Infrastructure\Wpf\Dictionaries\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Infrastructure\Wpf\Dictionaries\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Infrastructure\Wpf\Dictionaries\Storyboards.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Infrastructure\Wpf\Dictionaries\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <!--Dictionaries END-->
+    <!--Extensions START-->
+    <Compile Include="Infrastructure\Extensions\DeepCopyHelper\DeepCopyArrayExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Extensions\DeepCopyHelper\DeepCopyArrayTraverse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Extensions\DeepCopyHelper\DeepCopyHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Extensions\DeepCopyHelper\DeepCopyReferenceEqualityComparer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Extensions\EnumerableExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Extensions\ObjectExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--Extensions END-->
+    <!--Helpers START-->
+    <Compile Include="Infrastructure\Services\Appearance\Services\Handlers\Implementation\RegistryHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--Helpers END-->
+    <!--Singletons START-->
+    <!--Singletons END-->
+    <!--XamlFunctionalities START-->
+    <Compile Include="Infrastructure\Wpf\DependencyProperties\DynamicGridSizeBinding.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Wpf\DependencyProperties\EventCommandBinding.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Wpf\DependencyProperties\MouseMoveCommandBinding.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--XamlFunctionalities END-->
+    <!--Infrastructure END-->
+    <!--Models Start-->
+    <Compile Include="Infrastructure\Wpf\Shell\Views\ViewBehaviors\IClosable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\Appearance\Models\AppearanceTheme.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--Models END-->
+    <!--Handlers Start-->
+    <Compile Include="Infrastructure\Services\Appearance\Services\IAppearanceService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\Appearance\Services\Implementation\AppearanceService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\Exceptions\IExceptionHandlingService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\Exceptions\IExceptionConfigurationService.cs">
+      <SubType>Code</SubType>
+      <Generator>Extended PublicResXFileCodeGenerator</Generator>
+    </Compile>
+    <Compile Include="Infrastructure\Services\Exceptions\IExceptionLoggingService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\Exceptions\Implementation\ExceptionHandlingService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\Exceptions\Implementation\ExceptionConfigurationService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\Exceptions\Implementation\ExceptionLoggingService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\Navigation\INavigationService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\Navigation\INavigationConfigurationService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\Navigation\Implementation\NavigationService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\Navigation\Implementation\NavigationConfigurationService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--Handlers END-->
+    <!--UserControls Start-->
+    <Page Include="Infrastructure\Areas\Informations\UserControls\InformationBarControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Infrastructure\Areas\Informations\UserControls\InformationBarControl.xaml.cs">
+      <DependentUpon>InformationBarControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <!--UserControls END-->
+    <!--ViewModels Start-->
+    <!--MainNavigation Start-->
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\ViewModelBehaviors\IMainNavigationViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\MainNavigation\Initialization\IMainNavigationInitializingService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Services\MainNavigation\Initialization\Implementation\MainNavigationInitializingService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--MainNavigation End-->
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\ViewModelBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\ViewModelCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\ViewModelContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\Factories\Implementation\ViewModelFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--ViewModels END-->
+    <!--Views START-->
+    <Page Include="Infrastructure\Wpf\Shell\Views\ViewContainer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Infrastructure\Wpf\Shell\Views\ViewContainer.xaml.cs">
+      <DependentUpon>ViewContainer.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <!--Views END-->
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Mmu.Sms.Application.csproj">
+      <Project>{a4d728e6-3b83-4e4a-bb6b-ee346d30541d}</Project>
+      <Name>Mmu.Sms.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Mmu.Sms.Common.csproj">
+      <Project>{6fd0058a-97f4-4742-b674-d32632583819}</Project>
+      <Name>Mmu.Sms.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DomainServices.Infrastructure\Mmu.Sms.DomainServices.Shell.csproj">
+      <Project>{9dd2beaa-bbd1-47a8-869d-5ac230d256bc}</Project>
+      <Name>Mmu.Sms.DomainServices.Shell</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

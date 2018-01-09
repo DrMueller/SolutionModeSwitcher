@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6FD0058A-97F4-4742-B674-D32632583819}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mmu.Sms.Common</RootNamespace>
+    <AssemblyName>Mmu.Sms.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>D:\WF\ARGUS\Development\Products\Argusnet.Product.IncidentManagementSystem\CA_ProductionCode.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="StructureMap, Version=4.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\StructureMap.4.5.3\lib\net45\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\ProjectConfigConstants.cs" />
+    <Compile Include="Constants\SolutionConfigConstants.cs" />
+    <Compile Include="Ioc\Implementation\ProvisioningService.cs" />
+    <Compile Include="Ioc\IProvisioningService.cs" />
+    <Compile Include="Ioc\ProvisioningServiceSingleton.cs" />
+    <Compile Include="LanguageExtensions\Invariance\Guard.cs" />
+    <Compile Include="LanguageExtensions\Invariance\Handlers\ExpressionHandler.cs" />
+    <Compile Include="LanguageExtensions\Maybes\Implementation\NoneMaybe.cs" />
+    <Compile Include="LanguageExtensions\Maybes\Implementation\SomeMaybe.cs" />
+    <Compile Include="LanguageExtensions\Maybes\Maybe.cs" />
+    <Compile Include="LanguageExtensions\Maybes\MaybeFactory.cs" />
+    <Compile Include="LanguageExtensions\Proxies\IDirectoryProxy.cs" />
+    <Compile Include="LanguageExtensions\Proxies\IFileProxy.cs" />
+    <Compile Include="LanguageExtensions\Proxies\Implementation\DirectoryProxy.cs" />
+    <Compile Include="LanguageExtensions\Proxies\Implementation\FileProxy.cs" />
+    <Compile Include="LanguageExtensions\Proxies\Implementation\PathProxy.cs" />
+    <Compile Include="LanguageExtensions\Proxies\Implementation\XDocumentProxy.cs" />
+    <Compile Include="LanguageExtensions\Proxies\IPathProxy.cs" />
+    <Compile Include="LanguageExtensions\Proxies\IXDocumentProxy.cs" />
+    <Compile Include="ProjectConfigConstants.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

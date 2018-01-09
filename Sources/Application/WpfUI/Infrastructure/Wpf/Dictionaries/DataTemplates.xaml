@@ -1,0 +1,120 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:converters="clr-namespace:Mmu.Sms.WpfUI.Infrastructure.Wpf.Converters"
+                    xmlns:dp="clr-namespace:Mmu.Sms.WpfUI.Infrastructure.Wpf.DependencyProperties"
+                    xmlns:vms="clr-namespace:Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels"
+                    xmlns:pm="clr-namespace:Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models"
+                    xmlns:appDtos="clr-namespace:Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;assembly=Mmu.Sms.Application">
+
+    <converters:AppearanceThemeDarkToBooleanConverter x:Key="DarkToBoolConverter" />
+    <converters:AppearanceThemeLightToBooleanConverter x:Key="LightToBoolConverter" />
+
+    <DataTemplate x:Key="MainHeader" DataType="{x:Type vms:ViewModelContainer}">
+        <md:ColorZone
+            md:ShadowAssist.ShadowDepth="Depth2"
+            Mode="PrimaryMid">
+            <Grid>
+                <ToggleButton
+                    IsChecked="{Binding IsMainNavigationPaneOpen, Mode=TwoWay}"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+
+                <TextBlock
+                    Style="{StaticResource MainHeaderTextBlock}"
+                    Text="{Binding CurrentContent.DisplayName}" />
+
+                <md:PopupBox
+                    HorizontalAlignment="Right"
+                    PlacementMode="BottomAndAlignRightEdges"
+                    StaysOpen="True">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton
+                            Content="Light"
+                            IsChecked="{Binding SelectedAppearanceTheme, Converter={StaticResource LightToBoolConverter}, Mode=TwoWay}"
+                            Style="{StaticResource StyleSwitchRadioButton}" />
+
+                        <RadioButton
+                            Content="Dark"
+                            IsChecked="{Binding SelectedAppearanceTheme, Converter={StaticResource DarkToBoolConverter}, Mode=TwoWay}"
+                            Style="{StaticResource StyleSwitchRadioButton}" />
+
+
+                        <Separator />
+
+                        <Button
+                            Command="{Binding Command, Mode=OneWay}"
+                            CommandParameter="{Binding ElementName=ViewContainerWindow, Mode=OneWay}"
+                            Content="{Binding Description, Mode=OneWay}"
+                            DataContext="{Binding CloseVmc, Mode=OneTime}" />
+                    </StackPanel>
+                </md:PopupBox>
+            </Grid>
+        </md:ColorZone>
+    </DataTemplate>
+
+    <!--The whole MaterialDesign Styling is applied on the ListBoxItem, so we don't override anything and just enhance it with the command and the Description-->
+    <DataTemplate x:Key="MainNavigation" DataType="{x:Type vms:ViewModelCommand}">
+        <Label Content="{Binding Description}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="ConfigurationComboBox" DataType="{x:Type appDtos:SolutionModeConfigurationDto}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding ConfigurationName, Mode=OneWay}" />
+            <TextBlock Text=" - " />
+            <TextBlock Text="{ Binding ProjectReferencesCount, Mode=OneWay }" />
+            <TextBlock Text=" Projects" />
+        </StackPanel>
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="BuildImage" DataType="{x:Type pm:BuildableProjectVm}">
+        <Image
+            x:Name="Img"
+            dp:EventCommandBinding.EventName="MouseDown"
+            dp:EventCommandBinding.Command="{Binding BuildProjectCommand, Mode=OneWay}"
+            Height="20"
+            HorizontalAlignment="Left"
+            Source="{Binding ImageSource, Mode=OneWay}"
+            RenderTransformOrigin="0.5,0.5"
+            Width="20">
+
+            <Image.ToolTip>
+                <ToolTip Style="{StaticResource ImageTooltipStyle}">
+                    <TextBlock
+                        MaxWidth="300"
+                        Text="{Binding TooltipText, Mode=OneWay}"
+                        TextWrapping="WrapWithOverflow" />
+                </ToolTip>
+
+            </Image.ToolTip>
+
+            <Image.RenderTransform>
+                <RotateTransform x:Name="rotTransform" />
+            </Image.RenderTransform>
+
+            <Image.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsBuildInProgress, Mode=OneWay}" Value="true">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard x:Name="Sb" Storyboard="{StaticResource SbRotate}" />
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="Sb" />
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+
+                        <!--For some reason, the ExitAction alone doesn't always work-->
+                        <DataTrigger Binding="{Binding IsBuildInProgress, Mode=OneWay}" Value="false">
+                            <DataTrigger.EnterActions>
+                                <StopStoryboard BeginStoryboardName="Sb" />
+                            </DataTrigger.EnterActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+    </DataTemplate>
+
+</ResourceDictionary>
