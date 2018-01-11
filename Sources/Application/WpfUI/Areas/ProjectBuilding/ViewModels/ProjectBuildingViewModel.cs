@@ -6,24 +6,24 @@ using Mmu.Sms.Application.Areas.App.Informations.Services;
 using Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;
 using Mmu.Sms.Application.Areas.Domain.ProjectBuilding.Services;
 using Mmu.Sms.WpfUI.Areas.Configuration.Services;
-using Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models;
 using Mmu.Sms.WpfUI.Areas.ProjectBuilding.Services;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Threading;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Commands;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels;
+using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.TopLevel;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.ViewModelBehaviors;
 
 namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
 {
-    public sealed class ProjectBuildingViewModel : ViewModelBase, IMainNavigationViewModel
+    public sealed class ProjectBuildingViewModel : TopLevelViewModelBase, IMainNavigationViewModel
     {
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHandlingService _exceptionHandlingService;
         private readonly IProjectBuildingService _projectBuildingService;
         private readonly IProjectBuildService _projectBuildService;
         private readonly IThreadingService _threadingService;
-        private IReadOnlyCollection<BuildableProjectVm> _buildableProjects;
+        private IReadOnlyCollection<BuildableProjectViewModel> _buildableProjects;
         private IReadOnlyCollection<SolutionModeConfigurationDto> _configurations;
         private bool _isBuildInProgress;
 
@@ -46,7 +46,7 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             DisplayName = "Project Building";
         }
 
-        public IReadOnlyCollection<BuildableProjectVm> BuildableProjects
+        public IReadOnlyCollection<BuildableProjectViewModel> BuildableProjects
         {
             get => _buildableProjects;
             private set

@@ -9,11 +9,12 @@ using Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Threading;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Commands;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels;
+using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.TopLevel;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.ViewModelBehaviors;
 
 namespace Mmu.Sms.WpfUI.Areas.ModeSwitching.ViewModels
 {
-    public sealed class SolutionModeSwitchingViewModel : ViewModelBase, IMainNavigationViewModel
+    public sealed class SolutionModeSwitchingViewModel : TopLevelViewModelBase, IMainNavigationViewModel
     {
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHandlingService _exceptionHandler;

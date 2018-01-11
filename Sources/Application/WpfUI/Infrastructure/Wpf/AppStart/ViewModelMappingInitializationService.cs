@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels;
+using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.TopLevel;
 
 namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.AppStart
 {
@@ -86,7 +87,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.AppStart
             internal static TypeWithNormalizedNameList GetViewModels()
             {
                 var viewModelTypes = Assembly.GetExecutingAssembly().GetTypes().Where(
-                    f => typeof(ViewModelBase).IsAssignableFrom(f) &&
+                    f => typeof(TopLevelViewModelBase).IsAssignableFrom(f) &&
                         !f.IsAbstract &&
                         f.Name.EndsWith(ViewmodelSuffix)).ToList();
 

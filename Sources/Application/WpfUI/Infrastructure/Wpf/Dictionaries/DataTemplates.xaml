@@ -3,9 +3,10 @@
                     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
                     xmlns:converters="clr-namespace:Mmu.Sms.WpfUI.Infrastructure.Wpf.Converters"
                     xmlns:dp="clr-namespace:Mmu.Sms.WpfUI.Infrastructure.Wpf.DependencyProperties"
-                    xmlns:vms="clr-namespace:Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels"
                     xmlns:pm="clr-namespace:Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models"
-                    xmlns:appDtos="clr-namespace:Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;assembly=Mmu.Sms.Application">
+                    xmlns:appDtos="clr-namespace:Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;assembly=Mmu.Sms.Application"
+                    xmlns:viewModels="clr-namespace:Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels"
+                    xmlns:vms="clr-namespace:Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels">
 
     <converters:AppearanceThemeDarkToBooleanConverter x:Key="DarkToBoolConverter" />
     <converters:AppearanceThemeLightToBooleanConverter x:Key="LightToBoolConverter" />
@@ -68,7 +69,7 @@
     </DataTemplate>
 
 
-    <DataTemplate x:Key="BuildImage" DataType="{x:Type pm:BuildableProjectVm}">
+    <DataTemplate x:Key="BuildImage" DataType="{x:Type viewModels:BuildableProjectViewModel}">
         <Image
             x:Name="Img"
             dp:EventCommandBinding.EventName="MouseDown"

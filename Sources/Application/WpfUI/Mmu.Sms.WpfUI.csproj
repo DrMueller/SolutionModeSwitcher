@@ -27,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\..\..\CA_ProductionCode.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -79,7 +80,9 @@
     <Compile Include="Areas\Common\ValidationExpressions\StringNotNullOrEmptyValidationExpression.cs" />
     <Compile Include="Areas\Configuration\Dtos\SelectProjectDto.cs" />
     <Compile Include="Areas\Configuration\ValidationExpressions\FileIsSolutionFileValidationExpression.cs" />
-    <Compile Include="Areas\ProjectBuilding\Models\BuildableProjectVm.cs" />
+    <Compile Include="Areas\ProjectBuilding\Factories\IBuildableProjectVmFactory.cs" />
+    <Compile Include="Areas\ProjectBuilding\Factories\Implementation\BuildableProjectVmFactory.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\BuildableProjectViewModel.cs" />
     <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\BuildInProgressState.cs">
       <Generator>Extended PublicResXFileCodeGenerator</Generator>
     </Compile>
@@ -102,8 +105,9 @@
     <Compile Include="Infrastructure\Services\Threading\Implementation\ThreadingService.cs" />
     <Compile Include="Infrastructure\Services\Threading\IThreadingService.cs" />
     <Compile Include="Infrastructure\Wpf\DependencyProperties\DataGridDoubleClickCommandBinding.cs" />
-    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\Factories\IViewModelFactory.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\TopLevel\Factories\ITopLevelViewModelFactory.cs" />
     <Compile Include="Areas\Configuration\ValidationExpressions\FileExistsValidationExpression.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\TopLevel\TopLevelViewModelBase.cs" />
     <Compile Include="Infrastructure\Wpf\Validation\Interfaces\IValidationExpression.cs" />
     <Compile Include="Infrastructure\Wpf\Validation\Models\PropertyValidation.cs">
       <Generator>Extended PublicResXFileCodeGenerator</Generator>
@@ -367,7 +371,7 @@
     <Compile Include="Infrastructure\Wpf\Shell\ViewModels\ViewModelContainer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\Factories\Implementation\ViewModelFactory.cs">
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\TopLevel\Factories\Implementation\TopLevelViewModelFactory.cs">
       <SubType>Code</SubType>
     </Compile>
     <!--ViewModels END-->

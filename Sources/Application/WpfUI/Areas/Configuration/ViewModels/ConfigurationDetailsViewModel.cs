@@ -9,10 +9,11 @@ using Mmu.Sms.WpfUI.Infrastructure.Services.FileDialog.Services;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Navigation;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Commands;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels;
+using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.TopLevel;
 
 namespace Mmu.Sms.WpfUI.Areas.Configuration.ViewModels
 {
-    public class ConfigurationDetailsViewModel : ViewModelBase
+    public class ConfigurationDetailsViewModel : TopLevelViewModelBase
     {
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHandlingService _exceptionHandler;

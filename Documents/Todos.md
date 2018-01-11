@@ -10,3 +10,4 @@
 # Infrastructure
 - Build Pipeline
 - Resolve Conflict Warning
+- FxCop Build step

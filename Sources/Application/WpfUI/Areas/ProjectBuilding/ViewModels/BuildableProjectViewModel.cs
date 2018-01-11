@@ -1,21 +1,20 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models.ProjectStates;
 using Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models.ProjectStates.Implementation;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Commands;
-using Mmu.Sms.WpfUI.Properties;
+using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels;
 
-namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models
+namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
 {
-    public class BuildableProjectVm : INotifyPropertyChanged
+    public class BuildableProjectViewModel : ViewModelBase
     {
         private readonly Func<string, Task> _buildRequestedCallback;
         private IProjectBuildState _projectState;
 
-        public BuildableProjectVm(string filePath, string fileName, Func<string, Task> buildRequestedCallback)
+        public BuildableProjectViewModel(string filePath, string fileName, Func<string, Task> buildRequestedCallback)
         {
             _buildRequestedCallback = buildRequestedCallback;
             FilePath = filePath;
@@ -60,12 +59,6 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models
                 FilePath,
                 _buildRequestedCallback,
                 ProjectBuildStateChanged);
-        }
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void ProjectBuildStateChanged(IProjectBuildState newState)
