@@ -38,6 +38,15 @@ namespace Mmu.Sms.Application.Areas.Domain.ModeSwitching.Services.Implementation
             _mapper = mapper;
         }
 
+        public void RevertSwitch(SolutionModeConfigurationDto configurationDto)
+        {
+            _informationPublishingService.Publish(InformationType.Important, "Starting to revert...");
+            var configuration = _mapper.Map<SolutionModeConfiguration>(configurationDto);
+
+
+            _informationPublishingService.Publish(InformationType.Success, "Finished!");
+        }
+
         public void SwitchSolution(SolutionModeConfigurationDto configurationDto)
         {
             _informationPublishingService.Publish(InformationType.Important, "Starting to switch...");
