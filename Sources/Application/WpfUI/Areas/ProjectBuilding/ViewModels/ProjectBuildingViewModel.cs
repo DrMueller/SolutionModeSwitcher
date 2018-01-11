@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Mmu.Sms.Application.Areas.App.Informations.Models;
 using Mmu.Sms.Application.Areas.App.Informations.Services;
 using Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;
-using Mmu.Sms.Application.Areas.Domain.ProjectBuilding.Services;
 using Mmu.Sms.WpfUI.Areas.Configuration.Services;
 using Mmu.Sms.WpfUI.Areas.ProjectBuilding.Services;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions;
@@ -20,8 +19,7 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
     {
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHandlingService _exceptionHandlingService;
-        private readonly IProjectBuildingService _projectBuildingService;
-        private readonly IProjectBuildService _projectBuildService;
+        private readonly IBuildableProjectsSearchService _projectBuildingService;
         private readonly IThreadingService _threadingService;
         private IReadOnlyCollection<BuildableProjectViewModel> _buildableProjects;
         private IReadOnlyCollection<SolutionModeConfigurationDto> _configurations;
@@ -31,14 +29,12 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             IInformationConfigurationService informationConfigurationService,
             IThreadingService threadingService,
             IConfigurationService configurationService,
-            IProjectBuildingService projectBuildingService,
-            IProjectBuildService projectBuildService,
+            IBuildableProjectsSearchService projectBuildingService,
             IExceptionHandlingService exceptionHandlingService)
         {
             _threadingService = threadingService;
             _configurationService = configurationService;
             _projectBuildingService = projectBuildingService;
-            _projectBuildService = projectBuildService;
             _exceptionHandlingService = exceptionHandlingService;
             informationConfigurationService.RegisterForAllTypes(InformationReceived);
 
@@ -65,7 +61,7 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
                     new RelayCommand(
                         async () =>
                         {
-                            await _projectBuildingService.BuildProjectsAsync(BuildableProjects);
+                            await BuildAllProjectsAsync();
                         }));
             }
         }
@@ -98,7 +94,7 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
                                 async () =>
                                 {
                                     _isBuildInProgress = true;
-                                    BuildableProjects = await _projectBuildingService.SearchProjectsAsync(SelectedConfiguration, BuildProjectRequested);
+                                    BuildableProjects = await _projectBuildingService.SearchProjectsAsync(SelectedConfiguration);
                                 },
                                 () => _isBuildInProgress = false);
                         },
@@ -113,9 +109,12 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             Configurations = _configurationService.LoadAllConfigurations();
         }
 
-        private async Task BuildProjectRequested(string filePath)
+        private async Task BuildAllProjectsAsync()
         {
-            await _projectBuildService.BuildProjectAsync(filePath);
+            foreach (var proj in BuildableProjects)
+            {
+                await proj.BuildProjectAsync();
+            }
         }
 
         private bool CanSearchProjects()

@@ -15,16 +15,16 @@ namespace Mmu.Sms.Application.Areas.Domain.Common.Solution.Factories.Implementat
             _fileProxy = fileProxy;
         }
 
-        public string CreateSolutionConfigurationData(SolutionConfigurationFile solutionConfig)
+        public string CreateSolutionConfigurationData(SolutionConfigurationFile solutionConfigFile)
         {
-            var solutionConfigData = _fileProxy.ReadAllText(solutionConfig.FilePath);
-            _solutionProjectBlockHandler.Initialize(solutionConfig.FilePath);
+            var solutionConfigData = _fileProxy.ReadAllText(solutionConfigFile.FilePath);
+            _solutionProjectBlockHandler.Initialize(solutionConfigFile.FilePath);
 
             var allBlocksInFile = _solutionProjectBlockHandler.GetAllBlocks();
 
             foreach (var blockInFile in allBlocksInFile)
             {
-                if (!solutionConfig.CheckIfContainsReference(blockInFile.AssemblyName))
+                if (!solutionConfigFile.CheckIfContainsReference(blockInFile.AssemblyName))
                 {
                     solutionConfigData = solutionConfigData.Replace(blockInFile.Data, string.Empty);
                 }

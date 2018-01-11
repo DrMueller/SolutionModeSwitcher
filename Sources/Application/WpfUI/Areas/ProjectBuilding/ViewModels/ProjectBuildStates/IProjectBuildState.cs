@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models.ProjectStates
+namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels.ProjectBuildStates
 {
     public interface IProjectBuildState
     {
@@ -10,9 +10,6 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models.ProjectStates
         bool IsTooltipVisible { get; }
         string TooltipText { get; }
 
-        Task StartBuildingAsync(
-            string filePath,
-            Func<string, Task> buildRequestedCallback,
-            Action<IProjectBuildState> stateChangedCallback);
+        Task StartBuildingAsync(string filePath, Action<IProjectBuildState> stateChangedCallback);
     }
 }

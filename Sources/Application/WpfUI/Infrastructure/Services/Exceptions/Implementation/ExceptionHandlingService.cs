@@ -14,6 +14,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions.Implementation
             _excpetionConfigurationService = exceptionHandlerConfigurationService;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "General exception handler")]
         public void HandledAction(Action action)
         {
             try
@@ -26,6 +27,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions.Implementation
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "General exception handler")]
         public async Task HandledActionAsync(Func<Task> action, Action finallyAction = null)
         {
             try
@@ -46,6 +48,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions.Implementation
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "General exception handler")]
         public T HandledFunction<T>(Func<T> func)
         {
             try
@@ -59,6 +62,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions.Implementation
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "General exception handler")]
         public async Task<T> HandledFunctionAsync<T>(Func<Task<T>> func)
         {
             try

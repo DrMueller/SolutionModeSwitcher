@@ -89,7 +89,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.AppStart
                 var viewModelTypes = Assembly.GetExecutingAssembly().GetTypes().Where(
                     f => typeof(TopLevelViewModelBase).IsAssignableFrom(f) &&
                         !f.IsAbstract &&
-                        f.Name.EndsWith(ViewmodelSuffix)).ToList();
+                        f.Name.EndsWith(ViewmodelSuffix, StringComparison.OrdinalIgnoreCase)).ToList();
 
                 return MapToNormalizedNames(viewModelTypes, ViewmodelSuffix);
             }
@@ -98,7 +98,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.AppStart
             {
                 var viewTypes = Assembly.GetExecutingAssembly().GetTypes().Where(
                     f => typeof(UserControl).IsAssignableFrom(f) &&
-                        f.Name.EndsWith(ViewSuffix)).ToList();
+                        f.Name.EndsWith(ViewSuffix, StringComparison.OrdinalIgnoreCase)).ToList();
 
                 return MapToNormalizedNames(viewTypes, ViewSuffix);
             }

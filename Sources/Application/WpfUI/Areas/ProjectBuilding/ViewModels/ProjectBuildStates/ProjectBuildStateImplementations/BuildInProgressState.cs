@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models.ProjectStates.Implementation
+namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels.ProjectBuildStates.ProjectBuildStateImplementations
 {
     public class BuildInProgressState : IProjectBuildState
     {
@@ -10,7 +10,7 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models.ProjectStates.Implementatio
         public bool IsTooltipVisible => false;
         public string TooltipText => string.Empty;
 
-        public Task StartBuildingAsync(string filePath, Func<string, Task> buildRequestedCallback, Action<IProjectBuildState> stateChangedCallback)
+        public Task StartBuildingAsync(string filePath, Action<IProjectBuildState> stateChangedCallback)
         {
             // Nothing to do, since it's already building
             return Task.FromResult<object>(null);

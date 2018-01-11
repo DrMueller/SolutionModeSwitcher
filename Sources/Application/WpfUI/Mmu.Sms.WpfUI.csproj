@@ -80,18 +80,20 @@
     <Compile Include="Areas\Common\ValidationExpressions\StringNotNullOrEmptyValidationExpression.cs" />
     <Compile Include="Areas\Configuration\Dtos\SelectProjectDto.cs" />
     <Compile Include="Areas\Configuration\ValidationExpressions\FileIsSolutionFileValidationExpression.cs" />
-    <Compile Include="Areas\ProjectBuilding\Factories\IBuildableProjectVmFactory.cs" />
-    <Compile Include="Areas\ProjectBuilding\Factories\Implementation\BuildableProjectVmFactory.cs" />
+    <Compile Include="Areas\ProjectBuilding\Factories\IBuildableProjectViewModelFactory.cs" />
+    <Compile Include="Areas\ProjectBuilding\Factories\Implementation\BuildableProjectViewModelFactory.cs" />
     <Compile Include="Areas\ProjectBuilding\ViewModels\BuildableProjectViewModel.cs" />
-    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\BuildInProgressState.cs">
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\ProjectBuildStateImplementations\BuildInProgressState.cs">
       <Generator>Extended PublicResXFileCodeGenerator</Generator>
     </Compile>
-    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\BuildErrorState.cs" />
-    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\ReadyToBuildState.cs" />
-    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\IProjectBuildState.cs" />
-    <Compile Include="Areas\ProjectBuilding\Services\Implementation\ProjectBuildingService.cs" />
-    <Compile Include="Areas\ProjectBuilding\Services\IProjectBuildingService.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\ProjectBuildStateImplementations\BuildErrorState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\ProjectBuildStateImplementations\ReadyToBuildState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\Implementation\ProjectBuildStateFactory.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\IProjectBuildState.cs" />
+    <Compile Include="Areas\ProjectBuilding\Services\Implementation\BuildableProjectsSearchService.cs" />
+    <Compile Include="Areas\ProjectBuilding\Services\IBuildableProjectsSearchService.cs" />
     <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildingViewModel.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\IProjectBuildStateFactory.cs" />
     <Compile Include="Areas\ProjectBuilding\Views\ProjectBuildingView.xaml.cs">
       <DependentUpon>ProjectBuildingView.xaml</DependentUpon>
     </Compile>
