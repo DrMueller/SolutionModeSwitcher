@@ -2,39 +2,34 @@
 using AutoMapper;
 using Mmu.Sms.Application.Areas.App.Informations.Models;
 using Mmu.Sms.Application.Areas.App.Informations.Services;
-using Mmu.Sms.Application.Areas.Domain.Common.Project.Factories;
-using Mmu.Sms.Application.Areas.Domain.Common.Solution.Factories;
 using Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;
-using Mmu.Sms.Common.LanguageExtensions.Proxies;
 using Mmu.Sms.Domain.Areas.Common.Project;
-using Mmu.Sms.Domain.Areas.Common.Solution;
 using Mmu.Sms.Domain.Areas.Configuration;
+using Mmu.Sms.DomainServices.Areas.Common.Project.Repositories;
+using Mmu.Sms.DomainServices.Areas.Common.Solution.Repositories;
 using Mmu.Sms.DomainServices.Areas.ModeSwitching.Services;
 
 namespace Mmu.Sms.Application.Areas.Domain.ModeSwitching.Services.Implementation
 {
     public class SolutionSwitchingService : ISolutionSwitchingService
     {
-        private readonly IFileProxy _fileProxy;
         private readonly IInformationPublishingService _informationPublishingService;
         private readonly IMapper _mapper;
-        private readonly IProjectConfigurationDocumentFactory _projectConfigurationFileDocumentService;
-        private readonly ISolutionConfigurationDataFactory _solutionConfigDataFactory;
+        private readonly IProjectConfigurationFileRepository _projectConfigurationFileRepository;
+        private readonly ISolutionConfigurationFileRepository _solutionConfigFileRepository;
         private readonly ISolutionModeSwitchingService _solutionModeSwitchingService;
 
         public SolutionSwitchingService(
             IInformationPublishingService informationPublishingService,
             ISolutionModeSwitchingService solutionModeSwitchingService,
-            IProjectConfigurationDocumentFactory projectConfigurationFileDocumentService,
-            ISolutionConfigurationDataFactory solutionConfigDataFactory,
-            IFileProxy fileProxy,
+            ISolutionConfigurationFileRepository solutionConfigFileRepository,
+            IProjectConfigurationFileRepository projectConfigurationFileRepository,
             IMapper mapper)
         {
             _informationPublishingService = informationPublishingService;
             _solutionModeSwitchingService = solutionModeSwitchingService;
-            _projectConfigurationFileDocumentService = projectConfigurationFileDocumentService;
-            _solutionConfigDataFactory = solutionConfigDataFactory;
-            _fileProxy = fileProxy;
+            _solutionConfigFileRepository = solutionConfigFileRepository;
+            _projectConfigurationFileRepository = projectConfigurationFileRepository;
             _mapper = mapper;
         }
 
@@ -42,8 +37,6 @@ namespace Mmu.Sms.Application.Areas.Domain.ModeSwitching.Services.Implementation
         {
             _informationPublishingService.Publish(InformationType.Important, "Starting to revert...");
             var configuration = _mapper.Map<SolutionModeConfiguration>(configurationDto);
-
-            
 
             _informationPublishingService.Publish(InformationType.Success, "Finished!");
         }
@@ -56,9 +49,10 @@ namespace Mmu.Sms.Application.Areas.Domain.ModeSwitching.Services.Implementation
             _informationPublishingService.Publish(InformationType.Info, "Switching it up...");
             var solutionSwitchResult = _solutionModeSwitchingService.SwitchSolutionMode(configuration);
 
-            SaveSolutionToFile(solutionSwitchResult.SwitchedSolutionConfigFile);
-            SaveProjectsToFiles(solutionSwitchResult.SwitchedProjectConfigFiles);
+            _informationPublishingService.Publish(InformationType.Info, $"Saving Solution to {solutionSwitchResult.SwitchedSolutionConfigFile.FilePath}...");
+            _solutionConfigFileRepository.Save(solutionSwitchResult.SwitchedSolutionConfigFile);
 
+            SaveProjectsToFiles(solutionSwitchResult.SwitchedProjectConfigFiles);
             _informationPublishingService.Publish(InformationType.Success, "Finished!");
         }
 
@@ -66,17 +60,9 @@ namespace Mmu.Sms.Application.Areas.Domain.ModeSwitching.Services.Implementation
         {
             foreach (var projectConfigFile in projectConfigFiles)
             {
-                var doc = _projectConfigurationFileDocumentService.CreateDocument(projectConfigFile);
                 _informationPublishingService.Publish(InformationType.Info, $"Saving Project to {projectConfigFile.FilePath}...");
-                doc.Save(projectConfigFile.FilePath);
+                _projectConfigurationFileRepository.Save(projectConfigFile);
             }
-        }
-
-        private void SaveSolutionToFile(SolutionConfigurationFile solutionConfigFile)
-        {
-            var solutionConfigData = _solutionConfigDataFactory.CreateSolutionConfigurationData(solutionConfigFile);
-            _informationPublishingService.Publish(InformationType.Info, $"Saving Solution to {solutionConfigFile.FilePath}...");
-            _fileProxy.WriteAllText(solutionConfigFile.FilePath, solutionConfigData);
         }
     }
 }

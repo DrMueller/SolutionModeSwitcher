@@ -5,7 +5,8 @@ using Mmu.Sms.Domain.Areas.Common.Solution;
 using Mmu.Sms.Domain.Areas.Configuration;
 using Mmu.Sms.Domain.Areas.ModeSwitching;
 using Mmu.Sms.DomainServices.Areas.Common.Project.Factories;
-using Mmu.Sms.DomainServices.Areas.Common.Solution.Factories;
+using Mmu.Sms.DomainServices.Areas.Common.Project.Repositories;
+using Mmu.Sms.DomainServices.Areas.Common.Solution.Repositories;
 using Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Handlers;
 
 namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
@@ -13,33 +14,33 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
     public class SolutionModeSwitchingService : ISolutionModeSwitchingService
     {
         private readonly IAssemblyReferenceFromProjectReferenceFactory _assemblyReferenceFactory;
-        private readonly IProjectConfigurationFileFactory _projectConfigurationFileFactory;
+        private readonly IProjectConfigurationFileRepository _projcetConfigurationFileRepository;
         private readonly ISolutionModeShadowCopyHandler _shadowCopyHandler;
-        private readonly ISolutionConfigurationFileFactory _solutionConfigurationFileFactory;
+        private readonly ISolutionConfigurationFileRepository _solutionConfigurationFileRepository;
 
         public SolutionModeSwitchingService(
-            IProjectConfigurationFileFactory projectConfigurationFileFactory,
             IAssemblyReferenceFromProjectReferenceFactory assemblyReferenceFactory,
-            ISolutionConfigurationFileFactory solutionConfigurationFileFactory,
-            ISolutionModeShadowCopyHandler shadowCopyHandler)
+            ISolutionConfigurationFileRepository solutionConfigurationFileRepository,
+            ISolutionModeShadowCopyHandler shadowCopyHandler,
+            IProjectConfigurationFileRepository projcetConfigurationFileRepository)
         {
-            _projectConfigurationFileFactory = projectConfigurationFileFactory;
             _assemblyReferenceFactory = assemblyReferenceFactory;
-            _solutionConfigurationFileFactory = solutionConfigurationFileFactory;
+            _solutionConfigurationFileRepository = solutionConfigurationFileRepository;
             _shadowCopyHandler = shadowCopyHandler;
+            _projcetConfigurationFileRepository = projcetConfigurationFileRepository;
         }
 
         public SolutionSwitchResult SwitchSolutionMode(SolutionModeConfiguration configuration)
         {
             _shadowCopyHandler.Initialize();
-            var solutionConfigFile = _solutionConfigurationFileFactory.Create(configuration.SolutionFilePath);
+            var solutionConfigFile = _solutionConfigurationFileRepository.Load(configuration.SolutionFilePath);
             _shadowCopyHandler.AddCopy(solutionConfigFile);
             var removedReferences = solutionConfigFile.RemoveReferences(configuration);
             var switchedProjectConfigFiles = new List<ProjectConfigurationFile>();
 
             foreach (var projectReferenceConfiguration in configuration.ProjectReferenceConfigurations)
             {
-                var projectConfigFile = _projectConfigurationFileFactory.Create(projectReferenceConfiguration.AbsoluteProjectFilePath);
+                var projectConfigFile = _projcetConfigurationFileRepository.Load(projectReferenceConfiguration.AbsoluteProjectFilePath);
                 _shadowCopyHandler.AddCopy(projectConfigFile);
                 SubstituteProjectConfigReferences(projectConfigFile, removedReferences);
                 switchedProjectConfigFiles.Add(projectConfigFile);

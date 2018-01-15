@@ -1,24 +1,24 @@
 ﻿using Mmu.Sms.Domain.Areas.Common.Project;
-using Mmu.Sms.DomainServices.Areas.Common.Project.Factories.SubFactories;
+using Mmu.Sms.DomainServices.Areas.Common.Project.Repositories;
 
 namespace Mmu.Sms.DomainServices.Areas.Common.Project.Factories.Implementation
 {
     public class AssemblyReferenceFromProjectReferenceFactory : IAssemblyReferenceFromProjectReferenceFactory
     {
         private readonly IAssemblyReferenceMetaDataFactory _assemblyReferenceMetaDataFactory;
-        private readonly IProjectConfigurationFileFactory _projectFileConfigurationFactory;
+        private readonly IProjectConfigurationFileRepository _projectConfigurationFileRepository;
 
         public AssemblyReferenceFromProjectReferenceFactory(
             IAssemblyReferenceMetaDataFactory assemblyReferenceMetaDataFactory,
-            IProjectConfigurationFileFactory projectFileConfigurationFactory)
+            IProjectConfigurationFileRepository projectConfigurationFileRepository)
         {
             _assemblyReferenceMetaDataFactory = assemblyReferenceMetaDataFactory;
-            _projectFileConfigurationFactory = projectFileConfigurationFactory;
+            _projectConfigurationFileRepository = projectConfigurationFileRepository;
         }
 
         public ProjectAssemblyReference CreateFromProjectReferenceFilePath(string projectReferenceFilePath, string relativeIncludePath)
         {
-            var projectConfig = _projectFileConfigurationFactory.Create(projectReferenceFilePath);
+            var projectConfig = _projectConfigurationFileRepository.Load(projectReferenceFilePath);
 
             var includeDefinition = _assemblyReferenceMetaDataFactory.CreateIncludeDefinition(projectConfig.PropertiesConfiguration.AssemblyName);
             var hintPath = _assemblyReferenceMetaDataFactory.CreateHintPath(relativeIncludePath, projectConfig);

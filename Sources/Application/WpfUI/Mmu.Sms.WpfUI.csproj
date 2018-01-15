@@ -397,7 +397,11 @@
       <Project>{6fd0058a-97f4-4742-b674-d32632583819}</Project>
       <Name>Mmu.Sms.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DomainServices.Infrastructure\Mmu.Sms.DomainServices.Shell.csproj">
+    <ProjectReference Include="..\DomainServices.DataAccess\Mmu.Sms.DomainServices.DataAccess.csproj">
+      <Project>{83f08a77-7022-4ddf-a1ca-30aa09f2dd77}</Project>
+      <Name>Mmu.Sms.DomainServices.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DomainServices.Shell\Mmu.Sms.DomainServices.Shell.csproj">
       <Project>{9dd2beaa-bbd1-47a8-869d-5ac230d256bc}</Project>
       <Name>Mmu.Sms.DomainServices.Shell</Name>
     </ProjectReference>
