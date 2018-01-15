@@ -43,6 +43,7 @@ namespace Mmu.Sms.Application.Areas.Domain.ModeSwitching.Services.Implementation
             _informationPublishingService.Publish(InformationType.Important, "Starting to revert...");
             var configuration = _mapper.Map<SolutionModeConfiguration>(configurationDto);
 
+            
 
             _informationPublishingService.Publish(InformationType.Success, "Finished!");
         }

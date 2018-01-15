@@ -3,7 +3,7 @@ using Mmu.Sms.Domain.Areas.Common.Solution;
 
 namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Handlers
 {
-    public interface IShadowCopyHandler
+    public interface ISolutionModeShadowCopyHandler
     {
         void Initialize();
 

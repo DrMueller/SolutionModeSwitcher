@@ -1,5 +1,6 @@
 # App
 - Review whole code
+- Create SolutionConfigFile and ProjectConfigFile as Repositories
 
 # UI
 

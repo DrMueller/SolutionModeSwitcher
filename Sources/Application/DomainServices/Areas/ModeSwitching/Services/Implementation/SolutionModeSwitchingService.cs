@@ -6,7 +6,6 @@ using Mmu.Sms.Domain.Areas.Configuration;
 using Mmu.Sms.Domain.Areas.ModeSwitching;
 using Mmu.Sms.DomainServices.Areas.Common.Project.Factories;
 using Mmu.Sms.DomainServices.Areas.Common.Solution.Factories;
-using Mmu.Sms.DomainServices.Areas.ModeSwitching.Repositories;
 using Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Handlers;
 
 namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
@@ -15,8 +14,8 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
     {
         private readonly IAssemblyReferenceFromProjectReferenceFactory _assemblyReferenceFactory;
         private readonly IProjectConfigurationFileFactory _projectConfigurationFileFactory;
-        private readonly ISolutionConfigurationFileFactory _solutionConfigurationFileFactory;
         private readonly ISolutionModeShadowCopyHandler _shadowCopyHandler;
+        private readonly ISolutionConfigurationFileFactory _solutionConfigurationFileFactory;
 
         public SolutionModeSwitchingService(
             IProjectConfigurationFileFactory projectConfigurationFileFactory,

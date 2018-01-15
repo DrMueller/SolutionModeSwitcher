@@ -4,7 +4,7 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Repositories
 {
     public interface ISolutionModeShadowCopyRepository
     {
-        SolutionModeShadowCopy Load(string configurationName);
+        SolutionModeShadowCopy Load(string configurationId);
 
         void Save(SolutionModeShadowCopy shadowCopy);
     }

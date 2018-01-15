@@ -55,6 +55,7 @@
     <Compile Include="Areas\Common\Solution\SolutionConfigurationFile.cs" />
     <Compile Include="Areas\Common\Solution\SolutionProjectReference.cs" />
     <Compile Include="Areas\Common\Solution\SolutionProjectReferences.cs" />
+    <Compile Include="Areas\ModeSwitching\SolutionModeShadowCopy.cs" />
     <Compile Include="Areas\ModeSwitching\SolutionSwitchResult.cs" />
     <Compile Include="Areas\ProjectBuilding\BuildableProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
