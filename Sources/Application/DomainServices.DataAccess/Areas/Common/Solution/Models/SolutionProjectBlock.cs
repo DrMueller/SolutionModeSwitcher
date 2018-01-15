@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Mmu.Sms.DomainServices.Areas.Common.Solution.Models
+namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Models
 {
     public class SolutionProjectBlock
     {

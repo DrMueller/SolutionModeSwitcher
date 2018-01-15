@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Mmu.Sms.DomainServices.Areas.Common.Solution.Models;
+using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Models;
 
-namespace Mmu.Sms.DomainServices.Areas.Common.Solution.Factories.Handlers
+namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Factories
 {
-    public interface ISolutionProjectBlockHandler
+    public interface ISolutionProjectBlockFactory
     {
         SolutionProjectBlock FindBlock(string assemblyName);
 

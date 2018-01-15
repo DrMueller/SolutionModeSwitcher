@@ -70,14 +70,12 @@
     <Compile Include="Areas\Common\Project\Factories\Implementation\AssemblyReferenceFromProjectReferenceFactory.cs" />
     <Compile Include="Areas\Common\Project\Factories\Implementation\AssemblyReferenceMetaDataFactory.cs" />
     <Compile Include="Areas\Common\Project\Repositories\IProjectConfigurationFileRepository.cs" />
-    <Compile Include="Areas\Common\Solution\Factories\Handlers\Implementation\SolutionProjectBlockHandler.cs" />
-    <Compile Include="Areas\Common\Solution\Factories\Handlers\ISolutionProjectBlockHandler.cs" />
-    <Compile Include="Areas\Common\Solution\Models\SolutionProjectBlock.cs" />
     <Compile Include="Areas\Common\Solution\Repositories\ISolutionConfigurationFileRepository.cs" />
     <Compile Include="Areas\Configuration\Factories\Implementation\SolutionModeConfigurationFactory.cs" />
     <Compile Include="Areas\Configuration\Factories\ISolutionModeConfigurationFactory.cs" />
     <Compile Include="Areas\Configuration\Repositories\ISolutionModeConfigurationRepository.cs" />
     <Compile Include="Areas\ModeSwitching\Repositories\ISolutionModeShadowCopyRepository.cs" />
+    <Compile Include="Areas\ModeSwitching\Services\Handlers\Implementation\SolutionModeShadowCopyHandler.cs" />
     <Compile Include="Areas\ModeSwitching\Services\Implementation\SolutionModeRevertingService.cs" />
     <Compile Include="Areas\ModeSwitching\Services\Implementation\SolutionModeSwitchingService.cs" />
     <Compile Include="Areas\ModeSwitching\Services\Handlers\ISolutionModeShadowCopyHandler.cs" />

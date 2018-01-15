@@ -1,6 +1,5 @@
 ﻿using Mmu.Sms.Domain.Areas.Configuration;
 using Mmu.Sms.Domain.Areas.ModeSwitching;
-using Mmu.Sms.DomainServices.Areas.Common.Solution.Factories;
 using Mmu.Sms.DomainServices.Areas.Common.Solution.Repositories;
 using Mmu.Sms.DomainServices.Areas.ModeSwitching.Repositories;
 

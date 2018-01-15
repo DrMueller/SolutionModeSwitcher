@@ -2,18 +2,18 @@
 using System.Linq;
 using Mmu.Sms.Common.Constants;
 using Mmu.Sms.Common.LanguageExtensions.Proxies;
-using Mmu.Sms.DomainServices.Areas.Common.Solution.Models;
+using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Models;
 using Mmu.Sms.DomainServices.Infrastructure.StringParsing;
 
-namespace Mmu.Sms.DomainServices.Areas.Common.Solution.Factories.Handlers.Implementation
+namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Factories.Implementation
 {
-    public class SolutionProjectBlockHandler : ISolutionProjectBlockHandler
+    public class SolutionProjectBlockFactory : ISolutionProjectBlockFactory
     {
         private readonly IFileProxy _fileProxy;
         private readonly IStringParsingService _stringParsingService;
         private IReadOnlyCollection<SolutionProjectBlock> _solutionProjectBlocks;
 
-        public SolutionProjectBlockHandler(IStringParsingService stringParsingService, IFileProxy fileProxy)
+        public SolutionProjectBlockFactory(IStringParsingService stringParsingService, IFileProxy fileProxy)
         {
             _stringParsingService = stringParsingService;
             _fileProxy = fileProxy;

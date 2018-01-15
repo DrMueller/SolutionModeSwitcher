@@ -1,30 +1,29 @@
 ﻿using System.Collections.Generic;
 using Mmu.Sms.Domain.Areas.Common.Solution;
-using Mmu.Sms.DomainServices.Areas.Common.Solution.Factories.Handlers;
 using Mmu.Sms.DomainServices.Infrastructure.MicrosoftBuild.Services;
 
-namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Repositories.Handlers.Implementation
+namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Factories.Implementation
 {
-    public class SolutionProjectReferencesRepository : ISolutionProjectReferencesRepository
+    public class SolutionProjectReferencesFactory : ISolutionProjectReferencesFactory
     {
         private readonly ISolutionFileService _solutionFileService;
-        private readonly ISolutionProjectBlockHandler _solutionProjectBlockHandler;
+        private readonly ISolutionProjectBlockFactory _solutionProjectBlockFactory;
 
-        public SolutionProjectReferencesRepository(ISolutionProjectBlockHandler solutionProjectBlockHandler, ISolutionFileService solutionFileService)
+        public SolutionProjectReferencesFactory(ISolutionProjectBlockFactory solutionProjectBlockFactory, ISolutionFileService solutionFileService)
         {
-            _solutionProjectBlockHandler = solutionProjectBlockHandler;
+            _solutionProjectBlockFactory = solutionProjectBlockFactory;
             _solutionFileService = solutionFileService;
         }
 
-        public SolutionProjectReferences Load(string solutionFilePath)
+        public SolutionProjectReferences Create(string solutionFilePath)
         {
             var entries = new List<SolutionProjectReference>();
-            _solutionProjectBlockHandler.Initialize(solutionFilePath);
+            _solutionProjectBlockFactory.Initialize(solutionFilePath);
             var projectReferences = _solutionFileService.ParseMicrosoftBuildProjects(solutionFilePath);
 
             foreach (var project in projectReferences)
             {
-                var solutionProjectBlock = _solutionProjectBlockHandler.FindBlock(project.ProjectName);
+                var solutionProjectBlock = _solutionProjectBlockFactory.FindBlock(project.ProjectName);
                 var entry = new SolutionProjectReference(
                     solutionProjectBlock.Data,
                     project.ProjectName,
