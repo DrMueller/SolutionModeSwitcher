@@ -33,6 +33,14 @@
     <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Build.15.5.180\lib\net46\Microsoft.Build.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Build.Framework, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Build.Framework.15.5.180\lib\net46\Microsoft.Build.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Users\matthias.mueller\Desktop\Work\FIFA\IFES\Tools\SolutionModeSwitcher\Libraries\Newtonsoft.Json.dll</HintPath>
@@ -41,8 +49,30 @@
       <HintPath>..\..\..\packages\StructureMap.4.5.3\lib\net45\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Linq, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Linq.4.1.0\lib\net463\System.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.4.1.0\lib\net462\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.InteropServices.4.1.0\lib\net462\System.Runtime.InteropServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Thread, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Threading.Thread.4.0.0\lib\net46\System.Threading.Thread.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,8 +94,14 @@
     <Compile Include="Areas\Common\Project\Factories\IProjectReferenceFactory.cs" />
     <Compile Include="Areas\Common\Project\Factories\IXmlProjectAssemblyReferenceFactory.cs" />
     <Compile Include="Areas\Common\Project\Repositories\ProjectConfigurationFileRepository.cs" />
-    <Compile Include="Areas\Common\Solution\Factories\Implementation\SolutionProjectBlockFactory.cs" />
-    <Compile Include="Areas\Common\Solution\Factories\ISolutionProjectBlockFactory.cs" />
+    <Compile Include="Areas\Common\Solution\Factories\IGlobalSectionBlockFactory.cs" />
+    <Compile Include="Areas\Common\Solution\Factories\Implementation\GlobalSectionBlockFactory.cs" />
+    <Compile Include="Areas\Common\Solution\Factories\Implementation\SolutionFileBlockFactory.cs" />
+    <Compile Include="Areas\Common\Solution\Factories\Implementation\SolutionProjectConfigurationFactory.cs" />
+    <Compile Include="Areas\Common\Solution\Factories\ISolutionFileBlockFactory.cs" />
+    <Compile Include="Areas\Common\Solution\Factories\ISolutionProjectConfigurationFactory.cs" />
+    <Compile Include="Areas\Common\Solution\Models\GlobalSectionBlock.cs" />
+    <Compile Include="Areas\Common\Solution\Models\SectionEntryBlock.cs" />
     <Compile Include="Areas\Common\Solution\Models\SolutionProjectBlock.cs" />
     <Compile Include="Areas\Configuration\Entities\Profiles\SolutionModeConfigurationEntityProfile.cs" />
     <Compile Include="Areas\Configuration\Entities\ProjectReferenceConfigurationEntity.cs" />
@@ -76,6 +112,31 @@
     <Compile Include="Areas\Common\Solution\Factories\ISolutionConfigurationDataFactory.cs" />
     <Compile Include="Areas\Common\Solution\Factories\ISolutionProjectReferencesFactory.cs" />
     <Compile Include="Areas\Common\Solution\Repositories\SolutionConfigurationFileRepository.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\IncludeDefinitionEntity.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\Profiles\IncludeDefinitionEntityProfile.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\Profiles\ProjectAssemblyReferenceEntityProfile.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\Profiles\ProjectBuildConfigurationEntityProfile.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\Profiles\ProjectConfigurationFileEntityProfile.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\Profiles\ProjectOutputTypeEntityProfile.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\Profiles\ProjectPropertiesConfigurationEntityProfile.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\Profiles\ProjectReferenceEntityProfile.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\Profiles\SolutionConfigurationFileEntityProfile.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\Profiles\SolutionModeShadowCopyEntityProfile.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\Profiles\SolutionProjectConfigurationEntityProfile.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\Profiles\SolutionProjectReferenceEntityProfile.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\Profiles\SolutionProjectReferencesEntityProfile.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\ProjectAssemblyReferenceEntity.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\ProjectBuildConfigurationEntity.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\ProjectConfigurationFileEntity.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\ProjectOutputTypeEntity.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\ProjectPropertiesConfigurationEntity.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\ProjectReferenceEntity.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\SolutionConfigurationFileEntity.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\SolutionModeShadowCopyEntity.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\SolutionProjectConfigurationEntity.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\SolutionProjectReferenceEntity.cs" />
+    <Compile Include="Areas\ModeSwitching\Entities\SolutionProjectReferencesEntity.cs" />
+    <Compile Include="Areas\ModeSwitching\Repositories\SolutionModeShadowCopyRepository.cs" />
     <Compile Include="Infrastructure\Ioc\DataAccessRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

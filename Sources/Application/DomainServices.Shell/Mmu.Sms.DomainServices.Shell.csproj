@@ -90,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\MicrosoftBuild\ProjectBuildService.cs" />
-    <Compile Include="Areas\MicrosoftBuild\SolutionFileService.cs" />
     <Compile Include="Areas\StringParsing\StringParsingService.cs" />
     <Compile Include="Infrastructure\Ioc\InfrastructureRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

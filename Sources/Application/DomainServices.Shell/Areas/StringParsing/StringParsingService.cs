@@ -30,7 +30,7 @@ namespace Mmu.Sms.DomainServices.Shell.Areas.StringParsing
 
         public string GetValueBetween(string data, string startValue, string endValue)
         {
-            var regex = new Regex($"({startValue})(?<groupToFind>.*)({endValue})");
+            var regex = new Regex($"({startValue})(?<groupToFind>.*)({endValue})", RegexOptions.Singleline);
             var regexMatch = regex.Match(data);
             if (!regexMatch.Success)
             {

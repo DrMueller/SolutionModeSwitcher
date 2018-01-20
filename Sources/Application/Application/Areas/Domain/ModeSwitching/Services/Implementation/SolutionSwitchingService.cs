@@ -17,17 +17,20 @@ namespace Mmu.Sms.Application.Areas.Domain.ModeSwitching.Services.Implementation
         private readonly IMapper _mapper;
         private readonly IProjectConfigurationFileRepository _projectConfigurationFileRepository;
         private readonly ISolutionConfigurationFileRepository _solutionConfigFileRepository;
+        private readonly ISolutionModeRevertingService _solutionModeRevertingService;
         private readonly ISolutionModeSwitchingService _solutionModeSwitchingService;
 
         public SolutionSwitchingService(
             IInformationPublishingService informationPublishingService,
             ISolutionModeSwitchingService solutionModeSwitchingService,
+            ISolutionModeRevertingService solutionModeRevertingService,
             ISolutionConfigurationFileRepository solutionConfigFileRepository,
             IProjectConfigurationFileRepository projectConfigurationFileRepository,
             IMapper mapper)
         {
             _informationPublishingService = informationPublishingService;
             _solutionModeSwitchingService = solutionModeSwitchingService;
+            _solutionModeRevertingService = solutionModeRevertingService;
             _solutionConfigFileRepository = solutionConfigFileRepository;
             _projectConfigurationFileRepository = projectConfigurationFileRepository;
             _mapper = mapper;
@@ -37,7 +40,7 @@ namespace Mmu.Sms.Application.Areas.Domain.ModeSwitching.Services.Implementation
         {
             _informationPublishingService.Publish(InformationType.Important, "Starting to revert...");
             var configuration = _mapper.Map<SolutionModeConfiguration>(configurationDto);
-
+            _solutionModeRevertingService.RevertSolutionMode(configuration);
             _informationPublishingService.Publish(InformationType.Success, "Finished!");
         }
 

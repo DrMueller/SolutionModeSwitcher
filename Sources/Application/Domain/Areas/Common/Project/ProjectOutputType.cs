@@ -2,7 +2,7 @@
 {
     public class ProjectOutputType
     {
-        private ProjectOutputType(string fileExtension)
+        public ProjectOutputType(string fileExtension)
         {
             FileExtension = fileExtension;
         }

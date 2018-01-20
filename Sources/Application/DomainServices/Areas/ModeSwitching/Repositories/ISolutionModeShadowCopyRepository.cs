@@ -6,6 +6,6 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Repositories
     {
         SolutionModeShadowCopy Load(string configurationId);
 
-        void Save(SolutionModeShadowCopy shadowCopy);
+        void Save(SolutionModeShadowCopy model);
     }
 }

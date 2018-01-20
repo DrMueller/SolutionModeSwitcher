@@ -80,6 +80,9 @@
     <Compile Include="Areas\Common\ValidationExpressions\StringNotNullOrEmptyValidationExpression.cs" />
     <Compile Include="Areas\Configuration\Dtos\SelectProjectDto.cs" />
     <Compile Include="Areas\Configuration\ValidationExpressions\FileIsSolutionFileValidationExpression.cs" />
+    <Compile Include="Areas\ModeSwitching\ViewModelCommands\DoRevertSwitchViewModelCommand.cs" />
+    <Compile Include="Areas\ModeSwitching\ViewModelCommands\DoSwitchViewModelCommand.cs" />
+    <Compile Include="Areas\ModeSwitching\SolutionModeSwitchingCommandsContainer.cs" />
     <Compile Include="Areas\ProjectBuilding\Factories\IBuildableProjectViewModelFactory.cs" />
     <Compile Include="Areas\ProjectBuilding\Factories\Implementation\BuildableProjectViewModelFactory.cs" />
     <Compile Include="Areas\ProjectBuilding\ViewModels\BuildableProjectViewModel.cs" />
@@ -107,9 +110,12 @@
     <Compile Include="Infrastructure\Services\Threading\Implementation\ThreadingService.cs" />
     <Compile Include="Infrastructure\Services\Threading\IThreadingService.cs" />
     <Compile Include="Infrastructure\Wpf\DependencyProperties\DataGridDoubleClickCommandBinding.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\IInitializableViewModelCommand.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\IViewModelCommand.cs" />
     <Compile Include="Infrastructure\Wpf\Shell\ViewModels\TopLevel\Factories\ITopLevelViewModelFactory.cs" />
     <Compile Include="Areas\Configuration\ValidationExpressions\FileExistsValidationExpression.cs" />
     <Compile Include="Infrastructure\Wpf\Shell\ViewModels\TopLevel\TopLevelViewModelBase.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\IViewModelCommandsContainer.cs" />
     <Compile Include="Infrastructure\Wpf\Validation\Interfaces\IValidationExpression.cs" />
     <Compile Include="Infrastructure\Wpf\Validation\Models\PropertyValidation.cs">
       <Generator>Extended PublicResXFileCodeGenerator</Generator>
@@ -130,7 +136,7 @@
     <Compile Include="Areas\Configuration\Services\Handlers\Implementation\SelectProjectDtoMappingHandler.cs" />
     <Compile Include="Areas\Configuration\Services\Handlers\ISelectProjectDtoMappingHandler.cs" />
     <Compile Include="Areas\Configuration\ViewModels\ProjectSelectionViewModel.cs" />
-    <Compile Include="Areas\ModeSwitching\ViewModels\SolutionModeSwitchingViewModel.cs" />
+    <Compile Include="Areas\ModeSwitching\SolutionModeSwitchingViewModel.cs" />
     <Compile Include="Areas\Configuration\Views\ConfigurationDetailsView.xaml.cs">
       <DependentUpon>ConfigurationDetailsView.xaml</DependentUpon>
     </Compile>
@@ -140,7 +146,7 @@
     <Compile Include="Areas\Configuration\Views\ProjectSelectionView.xaml.cs">
       <DependentUpon>ProjectSelectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\ModeSwitching\Views\SolutionModeSwitchingView.xaml.cs">
+    <Compile Include="Areas\ModeSwitching\SolutionModeSwitchingView.xaml.cs">
       <DependentUpon>SolutionModeSwitchingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Areas\Informations\UserControls\InformationGridControl.xaml.cs">
@@ -160,7 +166,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\ModeSwitching\Views\SolutionModeSwitchingView.xaml">
+    <Page Include="Areas\ModeSwitching\SolutionModeSwitchingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,22 +263,7 @@
     </Page>
     <!--Dictionaries END-->
     <!--Extensions START-->
-    <Compile Include="Infrastructure\Extensions\DeepCopyHelper\DeepCopyArrayExtensions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\Extensions\DeepCopyHelper\DeepCopyArrayTraverse.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\Extensions\DeepCopyHelper\DeepCopyHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\Extensions\DeepCopyHelper\DeepCopyReferenceEqualityComparer.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Infrastructure\Extensions\EnumerableExtensions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\Extensions\ObjectExtensions.cs">
       <SubType>Code</SubType>
     </Compile>
     <!--Extensions END-->

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Common\Solution\SolutionProjectConfiguration.cs" />
     <Compile Include="Areas\Configuration\ProjectReferenceConfiguration.cs" />
     <Compile Include="Areas\Configuration\SolutionModeConfiguration.cs" />
     <Compile Include="Areas\Common\Project\ProjectAssemblyReference.cs" />

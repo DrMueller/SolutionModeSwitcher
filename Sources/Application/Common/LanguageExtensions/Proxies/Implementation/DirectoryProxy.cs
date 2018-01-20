@@ -17,5 +17,15 @@ namespace Mmu.Sms.Common.LanguageExtensions.Proxies.Implementation
             var result = Directory.GetFiles(path, searchPattern, SearchOption.AllDirectories).ToList();
             return result;
         }
+
+        public bool Exists(string path)
+        {
+            return Directory.Exists(path);
+        }
+
+        public void CreateDirectory(string path)
+        {
+            Directory.CreateDirectory(path);
+        }
     }
 }

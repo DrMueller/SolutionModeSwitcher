@@ -10,7 +10,7 @@
 1. --> Switch
 1. Create Copy of Solution file 
 1. Create Copy of each changed Project file
-1. --> Revert
+1. --> Revert Here
 1. Read Shadow Copy of Solution
 1. Add the removed References to the Solution
 1. Read the Shadow copy of each project

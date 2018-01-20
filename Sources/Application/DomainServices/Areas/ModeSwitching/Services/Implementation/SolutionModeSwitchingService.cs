@@ -15,13 +15,13 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
     {
         private readonly IAssemblyReferenceFromProjectReferenceFactory _assemblyReferenceFactory;
         private readonly IProjectConfigurationFileRepository _projcetConfigurationFileRepository;
-        private readonly ISolutionModeShadowCopyHandler _shadowCopyHandler;
+        private readonly ISolutionModeShadowCopyCollector _shadowCopyHandler;
         private readonly ISolutionConfigurationFileRepository _solutionConfigurationFileRepository;
 
         public SolutionModeSwitchingService(
             IAssemblyReferenceFromProjectReferenceFactory assemblyReferenceFactory,
             ISolutionConfigurationFileRepository solutionConfigurationFileRepository,
-            ISolutionModeShadowCopyHandler shadowCopyHandler,
+            ISolutionModeShadowCopyCollector shadowCopyHandler,
             IProjectConfigurationFileRepository projcetConfigurationFileRepository)
         {
             _assemblyReferenceFactory = assemblyReferenceFactory;
@@ -32,23 +32,25 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
 
         public SolutionSwitchResult SwitchSolutionMode(SolutionModeConfiguration configuration)
         {
-            _shadowCopyHandler.Initialize();
+            _shadowCopyHandler.Initialize(configuration.Id);
             var solutionConfigFile = _solutionConfigurationFileRepository.Load(configuration.SolutionFilePath);
-            _shadowCopyHandler.AddCopy(solutionConfigFile);
-            var removedReferences = solutionConfigFile.RemoveReferences(configuration);
+            _shadowCopyHandler.SetSolutionConfigurationFileCopy(solutionConfigFile);
+
+            var projectReferenceAssemblyNames = configuration.ProjectReferenceConfigurations.Select(f => f.AssemblyName).ToList();
+            var removedReferences = solutionConfigFile.RemoveProjectReferencesExcept(projectReferenceAssemblyNames);
             var switchedProjectConfigFiles = new List<ProjectConfigurationFile>();
 
             foreach (var projectReferenceConfiguration in configuration.ProjectReferenceConfigurations)
             {
                 var projectConfigFile = _projcetConfigurationFileRepository.Load(projectReferenceConfiguration.AbsoluteProjectFilePath);
-                _shadowCopyHandler.AddCopy(projectConfigFile);
+                _shadowCopyHandler.AddProjectConfigurationFileCopy(projectConfigFile);
                 SubstituteProjectConfigReferences(projectConfigFile, removedReferences);
                 switchedProjectConfigFiles.Add(projectConfigFile);
             }
 
             var result = new SolutionSwitchResult(solutionConfigFile, switchedProjectConfigFiles);
 
-            _shadowCopyHandler.Commit();
+            _shadowCopyHandler.Save();
             return result;
         }
 

@@ -1,4 +1,5 @@
-﻿using Mmu.Sms.Common.LanguageExtensions.Proxies;
+﻿using System.Linq;
+using Mmu.Sms.Common.LanguageExtensions.Proxies;
 using Mmu.Sms.Domain.Areas.Common.Solution;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Factories.Implementation
@@ -6,9 +7,9 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Factories.Impl
     public class SolutionConfigurationDataFactory : ISolutionConfigurationDataFactory
     {
         private readonly IFileProxy _fileProxy;
-        private readonly ISolutionProjectBlockFactory _solutionProjectBlockFactory;
+        private readonly ISolutionFileBlockFactory _solutionProjectBlockFactory;
 
-        public SolutionConfigurationDataFactory(ISolutionProjectBlockFactory solutionProjectBlockFactory, IFileProxy fileProxy)
+        public SolutionConfigurationDataFactory(ISolutionFileBlockFactory solutionProjectBlockFactory, IFileProxy fileProxy)
         {
             _solutionProjectBlockFactory = solutionProjectBlockFactory;
             _fileProxy = fileProxy;
@@ -19,13 +20,43 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Factories.Impl
             var solutionConfigData = _fileProxy.ReadAllText(solutionConfigFile.FilePath);
             _solutionProjectBlockFactory.Initialize(solutionConfigFile.FilePath);
 
-            var allBlocksInFile = _solutionProjectBlockFactory.GetAllBlocks();
+            solutionConfigData = CheckRemoveProjectBlocks(solutionConfigData, solutionConfigFile);
+            solutionConfigData = CheckRemoveGlobalSectionEntries(solutionConfigData, solutionConfigFile);
 
-            foreach (var blockInFile in allBlocksInFile)
+            return solutionConfigData;
+        }
+
+        private string CheckRemoveGlobalSectionEntries(string solutionConfigData, SolutionConfigurationFile solutionConfigFile)
+        {
+            var sectionEntryBlocks = _solutionProjectBlockFactory.CreateAllGlobalSectionBlocks().SelectMany(f => f.Blocks);
+
+            foreach (var block in sectionEntryBlocks)
             {
-                if (!solutionConfigFile.CheckIfContainsReference(blockInFile.AssemblyName))
+                var blockGuid = block.ParseGuid();
+                if (string.IsNullOrEmpty(blockGuid))
                 {
-                    solutionConfigData = solutionConfigData.Replace(blockInFile.Data, string.Empty);
+                    // Non-Project entry
+                    continue;
+                }
+
+                if (solutionConfigFile.SolutionProjectReferences.Entries.All(f => f.Guid != blockGuid))
+                {
+                    solutionConfigData = solutionConfigData.Replace(block.Data, string.Empty);
+                }
+            }
+
+            return solutionConfigData;
+        }
+
+        private string CheckRemoveProjectBlocks(string solutionConfigData, SolutionConfigurationFile solutionConfigFile)
+        {
+            var projectBlocks = _solutionProjectBlockFactory.CreateAllProjectBlocks();
+
+            foreach (var projectBlock in projectBlocks)
+            {
+                if (solutionConfigFile.SolutionProjectReferences.Entries.All(f => f.AssemblyName != projectBlock.AssemblyName))
+                {
+                    solutionConfigData = solutionConfigData.Replace(projectBlock.Data, string.Empty);
                 }
             }
 
