@@ -1,4 +1,5 @@
 ﻿using Mmu.Sms.Domain.Areas.Common.Project;
+using Mmu.Sms.Domain.Areas.Common._LegacyProject;
 using NUnit.Framework;
 
 namespace Mmu.Sms.Domain.UnitTests.Areas.Project

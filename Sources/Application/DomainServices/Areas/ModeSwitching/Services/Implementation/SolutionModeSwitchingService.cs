@@ -2,7 +2,6 @@
 using System.Linq;
 using Mmu.Sms.Domain.Areas.Common.Project;
 using Mmu.Sms.Domain.Areas.Common.Solution;
-using Mmu.Sms.Domain.Areas.Common.Solution._legacy;
 using Mmu.Sms.Domain.Areas.Configuration;
 using Mmu.Sms.Domain.Areas.ModeSwitching;
 using Mmu.Sms.DomainServices.Areas.Common.Project.Factories;
@@ -38,14 +37,14 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
             _shadowCopyHandler.SetSolutionConfigurationFileCopy(solutionConfigFile);
 
             var projectReferenceAssemblyNames = configuration.ProjectReferenceConfigurations.Select(f => f.AssemblyName).ToList();
-            //var removedReferences = solutionConfigFile.RemoveProjectReferencesExcept(projectReferenceAssemblyNames);
+            ////var removedReferences = solutionConfigFile.RemoveProjectReferencesExcept(projectReferenceAssemblyNames);
             var switchedProjectConfigFiles = new List<ProjectConfigurationFile>();
 
             foreach (var projectReferenceConfiguration in configuration.ProjectReferenceConfigurations)
             {
                 var projectConfigFile = _projcetConfigurationFileRepository.Load(projectReferenceConfiguration.AbsoluteProjectFilePath);
                 _shadowCopyHandler.AddProjectConfigurationFileCopy(projectConfigFile);
-                //SubstituteProjectConfigReferences(projectConfigFile, removedReferences);
+                ////SubstituteProjectConfigReferences(projectConfigFile, removedReferences);
                 switchedProjectConfigFiles.Add(projectConfigFile);
             }
 
@@ -55,22 +54,22 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
             return result;
         }
 
-        private void SubstituteProjectConfigReferences(ProjectConfigurationFile projectConfigFile, IEnumerable<SolutionProjectReference> removedReferences)
-        {
-            foreach (var removedReference in removedReferences)
-            {
-                var existingProjectReference = projectConfigFile.ProjectReferences.FirstOrDefault(f => f.AssemblyName == removedReference.AssemblyName);
-                if (existingProjectReference == null)
-                {
-                    continue;
-                }
+        //private void SubstituteProjectConfigReferences(ProjectConfigurationFile projectConfigFile, IEnumerable<SolutionProject> removedProjects)
+        //{
+        //    foreach (var removedReference in removedProjects)
+        //    {
+        //        var existingProjectReference = projectConfigFile.ProjectReferences.FirstOrDefault(f => f.AssemblyName == removedReference.ProjectName);
+        //        if (existingProjectReference == null)
+        //        {
+        //            continue;
+        //        }
 
-                var assemblyReference = _assemblyReferenceFactory.CreateFromProjectReferenceFilePath(
-                    removedReference.AbsoluteProjectFilePath,
-                    existingProjectReference.RelativeProjectFileIncludePath);
+        //        var assemblyReference = _assemblyReferenceFactory.CreateFromProjectReferenceFilePath(
+        //            removedReference.RelativePath,
+        //            existingProjectReference.RelativeProjectFileIncludePath);
 
-                projectConfigFile.SubstituteProjectReference(existingProjectReference, assemblyReference);
-            }
-        }
+        //        projectConfigFile.SubstituteProjectReference(existingProjectReference, assemblyReference);
+        //    }
+        //}
     }
 }

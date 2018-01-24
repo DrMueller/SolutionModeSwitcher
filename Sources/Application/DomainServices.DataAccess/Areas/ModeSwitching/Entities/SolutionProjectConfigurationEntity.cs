@@ -7,7 +7,5 @@
         public bool IncludeInBuild { get; set; }
         public string Key { get; set; }
         public string PlatformName { get; set; }
-
-        
     }
 }

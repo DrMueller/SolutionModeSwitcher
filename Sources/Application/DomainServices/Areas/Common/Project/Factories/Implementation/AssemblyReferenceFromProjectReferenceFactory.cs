@@ -1,4 +1,5 @@
 ﻿using Mmu.Sms.Domain.Areas.Common.Project;
+using Mmu.Sms.Domain.Areas.Common._LegacyProject;
 using Mmu.Sms.DomainServices.Areas.Common.Project.Repositories;
 
 namespace Mmu.Sms.DomainServices.Areas.Common.Project.Factories.Implementation
@@ -18,13 +19,15 @@ namespace Mmu.Sms.DomainServices.Areas.Common.Project.Factories.Implementation
 
         public ProjectAssemblyReference CreateFromProjectReferenceFilePath(string projectReferenceFilePath, string relativeIncludePath)
         {
-            var projectConfig = _projectConfigurationFileRepository.Load(projectReferenceFilePath);
+            return null;
 
-            var includeDefinition = _assemblyReferenceMetaDataFactory.CreateIncludeDefinition(projectConfig.PropertiesConfiguration.AssemblyName);
-            var hintPath = _assemblyReferenceMetaDataFactory.CreateHintPath(relativeIncludePath, projectConfig);
+            //var projectConfig = _projectConfigurationFileRepository.Load(projectReferenceFilePath);
 
-            var result = new ProjectAssemblyReference(includeDefinition, hintPath, null, false);
-            return result;
+            //var includeDefinition = _assemblyReferenceMetaDataFactory.CreateIncludeDefinition(projectConfig.PropertiesConfiguration.AssemblyName);
+            //var hintPath = _assemblyReferenceMetaDataFactory.CreateHintPath(relativeIncludePath, projectConfig);
+
+            //var result = new ProjectAssemblyReference(includeDefinition, hintPath, null, false);
+            //return result;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Mmu.Sms.Common.Constants;
 using Mmu.Sms.Domain.Areas.Common.Project;
+using Mmu.Sms.Domain.Areas.Common._LegacyProject;
 using Mmu.Sms.DomainServices.Infrastructure.StringParsing;
 using Mmu.Sms.DomainServices.Infrastructure.Xml;
 

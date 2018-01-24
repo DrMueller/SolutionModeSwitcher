@@ -29,8 +29,6 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Adapters.Strin
 
             foreach (var nativeProject in solutionFile.ProjectsInOrder)
             {
-                if (nativeProject.ProjectConfigurations.Any(f => !f.Value.IncludeInBuild)) Debugger.Break();
-
                 var items = _solutionProjectItemAdapter.Adapt(nativeProject.ProjectGuid, solutionDataLines);
                 var websiteProperties = _websitePropertiesAdapter.Adapt(nativeProject.ProjectGuid, solutionDataLines);
 
