@@ -7,14 +7,12 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.FileHandlers.B
     {
         //Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fifa.Ifes.Assets", "Application\Implementation\Source\Assets\Fifa.Ifes.Assets.csproj", "{7AA549C9-17C3-4037-83B8-662AF6961619}"
         //EndProject
-
         private readonly string _data;
+
         public ProjectBlock(string data)
         {
             _data = data;
         }
-
-        
 
         public string Guid
         {
@@ -32,6 +30,11 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.FileHandlers.B
                 var guid = _data.Substring(startIndex, endIndex - (startIndex - 1));
                 return guid;
             }
+        }
+
+        public override string CreateOutput()
+        {
+            return _data;
         }
     }
 }

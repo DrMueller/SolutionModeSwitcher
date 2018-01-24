@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Mmu.Sms.Common.LanguageExtensions.Invariance;
 
-namespace Mmu.Sms.Domain.Areas.Common.Solution
+namespace Mmu.Sms.Domain.Areas.Common.Solution._legacy
 {
     public class SolutionProjectReference
     {

@@ -6,13 +6,13 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Factories.Impl
 {
     public class SolutionProjectConfigurationFactory : ISolutionProjectConfigurationFactory
     {
-        public IReadOnlyCollection<SolutionProjectConfiguration> Create(ProjectInSolution project)
+        public IReadOnlyCollection<Domain.Areas.Common.Solution._legacy.SolutionProjectConfiguration> Create(ProjectInSolution project)
         {
-            var result = new List<SolutionProjectConfiguration>();
+            var result = new List<Domain.Areas.Common.Solution._legacy.SolutionProjectConfiguration>();
 
             foreach (var projConfig in project.ProjectConfigurations)
             {
-                var solutionProjectConfig = new SolutionProjectConfiguration(
+                var solutionProjectConfig = new Domain.Areas.Common.Solution._legacy.SolutionProjectConfiguration(
                     projConfig.Key,
                     projConfig.Value.PlatformName,
                     projConfig.Value.IncludeInBuild,

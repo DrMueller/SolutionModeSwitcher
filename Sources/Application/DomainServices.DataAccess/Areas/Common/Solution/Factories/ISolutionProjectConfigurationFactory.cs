@@ -6,6 +6,6 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Factories
 {
     public interface ISolutionProjectConfigurationFactory
     {
-        IReadOnlyCollection<SolutionProjectConfiguration> Create(ProjectInSolution project);
+        IReadOnlyCollection<Domain.Areas.Common.Solution._legacy.SolutionProjectConfiguration> Create(ProjectInSolution project);
     }
 }

@@ -40,10 +40,10 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.FileHandlers.S
 
             foreach (var block in blocks)
             {
-                if (solutionConfigFile.SolutionProjectReferences.Entries.All(f => f.Guid != block.Guid))
-                {
-                    blocksToRemove.Add(block);
-                }
+                //if (solutionConfigFile.SolutionProjectReferences.Entries.All(f => f.Guid != block.Guid))
+                //{
+                //    blocksToRemove.Add(block);
+                //}
             }
 
             foreach (var pro in blocksToRemove)

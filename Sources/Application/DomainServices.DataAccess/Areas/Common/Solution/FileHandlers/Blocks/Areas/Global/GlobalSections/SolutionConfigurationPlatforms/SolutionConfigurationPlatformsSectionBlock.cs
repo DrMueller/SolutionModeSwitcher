@@ -7,6 +7,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.FileHandlers.B
     public class SolutionConfigurationPlatformsSectionBlock : GlobalSectionBlock
     {
         public SolutionConfigurationPlatformsSectionBlock(string startData, string endData, List<ConfigurationEntryBlock> configurations)
+            : base(startData, endData, configurations)
         {
             Guard.ObjectNotNull(() => configurations);
 

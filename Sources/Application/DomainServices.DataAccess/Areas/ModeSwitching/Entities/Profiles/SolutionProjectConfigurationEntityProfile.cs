@@ -7,18 +7,18 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.ModeSwitching.Entities.Profile
     {
         public SolutionProjectConfigurationEntityProfile()
         {
-            CreateMap<SolutionProjectConfiguration, SolutionProjectConfigurationEntity>()
+            CreateMap<Domain.Areas.Common.Solution._legacy.SolutionProjectConfiguration, SolutionProjectConfigurationEntity>()
                 .ForMember(d => d.ConfigurationName, c => c.MapFrom(f => f.ConfigurationName))
                 .ForMember(d => d.FullName, c => c.MapFrom(f => f.FullName))
                 .ForMember(d => d.IncludeInBuild, c => c.MapFrom(f => f.IncludeInBuild))
                 .ForMember(d => d.Key, c => c.MapFrom(f => f.Key))
                 .ForMember(d => d.PlatformName, c => c.MapFrom(f => f.PlatformName));
 
-            CreateMap<SolutionProjectConfigurationEntity, SolutionProjectConfiguration>()
+            CreateMap<SolutionProjectConfigurationEntity, Domain.Areas.Common.Solution._legacy.SolutionProjectConfiguration>()
                 .ConvertUsing(
                     dto =>
                     {
-                        var result = new SolutionProjectConfiguration(
+                        var result = new Domain.Areas.Common.Solution._legacy.SolutionProjectConfiguration(
                             dto.Key,
                             dto.PlatformName,
                             dto.IncludeInBuild,

@@ -2,6 +2,7 @@
 using AutoMapper;
 using Mmu.Sms.Common.Ioc;
 using Mmu.Sms.Domain.Areas.Common.Solution;
+using Mmu.Sms.Domain.Areas.Common.Solution._legacy;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.ModeSwitching.Entities.Profiles
 {
@@ -20,7 +21,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.ModeSwitching.Entities.Profile
                     dto =>
                     {
                         var mapper = ProvisioningServiceSingleton.Instance.GetService<IMapper>();
-                        var configurations = mapper.Map<List<SolutionProjectConfiguration>>(dto.Configurations);
+                        var configurations = mapper.Map<List<Domain.Areas.Common.Solution._legacy.SolutionProjectConfiguration>>(dto.Configurations);
 
                         var result = new SolutionProjectReference(
                             dto.BlockText,

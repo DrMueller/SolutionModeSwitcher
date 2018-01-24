@@ -5,28 +5,20 @@ namespace Mmu.Sms.Domain.Areas.Common.Solution
     public class SolutionProjectConfiguration
     {
         public SolutionProjectConfiguration(
-            string key,
-            string platformName,
-            bool includeInBuild,
-            string fullName,
-            string configurationName)
+            string configurationKey,
+            string configurationDescrption)
         {
-            Guard.StringNotNullOrEmpty(() => key);
-            Guard.StringNotNullOrEmpty(() => platformName);
-            Guard.StringNotNullOrEmpty(() => fullName);
-            Guard.StringNotNullOrEmpty(() => configurationName);
+            // {D81E9F78-5F08-444F-ABAA-49B3FEF20E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+            // Debug|Any CPU = Key
+            // ActiveCfg = Debug|Any CPU = Description
+            Guard.StringNotNullOrEmpty(() => configurationKey);
+            Guard.StringNotNullOrEmpty(() => configurationDescrption);
 
-            Key = key;
-            PlatformName = platformName;
-            IncludeInBuild = includeInBuild;
-            FullName = fullName;
-            ConfigurationName = configurationName;
+            ConfigurationKey = configurationKey;
+            ConfigurationDescrption = configurationDescrption;
         }
 
-        public string ConfigurationName { get; }
-        public string FullName { get; }
-        public bool IncludeInBuild { get; }
-        public string Key { get; }
-        public string PlatformName { get; }
+        public string ConfigurationKey { get; }
+        public string ConfigurationDescrption { get; }
     }
 }

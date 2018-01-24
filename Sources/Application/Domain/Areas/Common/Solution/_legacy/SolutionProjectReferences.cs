@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Mmu.Sms.Domain.Areas.Common.Solution
+namespace Mmu.Sms.Domain.Areas.Common.Solution._legacy
 {
     public class SolutionProjectReferences
     {

@@ -2,6 +2,7 @@
 using AutoMapper;
 using Mmu.Sms.Common.Ioc;
 using Mmu.Sms.Domain.Areas.Common.Solution;
+using Mmu.Sms.Domain.Areas.Common.Solution._legacy;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.ModeSwitching.Entities.Profiles
 {

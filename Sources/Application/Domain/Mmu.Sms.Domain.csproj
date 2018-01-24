@@ -42,7 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Common\Solution\SolutionProjectItem.cs" />
+    <Compile Include="Areas\Common\Solution\SolutionConfiguration.cs" />
+    <Compile Include="Areas\Common\Solution\GlobalExtensibilities.cs" />
+    <Compile Include="Areas\Common\Solution\SolutionHeadingElement.cs" />
+    <Compile Include="Areas\Common\Solution\WebsiteProperties.cs" />
+    <Compile Include="Areas\Common\Solution\SolutionProperties.cs" />
+    <Compile Include="Areas\Common\Solution\SolutionProject.cs" />
     <Compile Include="Areas\Common\Solution\SolutionProjectConfiguration.cs" />
+    <Compile Include="Areas\Common\Solution\SolutionProjectType.cs" />
+    <Compile Include="Areas\Common\Solution\_legacy\Trea.cs" />
+    <Compile Include="Areas\Common\Solution\_legacy\SolutionProjectConfiguration.cs" />
     <Compile Include="Areas\Configuration\ProjectReferenceConfiguration.cs" />
     <Compile Include="Areas\Configuration\SolutionModeConfiguration.cs" />
     <Compile Include="Areas\Common\Project\ProjectAssemblyReference.cs" />
@@ -54,8 +64,8 @@
     <Compile Include="Areas\Common\Project\ProjectPropertiesConfiguration.cs" />
     <Compile Include="Areas\Common\Project\ProjectReference.cs" />
     <Compile Include="Areas\Common\Solution\SolutionConfigurationFile.cs" />
-    <Compile Include="Areas\Common\Solution\SolutionProjectReference.cs" />
-    <Compile Include="Areas\Common\Solution\SolutionProjectReferences.cs" />
+    <Compile Include="Areas\Common\Solution\_legacy\SolutionProjectReference.cs" />
+    <Compile Include="Areas\Common\Solution\_legacy\SolutionProjectReferences.cs" />
     <Compile Include="Areas\ModeSwitching\SolutionModeShadowCopy.cs" />
     <Compile Include="Areas\ModeSwitching\SolutionSwitchResult.cs" />
     <Compile Include="Areas\ProjectBuilding\BuildableProject.cs" />

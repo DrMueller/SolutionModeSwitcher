@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Mmu.Sms.Domain.Areas.Common.Solution;
+using Mmu.Sms.Domain.Areas.Common.Solution._legacy;
 using Mmu.Sms.Domain.Areas.Configuration;
 using Mmu.Sms.Domain.Areas.ModeSwitching;
 using Mmu.Sms.DomainServices.Areas.Common.Solution.Repositories;
@@ -26,7 +27,7 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
             var shadowCopy = _shadowCopyRepository.Load(configuration.Id);
             var solutionConfigFile = _solutionConfigurationFileRepository.Load(configuration.SolutionFilePath);
 
-            MapSolutionProjectReferences(shadowCopy.SolutionConfigFile.SolutionProjectReferences, solutionConfigFile.SolutionProjectReferences);
+            //MapSolutionProjectReferences(shadowCopy.SolutionConfigFile.SolutionProjectReferences, solutionConfigFile.SolutionProjectReferences);
             _solutionConfigurationFileRepository.Save(solutionConfigFile);
             return null;
         }

@@ -2,7 +2,7 @@
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.FileHandlers.Services
 {
-    public interface ISolutionFileHandler
+    public interface ISolutionFileService
     {
         string RearrangeSolutionFile(SolutionConfigurationFile solutionConfigFile);
     }

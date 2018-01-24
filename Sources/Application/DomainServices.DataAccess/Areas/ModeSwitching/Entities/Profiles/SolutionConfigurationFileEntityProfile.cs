@@ -9,19 +9,19 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.ModeSwitching.Entities.Profile
         public SolutionConfigurationFileEntityProfile()
         {
             CreateMap<SolutionConfigurationFile, SolutionConfigurationFileEntity>()
-                .ForMember(d => d.FilePath, c => c.MapFrom(f => f.FilePath))
-                .ForMember(d => d.SolutionProjectReferences, c => c.MapFrom(f => f.SolutionProjectReferences));
+                .ForMember(d => d.FilePath, c => c.MapFrom(f => f.FilePath));
+                //.ForMember(d => d.SolutionProjectReferences, c => c.MapFrom(f => f.SolutionProjectReferences));
 
             CreateMap<SolutionConfigurationFileEntity, SolutionConfigurationFile>()
                 .ConvertUsing(
                     dto =>
                     {
                         var mapper = ProvisioningServiceSingleton.Instance.GetService<IMapper>();
-                        var projectReferences = mapper.Map<SolutionProjectReferences>(dto.SolutionProjectReferences);
+                        //var projectReferences = mapper.Map<SolutionProjectReferences>(dto.SolutionProjectReferences);
 
                         var result = new SolutionConfigurationFile(
                             dto.FilePath,
-                            projectReferences);
+                            null, null, null, null, null);
 
                         return result;
                     });
