@@ -10,7 +10,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.ModeSwitching.Entities.Profile
         {
             CreateMap<ProjectReference, ProjectReferenceEntity>()
                 .ForMember(d => d.AssemblyName, c => c.MapFrom(f => f.AssemblyName))
-                .ForMember(d => d.Guid, c => c.MapFrom(f => f.Guid))
+                .ForMember(d => d.Guid, c => c.MapFrom(f => f.ProjectGuid))
                 .ForMember(d => d.RelativeProjectFileIncludePath, c => c.MapFrom(f => f.RelativeProjectFileIncludePath));
 
             CreateMap<ProjectReferenceEntity, ProjectReference>()

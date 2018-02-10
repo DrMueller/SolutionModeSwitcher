@@ -4,15 +4,15 @@ namespace Mmu.Sms.Domain.Areas.Common.Project
 {
     public class ImportEntry
     {
-        public ImportEntry(string relativePath, string condition)
+        public ImportEntry(string condition, string relativeProjectPath)
         {
-            Guard.StringNotNullOrEmpty(() => relativePath);
+            Guard.StringNotNullOrEmpty(() => relativeProjectPath);
 
-            RelativePath = relativePath;
             Condition = condition;
+            RelativeProjectPath = relativeProjectPath;
         }
 
         public string Condition { get; }
-        public string RelativePath { get; }
+        public string RelativeProjectPath { get; }
     }
 }

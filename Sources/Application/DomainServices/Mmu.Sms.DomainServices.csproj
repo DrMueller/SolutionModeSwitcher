@@ -89,7 +89,6 @@
       <Generator>Extended PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Include="Infrastructure\StringParsing\IStringParsingService.cs" />
-    <Compile Include="Infrastructure\Xml\IXmlParsingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

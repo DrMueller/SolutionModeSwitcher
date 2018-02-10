@@ -1,7 +1,10 @@
 # App
 - Review whole code
 
-- Tabs bei Adapters
+- Create Configuratuin Platform und Name Models (Debug, Any CPU) & Combination
+
+# Neue Features
+- Queuing für Rebuild
 
 # UI
 

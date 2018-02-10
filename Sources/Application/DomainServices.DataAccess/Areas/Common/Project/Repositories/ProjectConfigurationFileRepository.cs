@@ -9,7 +9,8 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Repositories
         private readonly IXmlToProjectConfigurationFileAdapter _xmlToProjectConfigFileAdapter;
 
         public ProjectConfigurationFileRepository(
-            IXmlToProjectConfigurationFileAdapter xmlToProjectConfigFileAdapter)
+            IXmlToProjectConfigurationFileAdapter xmlToProjectConfigFileAdapter
+            )
         {
             _xmlToProjectConfigFileAdapter = xmlToProjectConfigFileAdapter;
         }

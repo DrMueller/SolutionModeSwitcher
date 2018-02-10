@@ -81,22 +81,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Implementation\XmlToImportEntryAdapter.cs" />
-    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\IXmlToImportEntryAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Implementation\ProjectConfigurationFileToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\IProjectConfigurationFileToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\AssemblyReferences\IAssemblyReferenceAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\AssemblyReferences\Implementation\AssemblyReferenceAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Inclusions\IBuildActionAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Inclusions\ICopyToOutputDirectoryTypeAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Inclusions\IInclusionEntryAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Inclusions\Implementation\BuildActionAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Inclusions\Implementation\CopyToOutputDirectoryTypeAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Inclusions\Implementation\InclusionEntryAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\PostSharp\Implementation\XmlToPostSharpConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\PostSharp\IXmlToPostSharpConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectBuild\Implementation\ProjectBuildConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectBuild\IProjectBuildConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToIisExpressConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ImportEntry\Implementation\XmlToImportEntryAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToMvcBuildViewAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToProjectOutputTypeAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToProjectPropertiesConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToSolutionDirectoryAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToSscConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\IXmlToIisExpressConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ImportEntry\IXmlToImportEntryAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\IXmlToMvcBuildViewAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\IXmlToProjectOutputTypeAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\IXmlToProjectPropertiesConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\IXmlToSolutionDirectoryAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\IXmlToSscConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectReferences\Implementation\ProjectReferenceAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectReferences\IProjectReferenceAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\SlowCheetah\Implementation\SlowCheetahConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\SlowCheetah\ISlowCheetahConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\VisualStudioConfigurations\Implementation\VisualStudioConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\VisualStudioConfigurations\IVisualStudioConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Implementation\XmlToProjectConfigurationFileAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Common\Services\Implementation\XmlToConditionValueAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Common\Services\IXmlToConditionValueAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Common\Models\ConditionalValue.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\IXmlToProjectConfigurationFileAdapter.cs" />
-    <Compile Include="Areas\Common\Project\Factories\Implementation\ProjectAssemblyReferenceFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\Implementation\ProjectBuildConfigurationFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\Implementation\ProjectConfigurationDocumentFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\Implementation\ProjectPropertiesConfigurationFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\Implementation\ProjectReferenceFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\Implementation\XmlProjectAssemblyReferenceFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\IProjectAssemblyReferenceFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\IProjectBuildConfigurationFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\IProjectConfigurationDocumentFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\IProjectPropertiesConfigurationFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\IProjectReferenceFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\IXmlProjectAssemblyReferenceFactory.cs" />
+    <Compile Include="Areas\Common\Project\Factories\Implementation\ProjectOutputTypeFactory.cs" />
+    <Compile Include="Areas\Common\Project\Factories\IProjectOutputTypeFactory.cs" />
+    <Compile Include="Areas\Common\Project\_FactoriesLegacy\Implementation\ProjectAssemblyReferenceFactory.cs" />
+    <Compile Include="Areas\Common\Project\_FactoriesLegacy\Implementation\ProjectBuildConfigurationFactory.cs" />
+    <Compile Include="Areas\Common\Project\_FactoriesLegacy\Implementation\ProjectConfigurationDocumentFactory.cs" />
+    <Compile Include="Areas\Common\Project\_FactoriesLegacy\Implementation\ProjectPropertiesConfigurationFactory.cs" />
+    <Compile Include="Areas\Common\Project\_FactoriesLegacy\Implementation\ProjectReferenceFactory.cs" />
+    <Compile Include="Areas\Common\Project\_FactoriesLegacy\Implementation\XmlProjectAssemblyReferenceFactory.cs" />
+    <Compile Include="Areas\Common\Project\_FactoriesLegacy\IProjectAssemblyReferenceFactory.cs" />
+    <Compile Include="Areas\Common\Project\_FactoriesLegacy\IProjectBuildConfigurationFactory.cs" />
+    <Compile Include="Areas\Common\Project\_FactoriesLegacy\IProjectConfigurationDocumentFactory.cs" />
+    <Compile Include="Areas\Common\Project\_FactoriesLegacy\IProjectPropertiesConfigurationFactory.cs" />
+    <Compile Include="Areas\Common\Project\_FactoriesLegacy\IProjectReferenceFactory.cs" />
+    <Compile Include="Areas\Common\Project\_FactoriesLegacy\IXmlProjectAssemblyReferenceFactory.cs" />
     <Compile Include="Areas\Common\Project\Repositories\ProjectConfigurationFileRepository.cs" />
     <Compile Include="Areas\Common\Solution\Adapters\DomainToString\Services\Handlers\Global\IGlobalEntryToStringAdapter.cs" />
     <Compile Include="Areas\Common\Solution\Adapters\DomainToString\Services\Handlers\Global\Implementation\GlobalEntryToStringAdapter.cs" />
@@ -174,6 +211,8 @@
     <Compile Include="Infrastructure\ExtendedStringBuilder\IExtendedStringBuilder.cs" />
     <Compile Include="Infrastructure\ExtendedStringBuilder\Implementation\ExtendedStringBuilder.cs" />
     <Compile Include="Infrastructure\Ioc\DataAccessRegistry.cs" />
+    <Compile Include="Infrastructure\Xml\Implementation\XmlParsingService.cs" />
+    <Compile Include="Infrastructure\Xml\IXmlParsingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +233,8 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
