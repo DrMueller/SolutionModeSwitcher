@@ -113,8 +113,14 @@
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectReferences\IProjectReferenceAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\SlowCheetah\Implementation\SlowCheetahConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\SlowCheetah\ISlowCheetahConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\TargetConfigurations\Implementation\TargetConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\TargetConfigurations\ITargetConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\UsingTasks\Implementation\UsingTaskAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\UsingTasks\IUsingTaskAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\VisualStudioConfigurations\Implementation\VisualStudioConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\VisualStudioConfigurations\IVisualStudioConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\VisualStudioExtensions\Implementation\VisualStudioExtensionsConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\VisualStudioExtensions\IVisualStudioExtensionsConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Implementation\XmlToProjectConfigurationFileAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Common\Services\Implementation\XmlToConditionValueAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Common\Services\IXmlToConditionValueAdapter.cs" />

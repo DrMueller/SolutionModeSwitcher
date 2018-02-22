@@ -14,7 +14,7 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
     public class SolutionModeSwitchingService : ISolutionModeSwitchingService
     {
         private readonly IAssemblyReferenceFromProjectReferenceFactory _assemblyReferenceFactory;
-        private readonly IProjectConfigurationFileRepository _projcetConfigurationFileRepository;
+        private readonly IProjectConfigurationFileRepository _projectConfigurationFileRepository;
         private readonly ISolutionModeShadowCopyCollector _shadowCopyHandler;
         private readonly ISolutionConfigurationFileRepository _solutionConfigurationFileRepository;
 
@@ -22,12 +22,12 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
             IAssemblyReferenceFromProjectReferenceFactory assemblyReferenceFactory,
             ISolutionConfigurationFileRepository solutionConfigurationFileRepository,
             ISolutionModeShadowCopyCollector shadowCopyHandler,
-            IProjectConfigurationFileRepository projcetConfigurationFileRepository)
+            IProjectConfigurationFileRepository projectConfigurationFileRepository)
         {
             _assemblyReferenceFactory = assemblyReferenceFactory;
             _solutionConfigurationFileRepository = solutionConfigurationFileRepository;
             _shadowCopyHandler = shadowCopyHandler;
-            _projcetConfigurationFileRepository = projcetConfigurationFileRepository;
+            _projectConfigurationFileRepository = projectConfigurationFileRepository;
         }
 
         public SolutionSwitchResult SwitchSolutionMode(SolutionModeConfiguration configuration)
@@ -36,40 +36,13 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
             var solutionConfigFile = _solutionConfigurationFileRepository.Load(configuration.SolutionFilePath);
             _shadowCopyHandler.SetSolutionConfigurationFileCopy(solutionConfigFile);
 
-            var projectReferenceAssemblyNames = configuration.ProjectReferenceConfigurations.Select(f => f.AssemblyName).ToList();
-            ////var removedReferences = solutionConfigFile.RemoveProjectReferencesExcept(projectReferenceAssemblyNames);
-            var switchedProjectConfigFiles = new List<ProjectConfigurationFile>();
-
             foreach (var projectReferenceConfiguration in configuration.ProjectReferenceConfigurations)
             {
-                var projectConfigFile = _projcetConfigurationFileRepository.Load(projectReferenceConfiguration.AbsoluteProjectFilePath);
-                _shadowCopyHandler.AddProjectConfigurationFileCopy(projectConfigFile);
-                ////SubstituteProjectConfigReferences(projectConfigFile, removedReferences);
-                switchedProjectConfigFiles.Add(projectConfigFile);
+                var projectConfigFile = _projectConfigurationFileRepository.Load(projectReferenceConfiguration.AbsoluteProjectFilePath);
+                _projectConfigurationFileRepository.Save(projectConfigFile);
+
             }
 
-            var result = new SolutionSwitchResult(solutionConfigFile, switchedProjectConfigFiles);
-
-            _shadowCopyHandler.Save();
-            return result;
-        }
-
-        //private void SubstituteProjectConfigReferences(ProjectConfigurationFile projectConfigFile, IEnumerable<SolutionProject> removedProjects)
-        //{
-        //    foreach (var removedReference in removedProjects)
-        //    {
-        //        var existingProjectReference = projectConfigFile.ProjectReferences.FirstOrDefault(f => f.AssemblyName == removedReference.ProjectName);
-        //        if (existingProjectReference == null)
-        //        {
-        //            continue;
-        //        }
-
-        //        var assemblyReference = _assemblyReferenceFactory.CreateFromProjectReferenceFilePath(
-        //            removedReference.RelativePath,
-        //            existingProjectReference.RelativeProjectFileIncludePath);
-
-        //        projectConfigFile.SubstituteProjectReference(existingProjectReference, assemblyReference);
-        //    }
-        //}
+            return null;
     }
 }

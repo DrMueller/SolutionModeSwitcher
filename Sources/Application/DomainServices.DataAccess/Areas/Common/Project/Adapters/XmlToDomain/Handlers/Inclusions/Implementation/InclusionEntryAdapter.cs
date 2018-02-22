@@ -64,7 +64,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
 
         private static bool CheckIfHasIncludeAttribute(XElement element)
         {
-            var includeAttr = element.Attributes().FirstOrDefault(f => f.Name == " Include");
+            var includeAttr = element.Attributes().FirstOrDefault(f => f.Name == "Include");
             return includeAttr != null;
         }
     }

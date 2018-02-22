@@ -1,5 +1,4 @@
-﻿using Mmu.Sms.Domain.Areas.Common.Project;
-using Mmu.Sms.Domain.Areas.Common._LegacyProject;
+﻿using Mmu.Sms.Domain.Areas.Common.Project.AssemblyReferences;
 using Mmu.Sms.DomainServices.Areas.Common.Project.Repositories;
 
 namespace Mmu.Sms.DomainServices.Areas.Common.Project.Factories.Implementation

@@ -30,7 +30,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
                     return CopyToOutputDirectoryType.CopyAlways;
                 }
 
-                case "CopyToOutputDirectory":
+                case "PreserveNewest":
                 {
                     return CopyToOutputDirectoryType.PreserveNewest;
                 }
@@ -40,9 +40,15 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
                     return CopyToOutputDirectoryType.DoNotCopy;
                 }
 
+                case "None":
+                {
+                    return CopyToOutputDirectoryType.None;
+                }
+
+
                 default:
                 {
-                    throw new Exception(copyToOutputValue);
+                    throw new Exception("Copy to output type: " + copyToOutputValue);
                 }
             }
         }

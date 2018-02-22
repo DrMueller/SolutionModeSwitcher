@@ -30,7 +30,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
         private ProjectBuildConfiguration AdaptConfiguration(XElement element)
         {
             var condition = element.Attributes().First(f => f.Name.LocalName == "Condition").Value;
-            var debugSymbols = _xmlParsingService.ParseSubElementValue<bool>(element, "DebugSymbols");
+            var debugSymbols = _xmlParsingService.TryParsingSubElementValue<bool>(element, "DebugSymbols");
             var debugType = _xmlParsingService.TryParsingSubElementStringValue(element, "DebugType");
             var optimize = _xmlParsingService.ParseSubElementValue<bool>(element, "Optimize");
             var outputPath = _xmlParsingService.TryParsingSubElementStringValue(element, "OutputPath");
@@ -38,9 +38,9 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             var errorReport = _xmlParsingService.TryParsingSubElementStringValue(element, "ErrorReport");
             var warningLevel = _xmlParsingService.ParseSubElementValue<int>(element, "WarningLevel");
             var codeAnalysisRuleSet = _xmlParsingService.TryParsingSubElementStringValue(element, "CodeAnalysisRuleSet");
-            var runCodeAnalysis = _xmlParsingService.ParseSubElementValue<bool>(element, "RunCodeAnalysis");
-            var noWarn = _xmlParsingService.ParseSubElementValue<int>(element, "NoWarn");
-            var usePostSharp = _xmlParsingService.ParseSubElementValue<bool>(element, "UsePostSharp");
+            var runCodeAnalysis = _xmlParsingService.TryParsingSubElementValue<bool>(element, "RunCodeAnalysis");
+            var noWarn = _xmlParsingService.TryParsingSubElementValue<int>(element, "NoWarn");
+            var usePostSharp = _xmlParsingService.TryParsingSubElementValue<bool>(element, "UsePostSharp");
             var postSharpDisabledMessages = _xmlParsingService.TryParsingSubElementStringValue(element, "PostSharpDisabledMessages");
             var documentationFile = _xmlParsingService.TryParsingSubElementStringValue(element, "DocumentationFile");
             var langVersion = _xmlParsingService.ParseSubElementValue<int>(element, "LangVersion");

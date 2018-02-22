@@ -28,9 +28,45 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
                 {
                     return BuildAction.CodeAnalysisDictionary;
                 }
+
+                case "None":
+                {
+                    return BuildAction.None;
+                }
+
+                case "Folder":
+                {
+                    return BuildAction.Folder;
+                }
+
+                case "Reference":
+                {
+                    return BuildAction.Reference;
+                }
+
+                case "Analyzer":
+                {
+                    return BuildAction.Analyzer;
+                }
+
+                case "ProjectReference":
+                {
+                    return BuildAction.ProjectReference;
+                }
+
+                case "Service":
+                {
+                    return BuildAction.Service;
+                }
+
+                case "AppConfigWithTargetPath":
+                {
+                    return BuildAction.AppConfigWithTargetPath;
+                }
+
                 default:
                 {
-                    throw new NotImplementedException(element.Name.LocalName);
+                    throw new NotImplementedException("Build Action: " + element.Name.LocalName);
                 }
             }
         }

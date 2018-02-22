@@ -1,4 +1,6 @@
-﻿namespace Mmu.Sms.Domain.Areas.Common.Project.ProjectExtensions
+﻿using System;
+
+namespace Mmu.Sms.Domain.Areas.Common.Project.ProjectExtensions
 {
     public class VisualStudioExtensionsConfiguration
     {

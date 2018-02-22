@@ -10,7 +10,6 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
         public Maybe<PostSharpConfiguration> Adapt(XDocument document)
         {
             var postSharpHostConfigFileElement = document.Descendants().FirstOrDefault(f => f.Name.LocalName == "PostSharpHostConfigurationFile");
-
             PostSharpConfiguration config = null;
 
             if (postSharpHostConfigFileElement != null)
@@ -18,7 +17,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
                 var configHostFileValue = postSharpHostConfigFileElement.Value;
                 config = new PostSharpConfiguration(configHostFileValue);
             }
-            ;
+
             return MaybeFactory.CreateFromNullable(config);
         }
     }

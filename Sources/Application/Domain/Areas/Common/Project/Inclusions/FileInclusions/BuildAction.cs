@@ -2,9 +2,16 @@
 {
     public enum BuildAction
     {
+        None,
         Compile,
         Content,
         EmbeddedResource,
-        CodeAnalysisDictionary
+        CodeAnalysisDictionary,
+        Folder,
+        Reference,
+        Analyzer,
+        ProjectReference,
+        Service,
+        AppConfigWithTargetPath
     }
 }

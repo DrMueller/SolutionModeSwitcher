@@ -12,7 +12,7 @@ namespace Mmu.Sms.Domain.Areas.Common.Project.VisualStudio
             VisualStudioToolsPath = visualStudioToolsPath;
         }
 
-        public Maybe<VisualStudioVersion> VisualStudioToolsPath { get; }
-        public Maybe<VisualStudioToolsPath> VisualStudioVersion { get; }
+        public Maybe<VisualStudioToolsPath> VisualStudioToolsPath { get; }
+        public Maybe<VisualStudioVersion> VisualStudioVersion { get; }
     }
 }

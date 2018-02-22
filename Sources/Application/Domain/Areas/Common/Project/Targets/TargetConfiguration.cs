@@ -6,22 +6,22 @@ namespace Mmu.Sms.Domain.Areas.Common.Project.Targets
     {
         public TargetConfiguration(
             Maybe<AspNetCompilerConfiguration> aspNetCompilerConfiguration,
-            Maybe<TransformXmlConfiguration> transformXmlConfiguration,
             Maybe<DeploymentConfiguration> deploymentConfiguration,
             Maybe<EnsurePostSharpImportedConfiguration> ensurePostSharpImportedConfiguration,
-            Maybe<ProjectBuildConfiguration> projectBuildConfiguration)
+            Maybe<TransformXmlConfiguration> transformXmlConfiguration,
+            Maybe<EnsureNuGetPackageBuildImportsConfiguration> ensureNuGetPackageBuildImportsConfiguration)
         {
             AspNetCompilerConfiguration = aspNetCompilerConfiguration;
             TransformXmlConfiguration = transformXmlConfiguration;
             DeploymentConfiguration = deploymentConfiguration;
             EnsurePostSharpImportedConfiguration = ensurePostSharpImportedConfiguration;
-            ProjectBuildConfiguration = projectBuildConfiguration;
+            EnsureNuGetPackageBuildImportsConfiguration = ensureNuGetPackageBuildImportsConfiguration;
         }
 
         public Maybe<AspNetCompilerConfiguration> AspNetCompilerConfiguration { get; }
         public Maybe<DeploymentConfiguration> DeploymentConfiguration { get; }
+        public Maybe<EnsureNuGetPackageBuildImportsConfiguration> EnsureNuGetPackageBuildImportsConfiguration { get; }
         public Maybe<EnsurePostSharpImportedConfiguration> EnsurePostSharpImportedConfiguration { get; }
-        public Maybe<ProjectBuildConfiguration> ProjectBuildConfiguration { get; }
         public Maybe<TransformXmlConfiguration> TransformXmlConfiguration { get; }
     }
 }

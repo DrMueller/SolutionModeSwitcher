@@ -8,7 +8,10 @@ using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomai
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ProjectProperties;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ProjectReferences;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.SlowCheetah;
+using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.TargetConfigurations;
+using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.UsingTasks;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.VisualStudioConfigurations;
+using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.VisualStudioExtensions;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Implementation
 {
@@ -22,7 +25,10 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
         private readonly IXmlToProjectPropertiesConfigurationAdapter _projectPropertiesConfigAdpater;
         private readonly IProjectReferenceAdapter _projectReferenceAdapter;
         private readonly ISlowCheetahConfigurationAdapter _slowCheetahConfigAdapter;
+        private readonly ITargetConfigurationAdapter _targetConfigurationAdapter;
+        private readonly IUsingTaskAdapter _usingTaskAdapter;
         private readonly IVisualStudioConfigurationAdapter _visualStudioConfigAdapter;
+        private readonly IVisualStudioExtensionsConfigurationAdapter _visualStudioExtensionsAdapter;
 
         public XmlToProjectConfigurationFileAdapter(
             IXmlToImportEntryAdapter importEntryAdapter,
@@ -33,7 +39,10 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             IInclusionEntryAdapter inclusionEntryAdapter,
             IProjectReferenceAdapter projectReferenceAdapter,
             IVisualStudioConfigurationAdapter visualStudioConfigAdapter,
-            ISlowCheetahConfigurationAdapter slowCheetahConfigAdapter)
+            ISlowCheetahConfigurationAdapter slowCheetahConfigAdapter,
+            ITargetConfigurationAdapter targetConfigurationAdapter,
+            IVisualStudioExtensionsConfigurationAdapter visualStudioExtensionsAdapter,
+            IUsingTaskAdapter usingTaskAdapter)
         {
             _importEntryAdapter = importEntryAdapter;
             _projectPropertiesConfigAdpater = projectPropertiesConfigAdpater;
@@ -44,6 +53,9 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             _projectReferenceAdapter = projectReferenceAdapter;
             _visualStudioConfigAdapter = visualStudioConfigAdapter;
             _slowCheetahConfigAdapter = slowCheetahConfigAdapter;
+            _targetConfigurationAdapter = targetConfigurationAdapter;
+            _visualStudioExtensionsAdapter = visualStudioExtensionsAdapter;
+            _usingTaskAdapter = usingTaskAdapter;
         }
 
         public ProjectConfigurationFile Adapt(string filePath)
@@ -58,6 +70,9 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             var projectReferences = _projectReferenceAdapter.Adapt(document);
             var visualStudioConfig = _visualStudioConfigAdapter.Adapt(document);
             var slowCheetahConfig = _slowCheetahConfigAdapter.Adapt(document);
+            var targetConfig = _targetConfigurationAdapter.Adapt(document);
+            var visualStudioExtensionsConfig = _visualStudioExtensionsAdapter.Adapt(document);
+            var usingTasks = _usingTaskAdapter.Adapt(document);
 
             var result = new ProjectConfigurationFile(
                 filePath,
@@ -70,9 +85,9 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
                 projectReferences,
                 visualStudioConfig,
                 slowCheetahConfig,
-                null,
-                null,
-                null);
+                targetConfig,
+                visualStudioExtensionsConfig,
+                usingTasks);
 
             return result;
         }

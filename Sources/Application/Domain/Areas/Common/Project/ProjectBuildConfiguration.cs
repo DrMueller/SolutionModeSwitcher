@@ -4,7 +4,7 @@
     {
         public ProjectBuildConfiguration(
             string condition,
-            bool debugSymbols,
+            bool? debugSymbols,
             string debugType,
             bool optimize,
             string outputPath,
@@ -12,9 +12,9 @@
             string errorReport,
             int warningLevel,
             string codeAnalysisRuleSet,
-            bool runCodeAnalysis,
-            int noWarn,
-            bool usePostSharp,
+            bool? runCodeAnalysis,
+            int? noWarn,
+            bool? usePostSharp,
             string postSharpDisabledMessages,
             string documentationFile,
             int langVersion
@@ -39,18 +39,18 @@
 
         public string CodeAnalysisRuleSet { get; }
         public string Condition { get; }
-        public bool DebugSymbols { get; }
+        public bool? DebugSymbols { get; }
         public string DebugType { get; }
         public string DefineConstants { get; }
         public string DocumentationFile { get; }
         public string ErrorReport { get; }
         public int LangVersion { get; }
-        public int NoWarn { get; }
+        public int? NoWarn { get; }
         public bool Optimize { get; }
         public string OutputPath { get; }
         public string PostSharpDisabledMessages { get; }
-        public bool RunCodeAnalysis { get; }
-        public bool UsePostSharp { get; }
+        public bool? RunCodeAnalysis { get; }
+        public bool? UsePostSharp { get; }
         public int WarningLevel { get; }
     }
 }
