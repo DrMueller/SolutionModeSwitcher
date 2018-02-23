@@ -81,6 +81,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ImportEntries\IImportEntryToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ImportEntries\Implementation\ImportEntryToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ProjectProperties\Implementation\ProjectPropertiesConfigurationToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ProjectProperties\IProjectPropertiesConfigurationToXmlAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Implementation\ProjectConfigurationFileToXmlAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\DomainToXml\IProjectConfigurationFileToXmlAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\AssemblyReferences\IAssemblyReferenceAdapter.cs" />
@@ -96,14 +100,14 @@
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectBuild\Implementation\ProjectBuildConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectBuild\IProjectBuildConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToIisExpressConfigurationAdapter.cs" />
-    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ImportEntry\Implementation\XmlToImportEntryAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ImportEntries\Implementation\XmlToImportEntryAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToMvcBuildViewAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToProjectOutputTypeAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToProjectPropertiesConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToSolutionDirectoryAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToSscConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\IXmlToIisExpressConfigurationAdapter.cs" />
-    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ImportEntry\IXmlToImportEntryAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ImportEntries\IXmlToImportEntryAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\IXmlToMvcBuildViewAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\IXmlToProjectOutputTypeAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\IXmlToProjectPropertiesConfigurationAdapter.cs" />
@@ -218,7 +222,11 @@
     <Compile Include="Infrastructure\ExtendedStringBuilder\Implementation\ExtendedStringBuilder.cs" />
     <Compile Include="Infrastructure\Ioc\DataAccessRegistry.cs" />
     <Compile Include="Infrastructure\Xml\Implementation\XmlParsingService.cs" />
+    <Compile Include="Infrastructure\Xml\Implementation\XmlWritingService.cs" />
     <Compile Include="Infrastructure\Xml\IXmlParsingService.cs" />
+    <Compile Include="Infrastructure\Xml\IXmlWritingService.cs" />
+    <Compile Include="Infrastructure\Xml\Models\ElementTypes\AttributeObjectType.cs" />
+    <Compile Include="Infrastructure\Xml\Models\ElementTypes\ObjectType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -239,8 +247,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

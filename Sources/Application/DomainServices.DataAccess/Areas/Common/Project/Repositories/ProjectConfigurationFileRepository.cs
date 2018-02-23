@@ -1,5 +1,6 @@
 ﻿using Mmu.Sms.Domain.Areas.Common.Project;
 using Mmu.Sms.DomainServices.Areas.Common.Project.Repositories;
+using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.DomainToXml;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Repositories
@@ -7,12 +8,15 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Repositories
     public class ProjectConfigurationFileRepository : IProjectConfigurationFileRepository
     {
         private readonly IXmlToProjectConfigurationFileAdapter _xmlToProjectConfigFileAdapter;
+        private readonly IProjectConfigurationFileToXmlAdapter _projectToXmlConfigFileAdapter;
 
         public ProjectConfigurationFileRepository(
-            IXmlToProjectConfigurationFileAdapter xmlToProjectConfigFileAdapter
+            IXmlToProjectConfigurationFileAdapter xmlToProjectConfigFileAdapter,
+            IProjectConfigurationFileToXmlAdapter projectToXmlConfigFileAdapter
             )
         {
             _xmlToProjectConfigFileAdapter = xmlToProjectConfigFileAdapter;
+            _projectToXmlConfigFileAdapter = projectToXmlConfigFileAdapter;
         }
 
         public ProjectConfigurationFile Load(string filePath)
@@ -21,10 +25,10 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Repositories
             return result;
         }
 
-        public void Save(ProjectConfigurationFile projectConfigurationFile)
+        public void Save(ProjectConfigurationFile projectConfigFile)
         {
-            //var xmlDocument = _projectConfigurationDocumentFactory.CreateDocument(projectConfigurationFile);
-            //xmlDocument.Save(projectConfigurationFile.FilePath);
+            var xmlDocument = _projectToXmlConfigFileAdapter.Adapt(projectConfigFile);
+            xmlDocument.Save(projectConfigFile.FilePath);
         }
     }
 }

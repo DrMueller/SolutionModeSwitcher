@@ -6,6 +6,6 @@ namespace Mmu.Sms.DomainServices.Areas.Common.Project.Repositories
     {
         ProjectConfigurationFile Load(string filePath);
 
-        void Save(ProjectConfigurationFile projectConfigurationFile);
+        void Save(ProjectConfigurationFile projectConfigFile);
     }
 }

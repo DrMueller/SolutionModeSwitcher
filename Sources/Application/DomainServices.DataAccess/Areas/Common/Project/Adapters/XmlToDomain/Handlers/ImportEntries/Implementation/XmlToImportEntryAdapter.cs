@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using Mmu.Sms.Domain.Areas.Common.Project;
 
-namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ImportEntry.Implementation
+namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ImportEntries.Implementation
 {
     public class XmlToImportEntryAdapter : IXmlToImportEntryAdapter
     {
-        public IReadOnlyCollection<Domain.Areas.Common.Project.ImportEntry> Adapt(XDocument document)
+        public IReadOnlyCollection<ImportEntry> Adapt(XDocument document)
         {
-            var result = new List<Domain.Areas.Common.Project.ImportEntry>();
+            var result = new List<ImportEntry>();
             var importNodes = document.Descendants().Where(f => f.Name.LocalName == "Import");
 
             foreach (var importNode in importNodes)

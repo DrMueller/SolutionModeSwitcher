@@ -44,5 +44,6 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
             }
 
             return null;
+        }
     }
 }
