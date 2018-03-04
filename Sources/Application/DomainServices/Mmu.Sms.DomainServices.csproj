@@ -74,12 +74,7 @@
     <Compile Include="Areas\Configuration\Factories\Implementation\SolutionModeConfigurationFactory.cs" />
     <Compile Include="Areas\Configuration\Factories\ISolutionModeConfigurationFactory.cs" />
     <Compile Include="Areas\Configuration\Repositories\ISolutionModeConfigurationRepository.cs" />
-    <Compile Include="Areas\ModeSwitching\Repositories\ISolutionModeShadowCopyRepository.cs" />
-    <Compile Include="Areas\ModeSwitching\Services\Handlers\Implementation\SolutionModeShadowCopyCollector.cs" />
-    <Compile Include="Areas\ModeSwitching\Services\Implementation\SolutionModeRevertingService.cs" />
     <Compile Include="Areas\ModeSwitching\Services\Implementation\SolutionModeSwitchingService.cs" />
-    <Compile Include="Areas\ModeSwitching\Services\Handlers\ISolutionModeShadowCopyCollector.cs" />
-    <Compile Include="Areas\ModeSwitching\Services\ISolutionModeRevertingService.cs" />
     <Compile Include="Areas\ModeSwitching\Services\ISolutionModeSwitchingService.cs" />
     <Compile Include="Areas\ProjectBuilding\Services\Implementation\ProjectBuildService.cs" />
     <Compile Include="Areas\ProjectBuilding\Services\Implementation\ProjectSearchService.cs" />
