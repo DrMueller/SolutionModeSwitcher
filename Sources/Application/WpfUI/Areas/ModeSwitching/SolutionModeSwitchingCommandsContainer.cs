@@ -11,13 +11,13 @@ namespace Mmu.Sms.WpfUI.Areas.ModeSwitching
             DoRevertSwitch = doRevertSwitch;
         }
 
+        public DoRevertSwitchViewModelCommand DoRevertSwitch { get; }
+        public DoSwitchViewModelCommand DoSwitch { get; }
+
         public void Initialize(SolutionModeSwitchingViewModel context)
         {
             DoRevertSwitch.Initialize(context);
             DoSwitch.Initialize(context);
         }
-
-        public DoSwitchViewModelCommand DoSwitch { get; }
-        public DoRevertSwitchViewModelCommand DoRevertSwitch { get; }
     }
 }

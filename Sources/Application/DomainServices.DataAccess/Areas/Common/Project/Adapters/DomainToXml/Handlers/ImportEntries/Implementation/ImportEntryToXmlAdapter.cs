@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Xml.Linq;
 using Mmu.Sms.Domain.Areas.Common.Project;
+using Mmu.Sms.Domain.Areas.Common.Project.ImportEntries;
 using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlBuilding.Conditions;
 using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlBuilding.Factories;
-using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlBuilding.Services;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.DomainToXml.Handlers.ImportEntries.Implementation
 {

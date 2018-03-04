@@ -1,4 +1,4 @@
-﻿namespace Mmu.Sms.Domain.Areas.Common.Project
+﻿namespace Mmu.Sms.Domain.Areas.Common.Project.PostSharp
 {
     public class PostSharpConfiguration
     {

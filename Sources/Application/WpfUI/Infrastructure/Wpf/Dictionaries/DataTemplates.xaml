@@ -38,7 +38,7 @@
                             Content="Dark"
                             IsChecked="{Binding SelectedAppearanceTheme, Converter={StaticResource DarkToBoolConverter}, Mode=TwoWay}"
                             Style="{StaticResource StyleSwitchRadioButton}" />
-                        
+
                         <Separator />
 
                         <Button

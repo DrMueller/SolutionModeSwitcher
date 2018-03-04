@@ -7,8 +7,8 @@ namespace Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlBuilding.Servi
     {
         private readonly XElement _parent;
         private readonly IXmlElementBuilder _parentElementBuilder;
-        private XElement _element;
         private XmlBuildingCondition _condition;
+        private XElement _element;
         private object _value;
 
         public XmlElementBuilder(XElement parent, IXmlElementBuilder parentElementBuilder, XName elementName)
@@ -17,42 +17,6 @@ namespace Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlBuilding.Servi
             _parent = parent;
             _parentElementBuilder = parentElementBuilder;
             _element = new XElement(elementName);
-        }
-
-        public IXmlElementBuilder StartBuildingChildElement(string elementName)
-        {
-            return new XmlElementBuilder(_element, this, elementName);
-        }
-
-        public IXmlElementBuilder WithCondition(XmlBuildingCondition condition)
-        {
-            _condition = condition;
-            return this;
-        }
-
-        public IXmlAttributeBuilder WithAttribute(string name)
-        {
-            return new XmlAttributeBuilder(this, _element, name);
-        }
-
-        public IXmlElementBuilder WithConditionAttribute(object value)
-        {
-            new XmlAttributeBuilder(this, _element, "Condition")
-                .WithAttributeValue(value)
-                .BuildAttribute();
-
-            return this;
-        }
-
-        public IXmlElementBuilder WithElementValue(object value)
-        {
-            _value = value;
-            return this;
-        }
-
-        public XElement FinishBuilding()
-        {
-            return _element;
         }
 
         public IXmlElementBuilder BuildElement()
@@ -72,6 +36,42 @@ namespace Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlBuilding.Servi
 
             _parent.Add(_element);
             return _parentElementBuilder;
+        }
+
+        public XElement FinishBuilding()
+        {
+            return _element;
+        }
+
+        public IXmlElementBuilder StartBuildingChildElement(string elementName)
+        {
+            return new XmlElementBuilder(_element, this, elementName);
+        }
+
+        public IXmlAttributeBuilder WithAttribute(string name)
+        {
+            return new XmlAttributeBuilder(this, _element, name);
+        }
+
+        public IXmlElementBuilder WithCondition(XmlBuildingCondition condition)
+        {
+            _condition = condition;
+            return this;
+        }
+
+        public IXmlElementBuilder WithConditionAttribute(object value)
+        {
+            new XmlAttributeBuilder(this, _element, "Condition")
+                .WithAttributeValue(value)
+                .BuildAttribute();
+
+            return this;
+        }
+
+        public IXmlElementBuilder WithElementValue(object value)
+        {
+            _value = value;
+            return this;
         }
     }
 }

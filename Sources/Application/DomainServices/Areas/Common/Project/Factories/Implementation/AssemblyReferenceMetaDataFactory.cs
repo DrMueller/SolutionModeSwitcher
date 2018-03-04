@@ -1,8 +1,6 @@
-﻿using System.IO;
-using System.Linq;
-using Mmu.Sms.Common.LanguageExtensions.Proxies;
+﻿using Mmu.Sms.Common.LanguageExtensions.Proxies;
+using Mmu.Sms.Domain.Areas.Common.Project;
 using Mmu.Sms.Domain.Areas.Common.Project.AssemblyReferences;
-using Mmu.Sms.Domain.Areas.Common._LegacyProject;
 
 namespace Mmu.Sms.DomainServices.Areas.Common.Project.Factories.Implementation
 {
@@ -15,14 +13,13 @@ namespace Mmu.Sms.DomainServices.Areas.Common.Project.Factories.Implementation
             _pathProxy = pathProxy;
         }
 
-        public string CreateHintPath(string relativeProjectFileIncludePath, Domain.Areas.Common.Project.ProjectConfigurationFile projectConfig)
+        public string CreateHintPath(string relativeProjectFileIncludePath, ProjectConfigurationFile projectConfig)
         {
             return "";
-
-            //var relativeDirectory = _pathProxy.GetDirectoryName(relativeProjectFileIncludePath);
-            //var debugBuild = projectConfig.BuildConfigurations.First(f => f.ConfigurationName == ProjectBuildConfiguration.ConfigurationNameDebug);
-            //var result = Path.Combine(relativeDirectory, debugBuild.OutputPath, projectConfig.PropertiesConfiguration.AssemblyFileName);
-            //return result;
+            ////var relativeDirectory = _pathProxy.GetDirectoryName(relativeProjectFileIncludePath);
+            ////var debugBuild = projectConfig.BuildConfigurations.First(f => f.ConfigurationName == ProjectBuildConfiguration.ConfigurationNameDebug);
+            ////var result = Path.Combine(relativeDirectory, debugBuild.OutputPath, projectConfig.PropertiesConfiguration.AssemblyFileName);
+            ////return result;
         }
 
         public IncludeDefinition CreateIncludeDefinition(string assemblyFileName)

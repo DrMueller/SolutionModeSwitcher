@@ -59,10 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Project\AssemblyReferenceUnitTests.cs" />
-    <Compile Include="Areas\Project\IncludeDefinitionUnitTests.cs" />
-    <Compile Include="Areas\Project\ProjectConfigurationFileUnitTests.cs" />
-    <Compile Include="Areas\Project\ProjectReferenceUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

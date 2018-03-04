@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Xml.Linq;
 using Mmu.Sms.Domain.Areas.Common.Project;
 using Mmu.Sms.Domain.Areas.Common.Project.Inclusions.FileInclusions;
@@ -27,36 +28,36 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.Domain
             {
                 builder.StartBuildingChildElement(elementName)
                     .WithAttribute("Include")
-                        .WithAttributeValue(include.IncludePath)
-                        .BuildAttribute()
+                    .WithAttributeValue(include.IncludePath)
+                    .BuildAttribute()
                     .StartBuildingChildElement("AugoGen")
-                        .WithElementValue(include.AutoGen)
-                        .WithCondition(XmlBuildingCondition.NotNull)
-                        .BuildElement()
+                    .WithElementValue(include.AutoGen)
+                    .WithCondition(XmlBuildingCondition.NotNull)
+                    .BuildElement()
                     .StartBuildingChildElement("DesignTime")
-                        .WithElementValue(include.DesignTime)
-                        .WithCondition(XmlBuildingCondition.NotNull)
-                        .BuildElement()
+                    .WithElementValue(include.DesignTime)
+                    .WithCondition(XmlBuildingCondition.NotNull)
+                    .BuildElement()
                     .StartBuildingChildElement("DependantUpon")
-                        .WithElementValue(include.DependantUpon)
-                        .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
-                        .BuildElement()
+                    .WithElementValue(include.DependantUpon)
+                    .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
+                    .BuildElement()
                     .StartBuildingChildElement("SubType")
-                        .WithElementValue(include.SubType)
-                        .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
-                        .BuildElement()
+                    .WithElementValue(include.SubType)
+                    .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
+                    .BuildElement()
                     .StartBuildingChildElement("Link")
-                        .WithElementValue(include.Link)
-                        .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
-                        .BuildElement()
+                    .WithElementValue(include.Link)
+                    .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
+                    .BuildElement()
                     .StartBuildingChildElement("Generator")
-                        .WithElementValue(include.Generator)
-                        .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
-                        .BuildElement()
+                    .WithElementValue(include.Generator)
+                    .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
+                    .BuildElement()
                     .StartBuildingChildElement("LastGenOutput")
-                        .WithElementValue(include.LastGenOutput)
-                        .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
-                        .BuildElement()
+                    .WithElementValue(include.LastGenOutput)
+                    .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
+                    .BuildElement()
                     .BuildElement();
             }
 
@@ -70,21 +71,21 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.Domain
             {
                 case BuildAction.Compile:
                 {
-                        return "Compile";
+                    return "Compile";
                 }
 
                 case BuildAction.Content:
                 {
-                        return "Content";
+                    return "Content";
                 }
 
                 case BuildAction.EmbeddedResource:
                 {
-                        return "EmbeddedResource";
+                    return "EmbeddedResource";
                 }
                 default:
                 {
-                        throw new System.Exception("Build action Element: " + buildAction);
+                    throw new Exception("Build action Element: " + buildAction);
                 }
             }
         }

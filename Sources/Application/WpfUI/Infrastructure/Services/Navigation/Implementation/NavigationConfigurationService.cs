@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.TopLevel;
 
 namespace Mmu.Sms.WpfUI.Infrastructure.Services.Navigation.Implementation

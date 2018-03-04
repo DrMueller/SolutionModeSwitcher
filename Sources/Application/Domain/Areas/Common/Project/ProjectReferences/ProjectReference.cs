@@ -1,4 +1,4 @@
-﻿namespace Mmu.Sms.Domain.Areas.Common.Project
+﻿namespace Mmu.Sms.Domain.Areas.Common.Project.ProjectReferences
 {
     public class ProjectReference
     {

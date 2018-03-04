@@ -15,12 +15,12 @@ namespace Mmu.Sms.WpfUI.Areas.Configuration.ViewModels
 {
     public class ConfigurationDetailsViewModel : TopLevelViewModelBase
     {
+        private readonly IAppSettingsService _appSettingsService;
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHandlingService _exceptionHandler;
         private readonly IFileDialogService _fileDialogService;
         private readonly INavigationService _navigationHandler;
         private readonly IProjectSelectionNavigationService _projectSelectionNavigationService;
-        private readonly IAppSettingsService _appSettingsService;
         private SolutionModeConfigurationDto _configuration;
         private string _configurationName;
         private string _solutionFilePath;

@@ -14,7 +14,7 @@ namespace Mmu.Sms.Domain.Areas.Common.Project.Targets
         {
             if (!string.IsNullOrEmpty(value) && subElements.Any())
             {
-                throw new Exception("Can't have value and SubElements.");
+                throw new ArgumentException("Can't have value and SubElements.");
             }
 
             Name = name;

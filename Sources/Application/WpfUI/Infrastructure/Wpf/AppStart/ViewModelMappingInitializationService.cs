@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
-using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.TopLevel;
 
 namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.AppStart
@@ -13,8 +12,8 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.AppStart
     // http://www.ikriv.com/dev/wpf/DataTemplateCreation/
     internal static class ViewModelMappingInitializationService
     {
-        private const string ViewSuffix = "View";
         private const string ViewmodelSuffix = "ViewModel";
+        private const string ViewSuffix = "View";
 
         internal static void Initialize()
         {

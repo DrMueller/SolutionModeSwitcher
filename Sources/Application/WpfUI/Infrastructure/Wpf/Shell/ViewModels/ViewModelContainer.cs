@@ -52,7 +52,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels
             _mainNavigationInitializer.NavigateToMainEntryPoint();
         }
 
-        public ParametredRelayCommand CloseCommand
+        public static ParametredRelayCommand CloseCommand
         {
             get
             {
@@ -77,7 +77,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels
             }
         }
 
-        public ViewModelCommand CloseVmc => new ViewModelCommand("Close App", CloseCommand);
+        public static ViewModelCommand CloseVmc => new ViewModelCommand("Close App", CloseCommand);
 
         public TopLevelViewModelBase CurrentContent
         {

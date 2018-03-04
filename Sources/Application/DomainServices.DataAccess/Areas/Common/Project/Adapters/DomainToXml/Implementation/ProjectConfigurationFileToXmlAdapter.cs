@@ -13,24 +13,23 @@ using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.DomainToXm
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.DomainToXml.Handlers.Targets;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.DomainToXml.Handlers.UsingTasks;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.DomainToXml.Handlers.VisualStudioConfigurations;
-using System.Linq;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.DomainToXml.Implementation
 {
     public class ProjectConfigurationFileToXmlAdapter : IProjectConfigurationFileToXmlAdapter
     {
-        private readonly IProjectConfigurationToXmlAdapter _projectConfigAdapter;
-        private readonly IImportEntryToXmlAdapter _importEntryAdapter;
-        private readonly IProjectPropertiesConfigurationToXmlAdapter _projectPropertiesConfigAdapter;
-        private readonly IProjectBuildConfigurationToXmlAdapter _projectBuildConfigAdapter;
-        private readonly IPostSharpConfigurationToXmlAdapter _postSharpConfigAdapter;
         private readonly IAssemblyReferenceToXmlAdapter _assemblyReferenceAdapter;
         private readonly IInclusionEntryToXmlAdapter _compileInclusionAdapter;
+        private readonly IImportEntryToXmlAdapter _importEntryAdapter;
+        private readonly IPostSharpConfigurationToXmlAdapter _postSharpConfigAdapter;
+        private readonly IProjectBuildConfigurationToXmlAdapter _projectBuildConfigAdapter;
+        private readonly IProjectConfigurationToXmlAdapter _projectConfigAdapter;
+        private readonly IProjectPropertiesConfigurationToXmlAdapter _projectPropertiesConfigAdapter;
         private readonly IProjectReferenceToXmlAdapter _projectReferenceAdapter;
-        private readonly IVisualStudioConfigurationToXmlAdapter _visualStudioConfigAdapter;
         private readonly ISlowCheetahConfigurationToXmlAdapter _slowCheetahConfigAdapter;
-        private readonly IUsingTaskToXmlAdapter _usingTaskAdapter;
         private readonly ITargetToXmlAdapter _targetAdapter;
+        private readonly IUsingTaskToXmlAdapter _usingTaskAdapter;
+        private readonly IVisualStudioConfigurationToXmlAdapter _visualStudioConfigAdapter;
 
         public ProjectConfigurationFileToXmlAdapter(
             IProjectConfigurationToXmlAdapter projectConfigAdapter,
@@ -89,7 +88,6 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.Domain
             result.Add(usingTasks);
             result.Add(targets);
             result.Add(importEntries);
-
 
             //var tra = result.Descendants().First(f => f.Name.LocalName == "Import");
 

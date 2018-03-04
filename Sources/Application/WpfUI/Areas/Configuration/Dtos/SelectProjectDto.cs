@@ -2,8 +2,8 @@
 {
     public class SelectProjectDto
     {
-        public string AssemblyName { get; set; }
         public string AbsoluteProjectFilePath { get; set; }
+        public string AssemblyName { get; set; }
         public bool IsSelected { get; set; }
     }
 }

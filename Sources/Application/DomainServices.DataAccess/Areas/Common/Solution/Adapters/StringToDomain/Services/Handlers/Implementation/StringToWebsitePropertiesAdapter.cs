@@ -25,8 +25,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Adapters.Strin
                 }
 
                 currentLineIndex++;
-            }
-            while (true);
+            } while (true);
 
             return MaybeFactory.CreateNone<WebsiteProperties>();
         }

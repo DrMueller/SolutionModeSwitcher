@@ -23,7 +23,7 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
         {
             get
             {
-                return new RelayCommand( 
+                return new RelayCommand(
                     async () =>
                     {
                         await BuildProjectAsync();

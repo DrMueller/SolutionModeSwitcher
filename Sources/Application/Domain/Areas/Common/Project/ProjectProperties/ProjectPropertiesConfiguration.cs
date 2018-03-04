@@ -25,10 +25,10 @@ namespace Mmu.Sms.Domain.Areas.Common.Project.ProjectProperties
             bool restorePackages,
             string webGreaseLibPath,
             bool? useGlobalApplicationHostFile,
-            bool? dontImportPostSharp,
+            bool? doNotImportPostSharp,
             string targetFrameworkProfile,
             int langVersion,
-            string nuGetPackageImportStamp)
+            string nugetPackageImportstamp)
         {
             ConfigurationName = configurationName;
             PlatformName = platformName;
@@ -49,21 +49,21 @@ namespace Mmu.Sms.Domain.Areas.Common.Project.ProjectProperties
             RestorePackages = restorePackages;
             WebGreaseLibPath = webGreaseLibPath;
             UseGlobalApplicationHostFile = useGlobalApplicationHostFile;
-            DontImportPostSharp = dontImportPostSharp;
+            DoNotImportPostSharp = doNotImportPostSharp;
             TargetFrameworkProfile = targetFrameworkProfile;
             LangVersion = langVersion;
-            NuGetPackageImportStamp = nuGetPackageImportStamp;
+            NugetPackageImportstamp = nugetPackageImportstamp;
         }
 
         public string AppDesignerFolder { get; }
         public string AssemblyName { get; }
         public string ConfigurationName { get; }
-        public bool? DontImportPostSharp { get; }
+        public bool? DoNotImportPostSharp { get; }
         public string FileAlignment { get; }
         public Maybe<IisExpressConfiguration> IisExpressConfiguration { get; }
         public int LangVersion { get; }
         public IReadOnlyCollection<MvcBuildView> MvcBuildViews { get; }
-        public string NuGetPackageImportStamp { get; }
+        public string NugetPackageImportstamp { get; }
         public ProjectOutputType OutputType { get; }
         public string PlatformName { get; }
         public string ProductVersion { get; }

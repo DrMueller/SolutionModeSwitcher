@@ -32,11 +32,11 @@
         public BuildAction BuildAction { get; }
         public CopyToOutputDirectoryType CopyToOutputDirectoryType { get; }
         public string DependantUpon { get; }
-        public string Generator { get; }
-        public string LastGenOutput { get; }
         public bool? DesignTime { get; }
         public bool? ExcludeFromStyleCop { get; }
+        public string Generator { get; }
         public string IncludePath { get; }
+        public string LastGenOutput { get; }
         public string Link { get; }
         public string SubType { get; }
     }

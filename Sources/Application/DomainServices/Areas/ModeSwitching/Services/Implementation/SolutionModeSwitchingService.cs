@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Mmu.Sms.Domain.Areas.Common.Project;
-using Mmu.Sms.Domain.Areas.Common.Solution;
-using Mmu.Sms.Domain.Areas.Configuration;
+﻿using Mmu.Sms.Domain.Areas.Configuration;
 using Mmu.Sms.Domain.Areas.ModeSwitching;
 using Mmu.Sms.DomainServices.Areas.Common.Project.Factories;
 using Mmu.Sms.DomainServices.Areas.Common.Project.Repositories;
@@ -40,7 +36,6 @@ namespace Mmu.Sms.DomainServices.Areas.ModeSwitching.Services.Implementation
             {
                 var projectConfigFile = _projectConfigurationFileRepository.Load(projectReferenceConfiguration.AbsoluteProjectFilePath);
                 _projectConfigurationFileRepository.Save(projectConfigFile);
-
             }
 
             return null;

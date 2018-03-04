@@ -17,18 +17,18 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.Domain
         {
             var builder = _xmlElementBuilderFactory.CreateTopLevelElement("ItemGroup");
 
-            foreach(var projectRef in projectConfigFile.ProjectReferences)
+            foreach (var projectRef in projectConfigFile.ProjectReferences)
             {
                 builder.StartBuildingChildElement("ProjectReference")
                     .WithAttribute("Include")
-                        .WithAttributeValue(projectRef.RelativeProjectFileIncludePath)
-                        .BuildAttribute()
+                    .WithAttributeValue(projectRef.RelativeProjectFileIncludePath)
+                    .BuildAttribute()
                     .StartBuildingChildElement("Project")
-                        .WithElementValue(projectRef.ProjectGuid)
-                        .BuildElement()
+                    .WithElementValue(projectRef.ProjectGuid)
+                    .BuildElement()
                     .StartBuildingChildElement("Name")
-                        .WithElementValue(projectRef.AssemblyName)
-                        .BuildElement()
+                    .WithElementValue(projectRef.AssemblyName)
+                    .BuildElement()
                     .BuildElement();
             }
 

@@ -7,13 +7,13 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Repositories
 {
     public class ProjectConfigurationFileRepository : IProjectConfigurationFileRepository
     {
-        private readonly IXmlToProjectConfigurationFileAdapter _xmlToProjectConfigFileAdapter;
         private readonly IProjectConfigurationFileToXmlAdapter _projectToXmlConfigFileAdapter;
+        private readonly IXmlToProjectConfigurationFileAdapter _xmlToProjectConfigFileAdapter;
 
         public ProjectConfigurationFileRepository(
             IXmlToProjectConfigurationFileAdapter xmlToProjectConfigFileAdapter,
             IProjectConfigurationFileToXmlAdapter projectToXmlConfigFileAdapter
-            )
+        )
         {
             _xmlToProjectConfigFileAdapter = xmlToProjectConfigFileAdapter;
             _projectToXmlConfigFileAdapter = projectToXmlConfigFileAdapter;

@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using Microsoft.Build.Construction;
 using Mmu.Sms.Domain.Areas.Common.Solution;
-using System.Linq;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Adapters.StringToDomain.Services.Handlers.Implementation
 {

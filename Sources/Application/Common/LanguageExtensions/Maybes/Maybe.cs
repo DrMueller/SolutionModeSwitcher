@@ -26,14 +26,18 @@ namespace Mmu.Sms.Common.LanguageExtensions.Maybes
             return obj.GetType() == GetType() && Equals((Maybe<T>)obj);
         }
 
+        public abstract TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone);
+
+        public abstract void Evaluate(Action<T> whenSome = null, Action whenNone = null);
+
         public abstract override int GetHashCode();
 
         public abstract Maybe<TNew> Map<TNew>(Func<T, TNew> mapping);
 
         public static bool operator ==(Maybe<T> a, Maybe<T> b)
         {
-            return (ReferenceEquals(null, a) && ReferenceEquals(null, b)) ||
-                (!ReferenceEquals(null, a) && a.Equals(b));
+            return ReferenceEquals(null, a) && ReferenceEquals(null, b) ||
+                !ReferenceEquals(null, a) && a.Equals(b);
         }
 
         public static bool operator ==(Maybe<T> a, T b)
@@ -54,9 +58,5 @@ namespace Mmu.Sms.Common.LanguageExtensions.Maybes
         public abstract T Reduce(Func<T> whenNone);
 
         public abstract T Reduce(T whenNone);
-
-        public abstract TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone);
-
-        public abstract void Evaluate(Action<T> whenSome = null, Action whenNone = null);
     }
 }

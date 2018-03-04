@@ -7,16 +7,16 @@ namespace Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlBuilding.Servi
     {
         IXmlElementBuilder BuildElement();
 
+        XElement FinishBuilding();
+
         IXmlElementBuilder StartBuildingChildElement(string elementName);
 
-        IXmlElementBuilder WithCondition(XmlBuildingCondition condition);
-
         IXmlAttributeBuilder WithAttribute(string name);
+
+        IXmlElementBuilder WithCondition(XmlBuildingCondition condition);
 
         IXmlElementBuilder WithConditionAttribute(object value);
 
         IXmlElementBuilder WithElementValue(object value);
-
-        XElement FinishBuilding();
     }
 }

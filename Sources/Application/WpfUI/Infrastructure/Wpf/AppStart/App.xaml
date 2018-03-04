@@ -18,8 +18,10 @@
                 <ResourceDictionary Source="/Mmu.Sms.WpfUI;component/Infrastructure/Wpf/Dictionaries/Styles.xaml" />
                 <ResourceDictionary Source="/Mmu.Sms.WpfUI;component/Infrastructure/Wpf/Dictionaries/Converters.xaml" />
                 <ResourceDictionary Source="/Mmu.Sms.WpfUI;component/Infrastructure/Wpf/Dictionaries/Storyboards.xaml" />
-                <ResourceDictionary Source="/Mmu.Sms.WpfUI;component/Infrastructure/Wpf/Dictionaries/ControlTemplates.xaml" />
-                <ResourceDictionary Source="/Mmu.Sms.WpfUI;component/Infrastructure/Wpf/Dictionaries/DataTemplates.xaml" />
+                <ResourceDictionary
+                    Source="/Mmu.Sms.WpfUI;component/Infrastructure/Wpf/Dictionaries/ControlTemplates.xaml" />
+                <ResourceDictionary
+                    Source="/Mmu.Sms.WpfUI;component/Infrastructure/Wpf/Dictionaries/DataTemplates.xaml" />
                 <ResourceDictionary Source="/Mmu.Sms.WpfUI;component/Infrastructure/Wpf/Dictionaries/Fonts.xaml" />
                 <ResourceDictionary Source="/Mmu.Sms.WpfUI;component/Infrastructure/Wpf/Dictionaries/Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>

@@ -5,6 +5,8 @@ namespace Mmu.Sms.Application.Areas.Domain.Confguration.Services
 {
     public interface ISolutionModeConfigurationService
     {
+        void DeleteConfiguration(string configurationId);
+
         void Initialize(string configurationDirectory);
 
         SolutionModeConfigurationDto Load(string configurationId);
@@ -12,7 +14,5 @@ namespace Mmu.Sms.Application.Areas.Domain.Confguration.Services
         IReadOnlyCollection<SolutionModeConfigurationDto> LoadAll();
 
         SolutionModeConfigurationDto SaveConfiguration(SolutionModeConfigurationDto configurationDto);
-
-        void DeleteConfiguration(string configurationId);
     }
 }

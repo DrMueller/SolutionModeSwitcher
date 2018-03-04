@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
 using Mmu.Sms.Domain.Areas.Common.Project.Inclusions.FileInclusions;
-using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml;
 using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlReading;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.Inclusions.Implementation
@@ -45,7 +44,6 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
                 {
                     return CopyToOutputDirectoryType.None;
                 }
-
 
                 default:
                 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
-using Mmu.Sms.Domain.Areas.Common.Project;
+using Mmu.Sms.Domain.Areas.Common.Project.ImportEntries;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ImportEntries
 {

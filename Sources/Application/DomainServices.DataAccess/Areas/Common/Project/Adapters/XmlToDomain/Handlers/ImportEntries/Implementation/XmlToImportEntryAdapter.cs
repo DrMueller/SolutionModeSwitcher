@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Mmu.Sms.Domain.Areas.Common.Project;
+using Mmu.Sms.Domain.Areas.Common.Project.ImportEntries;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ImportEntries.Implementation
 {
@@ -17,7 +17,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
                 var condition = importNode.Attributes().FirstOrDefault(f => f.Name == "Condition")?.Value ?? string.Empty;
                 var relativeProjectPath = importNode.Attributes().First(f => f.Name == "Project").Value;
 
-                var importEntry = new Domain.Areas.Common.Project.ImportEntry(condition, relativeProjectPath);
+                var importEntry = new ImportEntry(condition, relativeProjectPath);
                 result.Add(importEntry);
             }
 

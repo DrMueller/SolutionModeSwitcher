@@ -1,4 +1,4 @@
-﻿using Mmu.Sms.Domain.Areas.Common.Project;
+﻿using Mmu.Sms.Domain.Areas.Common.Project.ProjectProperties;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Factories
 {

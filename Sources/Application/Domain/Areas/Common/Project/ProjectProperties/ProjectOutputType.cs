@@ -1,4 +1,4 @@
-﻿namespace Mmu.Sms.Domain.Areas.Common.Project
+﻿namespace Mmu.Sms.Domain.Areas.Common.Project.ProjectProperties
 {
     public class ProjectOutputType
     {
@@ -8,7 +8,7 @@
             Description = description;
         }
 
-        public string FileExtension { get; }
         public string Description { get; }
+        public string FileExtension { get; }
     }
 }

@@ -101,7 +101,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.Domain
                 .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
                 .BuildElement()
                 .StartBuildingChildElement("DontImportPostSharp")
-                .WithElementValue(prop.DontImportPostSharp)
+                .WithElementValue(prop.DoNotImportPostSharp)
                 .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
                 .BuildElement()
                 .StartBuildingChildElement("TargetFrameworkProfile")
@@ -111,7 +111,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.Domain
                 .WithElementValue(prop.LangVersion)
                 .BuildElement()
                 .StartBuildingChildElement("NuGetPackageImportStamp")
-                .WithElementValue(prop.NuGetPackageImportStamp)
+                .WithElementValue(prop.NugetPackageImportstamp)
                 .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
                 .BuildElement();
 

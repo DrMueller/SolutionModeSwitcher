@@ -23,22 +23,22 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.Domain
             foreach (var assemblyReference in projectConfigFile.AssemblyReferences)
             {
                 builder.StartBuildingChildElement("Reference")
-                     .WithAttribute("Include")
-                         .WithAttributeValue(CreateAttributeValueFromIncludeDefinition(assemblyReference.IncludeDefinition))
-                         .BuildAttribute()
-                     .StartBuildingChildElement("SpecificVersion")
-                         .WithElementValue(assemblyReference.SpecificVersion)
-                         .WithCondition(XmlBuildingCondition.NotNull)
-                         .BuildElement()
-                     .StartBuildingChildElement("HintPath")
-                         .WithElementValue(assemblyReference.HintPath)
-                         .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
-                         .BuildElement()
-                     .StartBuildingChildElement("Private")
-                         .WithElementValue(assemblyReference.IsPrivate)
-                         .WithCondition(XmlBuildingCondition.NotNull)
-                     .BuildElement()
-                 .BuildElement();
+                    .WithAttribute("Include")
+                    .WithAttributeValue(CreateAttributeValueFromIncludeDefinition(assemblyReference.IncludeDefinition))
+                    .BuildAttribute()
+                    .StartBuildingChildElement("SpecificVersion")
+                    .WithElementValue(assemblyReference.SpecificVersion)
+                    .WithCondition(XmlBuildingCondition.NotNull)
+                    .BuildElement()
+                    .StartBuildingChildElement("HintPath")
+                    .WithElementValue(assemblyReference.HintPath)
+                    .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
+                    .BuildElement()
+                    .StartBuildingChildElement("Private")
+                    .WithElementValue(assemblyReference.IsPrivate)
+                    .WithCondition(XmlBuildingCondition.NotNull)
+                    .BuildElement()
+                    .BuildElement();
             }
 
             var result = builder.FinishBuilding();

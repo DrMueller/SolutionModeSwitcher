@@ -1,6 +1,6 @@
 ﻿using Mmu.Sms.Common.LanguageExtensions.Invariance;
 
-namespace Mmu.Sms.Domain.Areas.Common.Project
+namespace Mmu.Sms.Domain.Areas.Common.Project.ImportEntries
 {
     public class ImportEntry
     {

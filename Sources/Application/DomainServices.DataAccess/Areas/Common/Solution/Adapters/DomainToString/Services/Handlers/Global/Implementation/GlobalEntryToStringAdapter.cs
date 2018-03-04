@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Mmu.Sms.Domain.Areas.Common.Solution;
+﻿using Mmu.Sms.Domain.Areas.Common.Solution;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Adapters.DomainToString.Services.Handlers.Global.Sections;
 using Mmu.Sms.DomainServices.DataAccess.Infrastructure.ExtendedStringBuilder;
 
@@ -7,11 +6,11 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Adapters.Domai
 {
     public class GlobalEntryToStringAdapter : IGlobalEntryToStringAdapter
     {
+        private readonly IGlobalExtensibilitiesSectionToStringAdapter _globalExtensibilitiesSectionAdapter;
+        private readonly INestedProjectsSectionToStringAdapter _nestedProjectsSectionAdapter;
         private readonly IProjectConfigurationPlatformsSectionToStringAdapter _projectConfigPlatformsSectionAdapter;
         private readonly ISolutionConfigurationPlatformsSectionToStringAdapter _solutionConfigPlatformsSectionAdapter;
         private readonly ISolutionPropertiesSectionToStringAdapter _solutionPropertiesSectionAdapter;
-        private readonly INestedProjectsSectionToStringAdapter _nestedProjectsSectionAdapter;
-        private readonly IGlobalExtensibilitiesSectionToStringAdapter _globalExtensibilitiesSectionAdapter;
 
         public GlobalEntryToStringAdapter(
             ISolutionConfigurationPlatformsSectionToStringAdapter solutionConfigPlatformsSectionAdapter,

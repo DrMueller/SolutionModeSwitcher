@@ -1,4 +1,4 @@
-﻿namespace Mmu.Sms.Domain.Areas.Common.Project
+﻿namespace Mmu.Sms.Domain.Areas.Common.Project.ProjectBuild
 {
     public class ProjectBuildConfiguration
     {
@@ -45,7 +45,6 @@
         public string DebugType { get; }
         public string DefineConstants { get; }
         public string DocumentationFile { get; }
-        public bool? TreatWarningsAsErrors { get; }
         public string ErrorReport { get; }
         public int LangVersion { get; }
         public int? NoWarn { get; }
@@ -53,6 +52,7 @@
         public string OutputPath { get; }
         public string PostSharpDisabledMessages { get; }
         public bool? RunCodeAnalysis { get; }
+        public bool? TreatWarningsAsErrors { get; }
         public bool? UsePostSharp { get; }
         public int WarningLevel { get; }
     }

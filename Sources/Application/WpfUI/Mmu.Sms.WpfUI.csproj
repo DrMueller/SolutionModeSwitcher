@@ -124,7 +124,9 @@
     <Compile Include="Infrastructure\Wpf\Validation\Models\ValidationContainer.cs" />
     <Compile Include="Infrastructure\Wpf\Validation\Models\ValidationErrors.cs" />
     <Compile Include="Infrastructure\Wpf\Validation\Models\ValidationResult.cs" />
-    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Properties\Annotations.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Areas\Configuration\Services\IConfigurationNavigationService.cs" />
     <Compile Include="Areas\Configuration\Services\IConfigurationService.cs" />
     <Compile Include="Areas\Configuration\Services\Implementation\ConfigurationNavigationService.cs" />

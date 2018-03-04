@@ -18,7 +18,7 @@ namespace Mmu.Sms.Domain.Areas.Common.Solution
             ConfigurationDescrption = configurationDescrption;
         }
 
-        public string ConfigurationKey { get; }
         public string ConfigurationDescrption { get; }
+        public string ConfigurationKey { get; }
     }
 }

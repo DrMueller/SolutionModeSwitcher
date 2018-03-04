@@ -16,8 +16,7 @@ namespace Mmu.Sms.Common.LanguageExtensions.DeepCopy.Handlers
             do
             {
                 action(array, walker.Position);
-            }
-            while (walker.Step());
+            } while (walker.Step());
         }
     }
 }

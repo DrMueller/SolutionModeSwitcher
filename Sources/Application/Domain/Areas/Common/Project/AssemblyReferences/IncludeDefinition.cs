@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Mmu.Sms.Common.LanguageExtensions.Invariance;
+﻿using Mmu.Sms.Common.LanguageExtensions.Invariance;
 
 namespace Mmu.Sms.Domain.Areas.Common.Project.AssemblyReferences
 {
@@ -21,31 +20,5 @@ namespace Mmu.Sms.Domain.Areas.Common.Project.AssemblyReferences
         public string PublicKeyToken { get; }
         public string ShortName { get; }
         public string Version { get; }
-
-        //public string CreateOutput()
-        //{
-        //    var sb = new StringBuilder();
-        //    sb.Append(ShortName);
-        //    CheckAddPart(sb, "Version", Version);
-        //    CheckAddPart(sb, "Culture", Culture);
-        //    CheckAddPart(sb, "PublicKeyToken", PublicKeyToken);
-        //    CheckAddPart(sb, "processorArchitecture", ProcessorArchitecture);
-
-        //    var result = sb.ToString();
-        //    return result;
-        //}
-
-        //private static void CheckAddPart(StringBuilder sb, string partName, string part)
-        //{
-        //    if (string.IsNullOrEmpty(part))
-        //    {
-        //        return;
-        //    }
-
-        //    sb.Append(", ");
-        //    sb.Append(partName);
-        //    sb.Append("=");
-        //    sb.Append(part);
-        //}
     }
 }

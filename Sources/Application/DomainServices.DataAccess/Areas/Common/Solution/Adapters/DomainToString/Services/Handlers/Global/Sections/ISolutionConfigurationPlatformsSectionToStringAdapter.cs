@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using Mmu.Sms.Domain.Areas.Common.Solution;
 using Mmu.Sms.DomainServices.DataAccess.Infrastructure.ExtendedStringBuilder;
 
