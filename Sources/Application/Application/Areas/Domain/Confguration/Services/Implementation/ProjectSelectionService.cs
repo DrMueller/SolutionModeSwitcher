@@ -19,7 +19,7 @@ namespace Mmu.Sms.Application.Areas.Domain.Confguration.Services.Implementation
         public IReadOnlyCollection<ProjectReferenceConfigurationDto> LoadProjects(string solutionFilePath)
         {
             var solutionConfig = _solutionConfigurationFileRepository.Load(solutionFilePath);
-            var result = _mapper.Map<List<ProjectReferenceConfigurationDto>>(solutionConfig.SolutionProjectReferences.Entries);
+            var result = _mapper.Map<List<ProjectReferenceConfigurationDto>>(solutionConfig.SolutionProjects);
             return result;
         }
     }
