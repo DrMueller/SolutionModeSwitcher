@@ -23,6 +23,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions.Implementation
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.StackTrace);
                 HandleException(ex);
             }
         }

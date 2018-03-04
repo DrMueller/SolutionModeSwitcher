@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Mmu.Sms.Domain.Areas.Common.Project;
 using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml;
+using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlReading;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ProjectBuild.Implementation
 {
@@ -43,6 +44,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             var usePostSharp = _xmlParsingService.TryParsingSubElementValue<bool>(element, "UsePostSharp");
             var postSharpDisabledMessages = _xmlParsingService.TryParsingSubElementStringValue(element, "PostSharpDisabledMessages");
             var documentationFile = _xmlParsingService.TryParsingSubElementStringValue(element, "DocumentationFile");
+            var treatWarningsAsErrors = _xmlParsingService.TryParsingSubElementValue<bool>(element, "TreatWarningsAsErrors");
             var langVersion = _xmlParsingService.ParseSubElementValue<int>(element, "LangVersion");
 
             var result = new ProjectBuildConfiguration(
@@ -60,6 +62,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
                 usePostSharp,
                 postSharpDisabledMessages,
                 documentationFile,
+                treatWarningsAsErrors,
                 langVersion);
 
             return result;

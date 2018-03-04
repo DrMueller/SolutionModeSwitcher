@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Mmu.Sms.Domain.Areas.Common.Project.Inclusions.FileInclusions;
 using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml;
+using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlReading;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.Inclusions.Implementation
 {
@@ -44,6 +45,8 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             var dependantUpon = _xmlParsingService.TryParsingSubElementStringValue(element, "DependentUpon");
             var subType = _xmlParsingService.TryParsingSubElementStringValue(element, "SubType");
             var link = _xmlParsingService.TryParsingSubElementStringValue(element, "Link");
+            var generator = _xmlParsingService.TryParsingSubElementStringValue(element, "Generator");
+            var lastGenOutput = _xmlParsingService.TryParsingSubElementStringValue(element, "LastGenOutput");
             var outputType = _copyToOutputDirectoryTypeAdapter.Adapt(element);
             var includePath = element.Attributes().First(f => f.Name == "Include").Value;
             var buildAction = _buildActionAdapter.Adapt(element);
@@ -57,7 +60,9 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
                 excludeFromStyleCop,
                 designTime,
                 autoGen,
-                dependantUpon);
+                dependantUpon,
+                generator,
+                lastGenOutput);
 
             return result;
         }

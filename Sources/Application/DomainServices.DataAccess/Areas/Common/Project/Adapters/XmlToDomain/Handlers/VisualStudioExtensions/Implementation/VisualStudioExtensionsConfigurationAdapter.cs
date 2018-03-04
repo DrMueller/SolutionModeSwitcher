@@ -3,6 +3,7 @@ using System.Xml.Linq;
 using Mmu.Sms.Common.LanguageExtensions.Maybes;
 using Mmu.Sms.Domain.Areas.Common.Project.ProjectExtensions;
 using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml;
+using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlReading;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.VisualStudioExtensions.Implementation
 {

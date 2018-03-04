@@ -1,6 +1,7 @@
 ﻿using System.Xml.Linq;
+using Mmu.Sms.Common.LanguageExtensions.Maybes;
 using Mmu.Sms.Domain.Areas.Common.Project.ProjectProperties;
-using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml;
+using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlReading;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ProjectProperties.Implementation
 {
@@ -13,7 +14,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             _xmlParsingService = xmlParsingService;
         }
 
-        public IisExpressConfiguration Adapt(XElement element)
+        public Maybe<IisExpressConfiguration> Adapt(XElement element)
         {
             var useIisExpress = _xmlParsingService.TryParsingSubElementBoolValue(element, "UseIISExpress") ?? false;
             var sslPort = _xmlParsingService.TryParsingSubElementValue<int>(element, "IISExpressSSLPort");
@@ -21,14 +22,19 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             var windowsAuth = _xmlParsingService.TryParsingSubElementStringValue(element, "IISExpressWindowsAuthentication");
             var useClassicPipelindeMode = _xmlParsingService.TryParsingSubElementBoolValue(element, "IISExpressUseClassicPipelineMode");
 
-            var result = new IisExpressConfiguration(
+            if (!sslPort.HasValue && string.IsNullOrEmpty(anonymousAuth) && string.IsNullOrEmpty(windowsAuth))
+            {
+                return MaybeFactory.CreateNone<IisExpressConfiguration>();
+            }
+
+            var config = new IisExpressConfiguration(
                 useIisExpress,
                 sslPort,
                 anonymousAuth,
                 windowsAuth,
                 useClassicPipelindeMode);
 
-            return result;
+            return MaybeFactory.CreateSome(config);
         }
     }
 }

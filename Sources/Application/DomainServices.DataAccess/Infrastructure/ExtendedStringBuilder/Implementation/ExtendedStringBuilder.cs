@@ -6,6 +6,14 @@ namespace Mmu.Sms.DomainServices.DataAccess.Infrastructure.ExtendedStringBuilder
     {
         private readonly StringBuilder _stringBuilder = new StringBuilder();
 
+        public void AppendIfNotNullOrEmpty(string value)
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+                _stringBuilder.Append(value);
+            }
+        }
+
         public void AppendLine(string value, int amountOfTabs = 0)
         {
             if (amountOfTabs > 0)

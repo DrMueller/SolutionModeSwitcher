@@ -81,10 +81,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\AssemblyReferences\IAssemblyReferenceToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\AssemblyReferences\Implementation\AssemblyReferenceToXmlAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ImportEntries\IImportEntryToXmlAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ImportEntries\Implementation\ImportEntryToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\PostSharp\Implementation\PostSharpConfigurationToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\PostSharp\IPostSharpConfigurationToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ProjectBuild\Implementation\ProjectBuildConfigurationToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ProjectBuild\IProjectBuildConfigurationToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ProjectConfigurations\Implementation\ProjectConfigurationToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ProjectConfigurations\IProjectConfigurationToXmlAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ProjectProperties\Implementation\ProjectPropertiesConfigurationToXmlAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ProjectProperties\IProjectPropertiesConfigurationToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\Inclusions\Implementation\InclusionEntryToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\Inclusions\IInclusionEntryToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ProjectReferences\IProjectReferenceToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\ProjectReferences\Implementation\ProjectReferenceToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\SlowCheetah\Implementation\SlowCheetahConfigurationToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\SlowCheetah\ISlowCheetahConfigurationToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\Targets\Handlers\IGenericElementToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\Targets\Handlers\Implementation\GenericElementToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\Targets\Implementation\TargetToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\Targets\ITargetToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\UsingTasks\Implementation\UsingTaskToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\UsingTasks\IUsingTaskToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\VisualStudioConfigurations\Implementation\VisualStudioConfigurationToXmlAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\VisualStudioConfigurations\IVisualStudioConfigurationToXmlAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\DomainToXml\Implementation\ProjectConfigurationFileToXmlAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\DomainToXml\IProjectConfigurationFileToXmlAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\AssemblyReferences\IAssemblyReferenceAdapter.cs" />
@@ -99,6 +121,8 @@
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\PostSharp\IXmlToPostSharpConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectBuild\Implementation\ProjectBuildConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectBuild\IProjectBuildConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectConfigurations\Implementation\XmlToProjectConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectConfigurations\IXmlToProjectConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToIisExpressConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ImportEntries\Implementation\XmlToImportEntryAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectProperties\Implementation\XmlToMvcBuildViewAdapter.cs" />
@@ -117,8 +141,10 @@
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\ProjectReferences\IProjectReferenceAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\SlowCheetah\Implementation\SlowCheetahConfigurationAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\SlowCheetah\ISlowCheetahConfigurationAdapter.cs" />
-    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\TargetConfigurations\Implementation\TargetConfigurationAdapter.cs" />
-    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\TargetConfigurations\ITargetConfigurationAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Targets\Handlers\IGenericElementAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Targets\Handlers\Implementation\GenericElementAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Targets\Implementation\TargetAdapter.cs" />
+    <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\Targets\ITargetAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\UsingTasks\Implementation\UsingTaskAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\UsingTasks\IUsingTaskAdapter.cs" />
     <Compile Include="Areas\Common\Project\Adapters\XmlToDomain\Handlers\VisualStudioConfigurations\Implementation\VisualStudioConfigurationAdapter.cs" />
@@ -221,12 +247,22 @@
     <Compile Include="Infrastructure\ExtendedStringBuilder\IExtendedStringBuilder.cs" />
     <Compile Include="Infrastructure\ExtendedStringBuilder\Implementation\ExtendedStringBuilder.cs" />
     <Compile Include="Infrastructure\Ioc\DataAccessRegistry.cs" />
-    <Compile Include="Infrastructure\Xml\Implementation\XmlParsingService.cs" />
-    <Compile Include="Infrastructure\Xml\Implementation\XmlWritingService.cs" />
-    <Compile Include="Infrastructure\Xml\IXmlParsingService.cs" />
-    <Compile Include="Infrastructure\Xml\IXmlWritingService.cs" />
-    <Compile Include="Infrastructure\Xml\Models\ElementTypes\AttributeObjectType.cs" />
-    <Compile Include="Infrastructure\Xml\Models\ElementTypes\ObjectType.cs" />
+    <Compile Include="Infrastructure\Xml\XmlBuilding\Conditions\Implementations\NoCondition.cs" />
+    <Compile Include="Infrastructure\Xml\XmlBuilding\Conditions\Implementations\NotNullCondition.cs" />
+    <Compile Include="Infrastructure\Xml\XmlBuilding\Conditions\Implementations\NotNullOrEmptyCondition.cs" />
+    <Compile Include="Infrastructure\Xml\XmlBuilding\Factories\Implementation\XmlElementBuilderFactory.cs" />
+    <Compile Include="Infrastructure\Xml\XmlBuilding\Factories\IXmlElementBuilderFactory.cs" />
+    <Compile Include="Infrastructure\Xml\XmlBuilding\Services\Implementation\XmlAttributeBuilder.cs" />
+    <Compile Include="Infrastructure\Xml\XmlBuilding\Services\Implementation\XmlElementBuilder.cs" />
+    <Compile Include="Infrastructure\Xml\XmlBuilding\Services\IXmlAttributeBuilder.cs" />
+    <Compile Include="Infrastructure\Xml\XmlBuilding\Conditions\XmlBuildingCondition.cs" />
+    <Compile Include="Infrastructure\Xml\XmlBuilding\Services\IXmlElementBuilder.cs" />
+    <Compile Include="Infrastructure\Xml\XmlReading\XmlParsingService.cs" />
+    <Compile Include="Infrastructure\Xml\XmlWriting\Services\Implementation\XmlWritingService.cs" />
+    <Compile Include="Infrastructure\Xml\XmlReading\IXmlParsingService.cs" />
+    <Compile Include="Infrastructure\Xml\XmlWriting\Services\IXmlWritingService.cs" />
+    <Compile Include="Infrastructure\Xml\XmlWriting\Models\ElementTypes\AttributeObjectType.cs" />
+    <Compile Include="Infrastructure\Xml\XmlWriting\Models\ElementTypes\ObjectType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +283,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\VisualStudioExtensions\" />
+    <Folder Include="Infrastructure\Xml\XmlReading\Implementation\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

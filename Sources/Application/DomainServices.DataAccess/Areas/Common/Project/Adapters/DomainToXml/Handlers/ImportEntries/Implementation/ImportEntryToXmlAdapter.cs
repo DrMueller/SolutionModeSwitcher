@@ -2,18 +2,19 @@
 using System.Linq;
 using System.Xml.Linq;
 using Mmu.Sms.Domain.Areas.Common.Project;
-using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml;
-using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.Models.ElementTypes;
+using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlBuilding.Conditions;
+using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlBuilding.Factories;
+using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlBuilding.Services;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.DomainToXml.Handlers.ImportEntries.Implementation
 {
     public class ImportEntryToXmlAdapter : IImportEntryToXmlAdapter
     {
-        private readonly IXmlWritingService _xmlWritingService;
+        private readonly IXmlElementBuilderFactory _elementBuilderFactory;
 
-        public ImportEntryToXmlAdapter(IXmlWritingService xmlWritingService)
+        public ImportEntryToXmlAdapter(IXmlElementBuilderFactory elementBuilderFactory)
         {
-            _xmlWritingService = xmlWritingService;
+            _elementBuilderFactory = elementBuilderFactory;
         }
 
         public IReadOnlyCollection<XElement> Adapt(ProjectConfigurationFile projectConfigFile)
@@ -25,9 +26,19 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.Domain
 
         private XElement AdaptElement(ImportEntry importEntry)
         {
-            var result = new XElement("Import");
-            _xmlWritingService.ConditionallyAdd(ObjectType.Attribute, result, "Project", importEntry.RelativeProjectPath);
-            _xmlWritingService.ConditionallyAdd(ObjectType.Attribute, result, "Condition", importEntry.Condition);
+            var elementBuilder = _elementBuilderFactory.CreateTopLevelElement("Import");
+
+            var result =
+                elementBuilder
+                    .WithAttribute("Project")
+                    .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
+                    .WithAttributeValue(importEntry.RelativeProjectPath)
+                    .BuildAttribute()
+                    .WithAttribute("Condition")
+                    .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
+                    .WithAttributeValue(importEntry.Condition)
+                    .BuildAttribute()
+                    .FinishBuilding();
 
             return result;
         }

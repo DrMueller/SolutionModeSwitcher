@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using Mmu.Sms.Domain.Areas.Common.Project.AssemblyReferences;
-using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml;
+using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlReading;
 using Mmu.Sms.DomainServices.Infrastructure.StringParsing;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.AssemblyReferences.Implementation
@@ -46,10 +46,28 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
 
             const string PossibleEndChars = "[,\"]";
             var version = _stringParsingService.GetValueBetween(attributeValue, "Version=", PossibleEndChars);
+            if (version.IndexOf(',') > 0)
+            {
+                version = version.Substring(0, version.IndexOf(','));
+            }
+
             var publicKeyToken = _stringParsingService.GetValueBetween(attributeValue, "PublicKeyToken=", PossibleEndChars);
+            if (publicKeyToken.IndexOf(',') > 0)
+            {
+                publicKeyToken = publicKeyToken.Substring(0, publicKeyToken.IndexOf(','));
+            }
 
             var processorArchitecture = _stringParsingService.GetValueBetween(attributeValue, "processorArchitecture=", PossibleEndChars);
+            if (processorArchitecture.IndexOf(',') > 0)
+            {
+                processorArchitecture = processorArchitecture.Substring(0, processorArchitecture.IndexOf(','));
+            }
+
             var culture = _stringParsingService.GetValueBetween(attributeValue, "Culture=", PossibleEndChars);
+            if (culture.IndexOf(',') > 0)
+            {
+                culture = culture.Substring(0, culture.IndexOf(','));
+            }
 
             var result = new IncludeDefinition(assemblyShortName, version, culture, publicKeyToken, processorArchitecture);
             return result;

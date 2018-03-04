@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
 using Mmu.Sms.Domain.Areas.Common.Project.ProjectProperties;
-using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml;
+using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlReading;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ProjectProperties.Implementation
 {
@@ -38,12 +38,14 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             var platformName = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "Platform");
             var productVersion = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "ProductVersion");
             var schemaVersion = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "SchemaVersion");
+            var projectGuid = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "ProjectGuid");
             var projectTypeGuids = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "ProjectTypeGuids");
             var outputType = _projectOutputTypeAdapter.Adapt(propertyGroupElement);
             var appDesignFolder = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "AppDesignerFolder");
             var rootNamespace = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "RootNamespace");
             var assemblyName = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "AssemblyName");
             var targetFrameworkVersion = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "TargetFrameworkVersion");
+            var fileAlignment = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "FileAlignment");
             var mvcBuildViews = _mvcBuildViewAdapter.Adapt(propertyGroupElement);
             var iisExpressConfiguration = _iisExpressConfigurationAdapter.Adapt(propertyGroupElement);
             var sccConfiguration = _sccConfigurationAdapter.Adapt(propertyGroupElement);
@@ -61,12 +63,14 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
                 platformName,
                 productVersion,
                 schemaVersion,
+                projectGuid,
                 projectTypeGuids,
                 outputType,
                 appDesignFolder,
                 rootNamespace,
                 assemblyName,
                 targetFrameworkVersion,
+                fileAlignment,
                 mvcBuildViews,
                 iisExpressConfiguration,
                 sccConfiguration,

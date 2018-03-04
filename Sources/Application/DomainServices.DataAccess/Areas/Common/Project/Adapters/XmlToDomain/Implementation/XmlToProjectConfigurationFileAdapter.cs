@@ -5,10 +5,11 @@ using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomai
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.Inclusions;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.PostSharp;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ProjectBuild;
+using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ProjectConfigurations;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ProjectProperties;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ProjectReferences;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.SlowCheetah;
-using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.TargetConfigurations;
+using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.Targets;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.UsingTasks;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.VisualStudioConfigurations;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.VisualStudioExtensions;
@@ -22,15 +23,17 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
         private readonly IInclusionEntryAdapter _inclusionEntryAdapter;
         private readonly IXmlToPostSharpConfigurationAdapter _postSharpConfigAdapter;
         private readonly IProjectBuildConfigurationAdapter _projectBuildConfigurationAdapter;
+        private readonly IXmlToProjectConfigurationAdapter _projectConfigAdapter;
         private readonly IXmlToProjectPropertiesConfigurationAdapter _projectPropertiesConfigAdpater;
         private readonly IProjectReferenceAdapter _projectReferenceAdapter;
         private readonly ISlowCheetahConfigurationAdapter _slowCheetahConfigAdapter;
-        private readonly ITargetConfigurationAdapter _targetConfigurationAdapter;
+        private readonly ITargetAdapter _targetAdapter;
         private readonly IUsingTaskAdapter _usingTaskAdapter;
         private readonly IVisualStudioConfigurationAdapter _visualStudioConfigAdapter;
         private readonly IVisualStudioExtensionsConfigurationAdapter _visualStudioExtensionsAdapter;
 
         public XmlToProjectConfigurationFileAdapter(
+            IXmlToProjectConfigurationAdapter projectConfigAdapter,
             IXmlToImportEntryAdapter importEntryAdapter,
             IXmlToProjectPropertiesConfigurationAdapter projectPropertiesConfigAdpater,
             IXmlToPostSharpConfigurationAdapter postSharpConfigAdapter,
@@ -40,10 +43,11 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             IProjectReferenceAdapter projectReferenceAdapter,
             IVisualStudioConfigurationAdapter visualStudioConfigAdapter,
             ISlowCheetahConfigurationAdapter slowCheetahConfigAdapter,
-            ITargetConfigurationAdapter targetConfigurationAdapter,
+            ITargetAdapter targetAdapter,
             IVisualStudioExtensionsConfigurationAdapter visualStudioExtensionsAdapter,
             IUsingTaskAdapter usingTaskAdapter)
         {
+            _projectConfigAdapter = projectConfigAdapter;
             _importEntryAdapter = importEntryAdapter;
             _projectPropertiesConfigAdpater = projectPropertiesConfigAdpater;
             _postSharpConfigAdapter = postSharpConfigAdapter;
@@ -53,7 +57,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             _projectReferenceAdapter = projectReferenceAdapter;
             _visualStudioConfigAdapter = visualStudioConfigAdapter;
             _slowCheetahConfigAdapter = slowCheetahConfigAdapter;
-            _targetConfigurationAdapter = targetConfigurationAdapter;
+            _targetAdapter = targetAdapter;
             _visualStudioExtensionsAdapter = visualStudioExtensionsAdapter;
             _usingTaskAdapter = usingTaskAdapter;
         }
@@ -61,6 +65,8 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
         public ProjectConfigurationFile Adapt(string filePath)
         {
             var document = XDocument.Load(filePath);
+
+            var projectConfig = _projectConfigAdapter.Adapt(document);
             var importEntries = _importEntryAdapter.Adapt(document);
             var propertiesConfig = _projectPropertiesConfigAdpater.Adapt(document);
             var postSharpConfig = _postSharpConfigAdapter.Adapt(document);
@@ -70,12 +76,13 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             var projectReferences = _projectReferenceAdapter.Adapt(document);
             var visualStudioConfig = _visualStudioConfigAdapter.Adapt(document);
             var slowCheetahConfig = _slowCheetahConfigAdapter.Adapt(document);
-            var targetConfig = _targetConfigurationAdapter.Adapt(document);
+            var targets = _targetAdapter.Adapt(document);
             var visualStudioExtensionsConfig = _visualStudioExtensionsAdapter.Adapt(document);
             var usingTasks = _usingTaskAdapter.Adapt(document);
 
             var result = new ProjectConfigurationFile(
                 filePath,
+                projectConfig,
                 importEntries,
                 propertiesConfig,
                 postSharpConfig,
@@ -85,7 +92,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
                 projectReferences,
                 visualStudioConfig,
                 slowCheetahConfig,
-                targetConfig,
+                targets,
                 visualStudioExtensionsConfig,
                 usingTasks);
 

@@ -17,6 +17,7 @@
             bool? usePostSharp,
             string postSharpDisabledMessages,
             string documentationFile,
+            bool? treatWarningsAsErrors,
             int langVersion
         )
         {
@@ -34,6 +35,7 @@
             UsePostSharp = usePostSharp;
             PostSharpDisabledMessages = postSharpDisabledMessages;
             DocumentationFile = documentationFile;
+            TreatWarningsAsErrors = treatWarningsAsErrors;
             LangVersion = langVersion;
         }
 
@@ -43,6 +45,7 @@
         public string DebugType { get; }
         public string DefineConstants { get; }
         public string DocumentationFile { get; }
+        public bool? TreatWarningsAsErrors { get; }
         public string ErrorReport { get; }
         public int LangVersion { get; }
         public int? NoWarn { get; }

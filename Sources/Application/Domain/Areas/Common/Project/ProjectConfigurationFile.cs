@@ -3,6 +3,7 @@ using Mmu.Sms.Common.LanguageExtensions.Invariance;
 using Mmu.Sms.Common.LanguageExtensions.Maybes;
 using Mmu.Sms.Domain.Areas.Common.Project.AssemblyReferences;
 using Mmu.Sms.Domain.Areas.Common.Project.Inclusions.FileInclusions;
+using Mmu.Sms.Domain.Areas.Common.Project.ProjectConfigurations;
 using Mmu.Sms.Domain.Areas.Common.Project.ProjectExtensions;
 using Mmu.Sms.Domain.Areas.Common.Project.ProjectProperties;
 using Mmu.Sms.Domain.Areas.Common.Project.SlowCheetah;
@@ -16,6 +17,7 @@ namespace Mmu.Sms.Domain.Areas.Common.Project
     {
         public ProjectConfigurationFile(
             string filePath,
+            ProjectConfiguration projectConfiguration,
             IReadOnlyCollection<ImportEntry> importEntries,
             ProjectPropertiesConfiguration projectPropertiesConfiguration,
             Maybe<PostSharpConfiguration> postSharpConfiguration,
@@ -25,7 +27,7 @@ namespace Mmu.Sms.Domain.Areas.Common.Project
             IReadOnlyCollection<ProjectReference> projectReferences,
             VisualStudioConfiguration visualStudioConfiguration,
             Maybe<SlowCheetahConfiguration> slowCheetaConfiguration,
-            TargetConfiguration targetConfiguration,
+            IReadOnlyCollection<Target> targets,
             Maybe<VisualStudioExtensionsConfiguration> visualStudioExtensionsConfiguration,
             IReadOnlyCollection<UsingTask> usingTasks)
         {
@@ -37,10 +39,11 @@ namespace Mmu.Sms.Domain.Areas.Common.Project
             Guard.ObjectNotNull(() => inclusionEntries);
             Guard.ObjectNotNull(() => projectReferences);
             Guard.ObjectNotNull(() => visualStudioConfiguration);
-            Guard.ObjectNotNull(() => targetConfiguration);
+            Guard.ObjectNotNull(() => targets);
             Guard.ObjectNotNull(() => usingTasks);
 
             FilePath = filePath;
+            ProjectConfiguration = projectConfiguration;
             ImportEntries = importEntries;
             ProjectPropertiesConfiguration = projectPropertiesConfiguration;
             PostSharpConfiguration = postSharpConfiguration;
@@ -50,7 +53,7 @@ namespace Mmu.Sms.Domain.Areas.Common.Project
             ProjectReferences = projectReferences;
             VisualStudioConfiguration = visualStudioConfiguration;
             SlowCheetaConfiguration = slowCheetaConfiguration;
-            TargetConfiguration = targetConfiguration;
+            Targets = targets;
             VisualStudioExtensionsConfiguration = visualStudioExtensionsConfiguration;
             UsingTasks = usingTasks;
         }
@@ -61,10 +64,11 @@ namespace Mmu.Sms.Domain.Areas.Common.Project
         public IReadOnlyCollection<ImportEntry> ImportEntries { get; }
         public IReadOnlyCollection<InclusionEntry> InclusionEntries { get; }
         public Maybe<PostSharpConfiguration> PostSharpConfiguration { get; }
+        public ProjectConfiguration ProjectConfiguration { get; }
         public ProjectPropertiesConfiguration ProjectPropertiesConfiguration { get; }
         public IReadOnlyCollection<ProjectReference> ProjectReferences { get; }
         public Maybe<SlowCheetahConfiguration> SlowCheetaConfiguration { get; }
-        public TargetConfiguration TargetConfiguration { get; }
+        public IReadOnlyCollection<Target> Targets { get; }
         public IReadOnlyCollection<UsingTask> UsingTasks { get; }
         public VisualStudioConfiguration VisualStudioConfiguration { get; }
         public Maybe<VisualStudioExtensionsConfiguration> VisualStudioExtensionsConfiguration { get; }

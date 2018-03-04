@@ -47,6 +47,7 @@
     <Compile Include="Areas\Common\Project\Inclusions\FileInclusions\InclusionEntry.cs" />
     <Compile Include="Areas\Common\Project\PostSharpConfiguration.cs" />
     <Compile Include="Areas\Common\Project\ProjectBuildConfiguration.cs" />
+    <Compile Include="Areas\Common\Project\ProjectConfigurations\ProjectConfiguration.cs" />
     <Compile Include="Areas\Common\Project\ProjectExtensions\ProjectExtensionsConfiguration.cs" />
     <Compile Include="Areas\Common\Project\ProjectExtensions\VisualStudioExtensionsConfiguration.cs" />
     <Compile Include="Areas\Common\Project\ProjectProperties\IisExpressConfiguration.cs" />
@@ -61,13 +62,10 @@
     <Compile Include="Areas\Common\Project\SlowCheetah\SlowCheetahNugetImport.cs" />
     <Compile Include="Areas\Common\Project\SlowCheetah\SlowCheetahConfiguration.cs" />
     <Compile Include="Areas\Common\Project\SlowCheetah\SlowCheetahTargets.cs" />
-    <Compile Include="Areas\Common\Project\Targets\AspNetCompilerConfiguration.cs" />
-    <Compile Include="Areas\Common\Project\Targets\DeploymentConfiguration.cs" />
-    <Compile Include="Areas\Common\Project\Targets\EnsureNuGetPackageBuildImportsConfiguration.cs" />
-    <Compile Include="Areas\Common\Project\Targets\EnsurePostSharpImportedConfiguration.cs" />
-    <Compile Include="Areas\Common\Project\Targets\TargetConfiguration.cs" />
-    <Compile Include="Areas\Common\Project\Targets\TargetError.cs" />
-    <Compile Include="Areas\Common\Project\Targets\TransformXmlConfiguration.cs" />
+    <Compile Include="Areas\Common\Project\Targets\GenericXmlAttribute.cs" />
+    <Compile Include="Areas\Common\Project\Targets\GenericXmlElement.cs" />
+    <Compile Include="Areas\Common\Project\Targets\Target.cs" />
+    <Compile Include="Areas\Common\Project\Targets\TransformXml.cs" />
     <Compile Include="Areas\Common\Project\Tasks\UsingTask.cs" />
     <Compile Include="Areas\Common\Project\VisualStudio\VisualStudioConfiguration.cs" />
     <Compile Include="Areas\Common\Project\VisualStudio\VisualStudioToolsPath.cs" />

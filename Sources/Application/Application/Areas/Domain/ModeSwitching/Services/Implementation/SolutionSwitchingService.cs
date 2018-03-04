@@ -52,10 +52,10 @@ namespace Mmu.Sms.Application.Areas.Domain.ModeSwitching.Services.Implementation
             _informationPublishingService.Publish(InformationType.Info, "Switching it up...");
             var solutionSwitchResult = _solutionModeSwitchingService.SwitchSolutionMode(configuration);
 
-            _informationPublishingService.Publish(InformationType.Info, $"Saving Solution to {solutionSwitchResult.SwitchedSolutionConfigFile.FilePath}...");
-            _solutionConfigFileRepository.Save(solutionSwitchResult.SwitchedSolutionConfigFile);
+            //_informationPublishingService.Publish(InformationType.Info, $"Saving Solution to {solutionSwitchResult.SwitchedSolutionConfigFile.FilePath}...");
+            //_solutionConfigFileRepository.Save(solutionSwitchResult.SwitchedSolutionConfigFile);
 
-            SaveProjectsToFiles(solutionSwitchResult.SwitchedProjectConfigFiles);
+            //SaveProjectsToFiles(solutionSwitchResult.SwitchedProjectConfigFiles);
             _informationPublishingService.Publish(InformationType.Success, "Finished!");
         }
 
