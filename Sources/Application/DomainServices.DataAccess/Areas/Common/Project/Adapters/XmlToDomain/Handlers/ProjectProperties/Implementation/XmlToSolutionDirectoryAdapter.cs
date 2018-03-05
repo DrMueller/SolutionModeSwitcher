@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using Mmu.Sms.Common.LanguageExtensions.Maybes;
 using Mmu.Sms.Domain.Areas.Common.Project.ProjectProperties;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.Common.Services;
 
@@ -13,12 +14,13 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             _conditionalValueAdapter = conditionalValueAdapter;
         }
 
-        public SolutionDirectory Adapt(XElement element)
+        public Maybe<SolutionDirectory> Adapt(XElement element)
         {
-            var conditionalValue = _conditionalValueAdapter.AdaptSubElement<string>(element, "SolutionDir");
-            var result = new SolutionDirectory(conditionalValue.Condition, conditionalValue.Value);
+            var conditionalValue = _conditionalValueAdapter.TryAdaptingSubElement<string>(element, "SolutionDir");
 
-            return result;
+            return conditionalValue.Evaluate(
+                whenSome: cv => MaybeFactory.CreateSome(new SolutionDirectory(cv.Condition, cv.Value)),
+                whenNone: MaybeFactory.CreateNone<SolutionDirectory>);
         }
     }
 }

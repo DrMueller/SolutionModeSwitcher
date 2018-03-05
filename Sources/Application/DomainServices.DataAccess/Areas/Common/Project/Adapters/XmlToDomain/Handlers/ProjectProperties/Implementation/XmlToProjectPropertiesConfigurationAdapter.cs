@@ -50,12 +50,12 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             var iisExpressConfiguration = _iisExpressConfigurationAdapter.Adapt(propertyGroupElement);
             var sccConfiguration = _sccConfigurationAdapter.Adapt(propertyGroupElement);
             var solutionDirectory = _solutionDirectoryAdapter.Adapt(propertyGroupElement);
-            var restorePackages = _xmlParsingService.ParseSubElementValue<bool>(propertyGroupElement, "RestorePackages");
+            var restorePackages = _xmlParsingService.TryParsingSubElementValue<bool>(propertyGroupElement, "RestorePackages");
             var webGreaseLibPath = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "WebGreaseLibPath");
             var useGlobalApplicationHostFîle = _xmlParsingService.TryParsingSubElementValue<bool>(propertyGroupElement, "UseGlobalApplicationHostFile");
             var dontImportPostSharp = _xmlParsingService.TryParsingSubElementValue<bool>(propertyGroupElement, "DontImportPostSharp");
             var targetFrameworkProfile = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "TargetFrameworkProfile");
-            var langVersion = _xmlParsingService.ParseSubElementValue<int>(propertyGroupElement, "LangVersion");
+            var langVersion = _xmlParsingService.TryParsingSubElementValue<int>(propertyGroupElement, "LangVersion");
             var nugetPackageImportTimeStamp = _xmlParsingService.TryParsingSubElementStringValue(propertyGroupElement, "NuGetPackageImportStamp");
 
             var result = new ProjectPropertiesConfiguration(

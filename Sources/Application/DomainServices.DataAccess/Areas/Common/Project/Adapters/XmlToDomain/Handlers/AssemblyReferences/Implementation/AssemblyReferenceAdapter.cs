@@ -31,8 +31,8 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             var includeAttribute = element.Attributes("Include").First();
             var hintPath = _xmlParsingService.TryParsingSubElementStringValue(element, "HintPath");
 
-            var isPrivate = _xmlParsingService.TryParsingSubElementBoolValue(element, "Private");
-            var specificVersion = _xmlParsingService.TryParsingSubElementBoolValue(element, "SpecificVersion");
+            var isPrivate = _xmlParsingService.TryParsingSubElementValue<bool>(element, "Private");
+            var specificVersion = _xmlParsingService.TryParsingSubElementValue<bool>(element, "SpecificVersion");
 
             var includeDefinition = CreateIncludeDefinitionFromAttribute(includeAttribute);
             var result = new ProjectAssemblyReference(includeDefinition, hintPath, isPrivate, specificVersion);

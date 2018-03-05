@@ -16,11 +16,11 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
 
         public Maybe<IisExpressConfiguration> Adapt(XElement element)
         {
-            var useIisExpress = _xmlParsingService.TryParsingSubElementBoolValue(element, "UseIISExpress") ?? false;
+            var useIisExpress = _xmlParsingService.TryParsingSubElementValue<bool>(element, "UseIISExpress") ?? false;
             var sslPort = _xmlParsingService.TryParsingSubElementValue<int>(element, "IISExpressSSLPort");
             var anonymousAuth = _xmlParsingService.TryParsingSubElementStringValue(element, "IISExpressAnonymousAuthentication");
             var windowsAuth = _xmlParsingService.TryParsingSubElementStringValue(element, "IISExpressWindowsAuthentication");
-            var useClassicPipelindeMode = _xmlParsingService.TryParsingSubElementBoolValue(element, "IISExpressUseClassicPipelineMode");
+            var useClassicPipelindeMode = _xmlParsingService.TryParsingSubElementValue<bool>(element, "IISExpressUseClassicPipelineMode");
 
             if (!sslPort.HasValue && string.IsNullOrEmpty(anonymousAuth) && string.IsNullOrEmpty(windowsAuth))
             {

@@ -13,10 +13,10 @@ namespace Mmu.Sms.WpfUI.Areas.Configuration.Services.Handlers.Implementation
 
             foreach (var referenceConfigurationDto in dtos)
             {
-                var existsInConfig = configuration.ProjectReferenceConfigurations.Any(f => f.AssemblyName == referenceConfigurationDto.AssemblyName);
+                var existsInConfig = configuration.ProjectReferenceConfigurations.Any(f => f.ProjectName == referenceConfigurationDto.ProjectName);
                 var selectProjectDto = new SelectProjectDto
                 {
-                    AssemblyName = referenceConfigurationDto.AssemblyName,
+                    AssemblyName = referenceConfigurationDto.ProjectName,
                     IsSelected = existsInConfig,
                     AbsoluteProjectFilePath = referenceConfigurationDto.AbsoluteProjectFilePath
                 };

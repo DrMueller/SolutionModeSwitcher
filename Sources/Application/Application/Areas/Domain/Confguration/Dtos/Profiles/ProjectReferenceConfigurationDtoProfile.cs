@@ -10,15 +10,15 @@ namespace Mmu.Sms.Application.Areas.Domain.Confguration.Dtos.Profiles
         {
             CreateMap<ProjectReferenceConfigurationDto, ProjectReferenceConfiguration>()
                 .ConvertUsing(
-                    dto => new ProjectReferenceConfiguration(dto.AssemblyName, dto.AbsoluteProjectFilePath));
+                    dto => new ProjectReferenceConfiguration(dto.ProjectName, dto.AbsoluteProjectFilePath));
 
             CreateMap<ProjectReferenceConfiguration, ProjectReferenceConfigurationDto>()
-                .ForMember(d => d.AssemblyName, c => c.MapFrom(f => f.AssemblyName))
+                .ForMember(d => d.ProjectName, c => c.MapFrom(f => f.AssemblyName))
                 .ForMember(d => d.AbsoluteProjectFilePath, c => c.MapFrom(f => f.AbsoluteProjectFilePath));
 
             CreateMap<SolutionProject, ProjectReferenceConfigurationDto>()
-                .ForMember(d => d.AssemblyName, c => c.MapFrom(f => f.ProjectName))
-                .ForMember(d => d.AbsoluteProjectFilePath, c => c.MapFrom(f => f.RelativePath));
+                .ForMember(d => d.ProjectName, c => c.MapFrom(f => f.ProjectName))
+                .ForMember(d => d.AbsoluteProjectFilePath, c => c.MapFrom(f => f.AbsolutePath));
         }
     }
 }

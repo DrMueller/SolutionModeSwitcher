@@ -6,11 +6,11 @@
             string condition,
             bool? debugSymbols,
             string debugType,
-            bool optimize,
+            bool? optimize,
             string outputPath,
             string defineConstants,
             string errorReport,
-            int warningLevel,
+            int? warningLevel,
             string codeAnalysisRuleSet,
             bool? runCodeAnalysis,
             int? noWarn,
@@ -18,7 +18,7 @@
             string postSharpDisabledMessages,
             string documentationFile,
             bool? treatWarningsAsErrors,
-            int langVersion
+            int? langVersion
         )
         {
             Condition = condition;
@@ -46,14 +46,14 @@
         public string DefineConstants { get; }
         public string DocumentationFile { get; }
         public string ErrorReport { get; }
-        public int LangVersion { get; }
+        public int? LangVersion { get; }
         public int? NoWarn { get; }
-        public bool Optimize { get; }
+        public bool? Optimize { get; }
         public string OutputPath { get; }
         public string PostSharpDisabledMessages { get; }
         public bool? RunCodeAnalysis { get; }
         public bool? TreatWarningsAsErrors { get; }
         public bool? UsePostSharp { get; }
-        public int WarningLevel { get; }
+        public int? WarningLevel { get; }
     }
 }

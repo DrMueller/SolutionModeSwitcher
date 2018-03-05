@@ -68,12 +68,15 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.Domain
             foreach (var mvcBuildView in prop.MvcBuildViews)
             {
                 elementBuilder.StartBuildingChildElement("MvcBuildViews")
-                    .WithConditionAttribute(mvcBuildView.Condition)
+                    .WithAttribute("ConditioN")
+                    .WithAttributeValue(mvcBuildView.Condition)
+                    .WithCondition(XmlBuildingCondition.NotNullOrEmpty)
+                    .BuildAttribute()
                     .WithElementValue(mvcBuildView.BuildViews);
             }
 
             AppendIisConfiguration(elementBuilder, prop.IisExpressConfiguration);
-            elementBuilder.StartBuildingChildElement("SccProjectName")
+            elementBuilder = elementBuilder.StartBuildingChildElement("SccProjectName")
                 .WithElementValue(prop.SccConfiguration.SccProjectName)
                 .BuildElement()
                 .StartBuildingChildElement("SccLocalPath")
@@ -84,12 +87,16 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.Domain
                 .BuildElement()
                 .StartBuildingChildElement("SccProvider")
                 .WithElementValue(prop.SccConfiguration.SccProvider)
-                .BuildElement()
-                .StartBuildingChildElement("SolutionDir")
-                .WithElementValue(prop.SolutionDirectory.Path)
-                .WithConditionAttribute(prop.SolutionDirectory.Condition)
-                .BuildElement()
-                .StartBuildingChildElement("RestorePackages")
+                .BuildElement();
+
+            prop.SolutionDirectory.Evaluate(
+                solutionDir =>
+                    elementBuilder.StartBuildingChildElement("SolutionDir")
+                        .WithElementValue(solutionDir.Path)
+                        .WithConditionAttribute(solutionDir.Condition)
+                        .BuildElement());
+
+            elementBuilder.StartBuildingChildElement("RestorePackages")
                 .WithElementValue(prop.RestorePackages)
                 .BuildElement()
                 .StartBuildingChildElement("WebGreaseLibPath")
@@ -109,6 +116,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.Domain
                 .BuildElement()
                 .StartBuildingChildElement("LangVersion")
                 .WithElementValue(prop.LangVersion)
+                .WithCondition(XmlBuildingCondition.NotNull)
                 .BuildElement()
                 .StartBuildingChildElement("NuGetPackageImportStamp")
                 .WithElementValue(prop.NugetPackageImportstamp)

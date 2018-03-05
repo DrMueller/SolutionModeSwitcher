@@ -8,6 +8,7 @@ namespace Mmu.Sms.Domain.Areas.Common.Solution
         public SolutionProject(
             string projectName,
             string relativePath,
+            string absolutePath,
             string projectGuid,
             string parentProjectGuid,
             SolutionProjectType solutionProjectType,
@@ -18,6 +19,7 @@ namespace Mmu.Sms.Domain.Areas.Common.Solution
         {
             ProjectName = projectName;
             RelativePath = relativePath;
+            AbsolutePath = absolutePath;
             ProjectGuid = projectGuid;
             ParentProjectGuid = parentProjectGuid;
             DependencyProjectGuids = dependencyProjectGuids;
@@ -27,6 +29,7 @@ namespace Mmu.Sms.Domain.Areas.Common.Solution
             Items = items;
         }
 
+        public string AbsolutePath { get; }
         public IReadOnlyCollection<SolutionProjectConfiguration> Configurations { get; }
         public IReadOnlyCollection<string> DependencyProjectGuids { get; }
         public IReadOnlyCollection<SolutionProjectItem> Items { get; }

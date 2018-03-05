@@ -88,7 +88,7 @@ namespace Mmu.Sms.WpfUI.Areas.Configuration.ViewModels
                 f => new ProjectReferenceConfigurationDto
                 {
                     AbsoluteProjectFilePath = f.AbsoluteProjectFilePath,
-                    AssemblyName = f.AssemblyName
+                    ProjectName = f.AssemblyName
                 }).ToList();
 
             _configuration.ProjectReferenceConfigurations = selectedReferences;

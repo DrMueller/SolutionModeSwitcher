@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Diagnostics;
+using System.Xml.Linq;
 using Mmu.Sms.Domain.Areas.Common.Project;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.AssemblyReferences;
 using Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.ImportEntries;
@@ -64,6 +65,8 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
 
         public ProjectConfigurationFile Adapt(string filePath)
         {
+            Debug.WriteLine(filePath);
+
             var document = XDocument.Load(filePath);
 
             var projectConfig = _projectConfigAdapter.Adapt(document);

@@ -21,13 +21,13 @@ namespace Mmu.Sms.Domain.Areas.Common.Project.ProjectProperties
             IReadOnlyCollection<MvcBuildView> mvcBuildViews,
             Maybe<IisExpressConfiguration> iisExpressConfiguration,
             SccConfiguration sccConfiguration,
-            SolutionDirectory solutionDirectory,
-            bool restorePackages,
+            Maybe<SolutionDirectory> solutionDirectory,
+            bool? restorePackages,
             string webGreaseLibPath,
             bool? useGlobalApplicationHostFile,
             bool? doNotImportPostSharp,
             string targetFrameworkProfile,
-            int langVersion,
+            int? langVersion,
             string nugetPackageImportstamp)
         {
             ConfigurationName = configurationName;
@@ -61,7 +61,7 @@ namespace Mmu.Sms.Domain.Areas.Common.Project.ProjectProperties
         public bool? DoNotImportPostSharp { get; }
         public string FileAlignment { get; }
         public Maybe<IisExpressConfiguration> IisExpressConfiguration { get; }
-        public int LangVersion { get; }
+        public int? LangVersion { get; }
         public IReadOnlyCollection<MvcBuildView> MvcBuildViews { get; }
         public string NugetPackageImportstamp { get; }
         public ProjectOutputType OutputType { get; }
@@ -69,11 +69,11 @@ namespace Mmu.Sms.Domain.Areas.Common.Project.ProjectProperties
         public string ProductVersion { get; }
         public string ProjectGuid { get; }
         public string ProjectTypeGuids { get; }
-        public bool RestorePackages { get; }
+        public bool? RestorePackages { get; }
         public string RootNamespace { get; }
         public SccConfiguration SccConfiguration { get; }
         public string SchemaVersion { get; }
-        public SolutionDirectory SolutionDirectory { get; }
+        public Maybe<SolutionDirectory> SolutionDirectory { get; }
         public string TargetFrameworkProfile { get; }
         public string TargetFrameworkVersion { get; }
         public bool? UseGlobalApplicationHostFile { get; }

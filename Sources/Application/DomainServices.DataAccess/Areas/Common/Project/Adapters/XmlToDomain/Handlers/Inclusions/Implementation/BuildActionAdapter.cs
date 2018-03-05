@@ -64,6 +64,51 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
                     return BuildAction.AppConfigWithTargetPath;
                 }
 
+                case "WCFMetadata":
+                {
+                    return BuildAction.WcfMetadata;
+                }
+
+                case "WCFMetadataStorage":
+                {
+                    return BuildAction.WcfMetadataStorage;
+                }
+
+                case "EntityDeploy":
+                {
+                    return BuildAction.EntityDeploy;
+                }
+
+                case "BootstrapperPackage":
+                {
+                    return BuildAction.BootstrapperPackage;
+                }
+
+                case "ApplicationDefinition":
+                {
+                    return BuildAction.ApplicationDefinition;
+                }
+
+                case "Page":
+                {
+                    return BuildAction.Page;
+                }
+
+                case "AppDesigner":
+                {
+                    return BuildAction.AppDesigner;
+                }
+
+                case "TypeScriptCompile":
+                {
+                    return BuildAction.TypeScriptCompile;
+                }
+
+                case "NgDist":
+                {
+                        return BuildAction.NgDist;
+                }
+
                 default:
                 {
                     throw new NotImplementedException("Build Action: " + element.Name.LocalName);

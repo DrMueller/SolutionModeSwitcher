@@ -220,12 +220,8 @@
     <Compile Include="Infrastructure\Xml\XmlBuilding\Services\IXmlAttributeBuilder.cs" />
     <Compile Include="Infrastructure\Xml\XmlBuilding\Conditions\XmlBuildingCondition.cs" />
     <Compile Include="Infrastructure\Xml\XmlBuilding\Services\IXmlElementBuilder.cs" />
-    <Compile Include="Infrastructure\Xml\XmlReading\XmlParsingService.cs" />
-    <Compile Include="Infrastructure\Xml\XmlWriting\Services\Implementation\XmlWritingService.cs" />
+    <Compile Include="Infrastructure\Xml\XmlReading\Implementation\XmlParsingService.cs" />
     <Compile Include="Infrastructure\Xml\XmlReading\IXmlParsingService.cs" />
-    <Compile Include="Infrastructure\Xml\XmlWriting\Services\IXmlWritingService.cs" />
-    <Compile Include="Infrastructure\Xml\XmlWriting\Models\ElementTypes\AttributeObjectType.cs" />
-    <Compile Include="Infrastructure\Xml\XmlWriting\Models\ElementTypes\ObjectType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -248,7 +244,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Common\Project\Adapters\DomainToXml\Handlers\VisualStudioExtensions\" />
-    <Folder Include="Infrastructure\Xml\XmlReading\Implementation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -69,6 +69,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.Domain
                 .BuildElement()
                 .StartBuildingChildElement("LangVersion")
                 .WithElementValue(projectBuildConfig.LangVersion)
+                .WithCondition(XmlBuildingCondition.NotNull)
                 .BuildElement();
 
             var result = builder.FinishBuilding();

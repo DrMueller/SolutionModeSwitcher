@@ -7,8 +7,6 @@ namespace Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlReading
         T ParseSubElementValue<T>(XElement element, string subElementLocalName)
             where T : struct;
 
-        bool? TryParsingSubElementBoolValue(XElement element, string subElementLocalName);
-
         T TryParsingSubElementEnumValue<T>(XElement element, string subElementLocalName, T defaultValue);
 
         string TryParsingSubElementStringValue(XElement element, string subElementLocalName);

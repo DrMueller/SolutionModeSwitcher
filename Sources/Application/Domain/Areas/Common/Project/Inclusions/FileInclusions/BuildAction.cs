@@ -12,6 +12,15 @@
         Analyzer,
         ProjectReference,
         Service,
-        AppConfigWithTargetPath
+        AppConfigWithTargetPath,
+        WcfMetadata,
+        WcfMetadataStorage,
+        EntityDeploy,
+        BootstrapperPackage,
+        ApplicationDefinition,
+        Page,
+        AppDesigner,
+        TypeScriptCompile,
+        NgDist
     }
 }

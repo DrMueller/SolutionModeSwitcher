@@ -32,11 +32,11 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             var condition = element.Attributes().First(f => f.Name.LocalName == "Condition").Value;
             var debugSymbols = _xmlParsingService.TryParsingSubElementValue<bool>(element, "DebugSymbols");
             var debugType = _xmlParsingService.TryParsingSubElementStringValue(element, "DebugType");
-            var optimize = _xmlParsingService.ParseSubElementValue<bool>(element, "Optimize");
+            var optimize = _xmlParsingService.TryParsingSubElementValue<bool>(element, "Optimize");
             var outputPath = _xmlParsingService.TryParsingSubElementStringValue(element, "OutputPath");
             var defineConstants = _xmlParsingService.TryParsingSubElementStringValue(element, "DefineConstants");
             var errorReport = _xmlParsingService.TryParsingSubElementStringValue(element, "ErrorReport");
-            var warningLevel = _xmlParsingService.ParseSubElementValue<int>(element, "WarningLevel");
+            var warningLevel = _xmlParsingService.TryParsingSubElementValue<int>(element, "WarningLevel");
             var codeAnalysisRuleSet = _xmlParsingService.TryParsingSubElementStringValue(element, "CodeAnalysisRuleSet");
             var runCodeAnalysis = _xmlParsingService.TryParsingSubElementValue<bool>(element, "RunCodeAnalysis");
             var noWarn = _xmlParsingService.TryParsingSubElementValue<int>(element, "NoWarn");
@@ -44,7 +44,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             var postSharpDisabledMessages = _xmlParsingService.TryParsingSubElementStringValue(element, "PostSharpDisabledMessages");
             var documentationFile = _xmlParsingService.TryParsingSubElementStringValue(element, "DocumentationFile");
             var treatWarningsAsErrors = _xmlParsingService.TryParsingSubElementValue<bool>(element, "TreatWarningsAsErrors");
-            var langVersion = _xmlParsingService.ParseSubElementValue<int>(element, "LangVersion");
+            var langVersion = _xmlParsingService.TryParsingSubElementValue<int>(element, "LangVersion");
 
             var result = new ProjectBuildConfiguration(
                 condition,

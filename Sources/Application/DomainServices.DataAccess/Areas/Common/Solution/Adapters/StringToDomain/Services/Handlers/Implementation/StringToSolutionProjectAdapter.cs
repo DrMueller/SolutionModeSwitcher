@@ -35,6 +35,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Solution.Adapters.Strin
                 var solutionProject = new SolutionProject(
                     nativeProject.ProjectName,
                     nativeProject.RelativePath,
+                    nativeProject.AbsolutePath,
                     nativeProject.ProjectGuid,
                     nativeProject.ParentProjectGuid,
                     MapSolutionProjectType(nativeProject.ProjectType),
