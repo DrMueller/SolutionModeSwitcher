@@ -73,6 +73,13 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
         public ObservableCollection<Information> Informations { get; }
         public string NavigationDescription => "Building";
         public int NavigationSequence => 2;
+        public ICommand QueueBuild => new ParametredRelayCommand(
+            obj =>
+            {
+                var buildableProject = (BuildableProjectViewModel)obj;
+                AddProjectToQueue(buildableProject);
+                StartQueue();
+            });
 
         public ViewModelCommand SearchProjectsVmc
         {
@@ -102,22 +109,25 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             Configurations = _configurationService.LoadAllConfigurations();
         }
 
-        public ICommand QueueBuild()
+        private void AddProjectToQueue(BuildableProjectViewModel project)
         {
-            return new ParametredRelayCommand(
-                obj =>
-                {
-                    var buildableProject = (BuildableProjectViewModel)obj;
-                    StartQueue(buildableProject);
-                });
+            if (_queudBuilds.Contains(project))
+            {
+                return;
+            }
+
+            _queudBuilds.Enqueue(project);
+            project.SetAsEnqueued();
         }
 
         private void BuildAllProjectsAsync()
         {
             foreach (var proj in BuildableProjects)
             {
-                StartQueue(proj);
+                AddProjectToQueue(proj);
             }
+
+            StartQueue();
         }
 
         private bool CanSearchProjects()
@@ -134,10 +144,8 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
                 });
         }
 
-        private async void StartQueue(BuildableProjectViewModel buildableProject)
+        private async void StartQueue()
         {
-            _queudBuilds.Enqueue(buildableProject);
-
             if (_queuing)
             {
                 return;
@@ -145,11 +153,10 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
 
             _queuing = true;
 
-            var next = _queudBuilds.Dequeue();
-            while (next != null)
+            while (_queudBuilds.Count > 0)
             {
-                await next.BuildProjectAsync();
-                next = _queudBuilds.Dequeue();
+                var projectToBuild = _queudBuilds.Dequeue();
+                await projectToBuild.BuildProjectAsync();
             }
 
             _queuing = false;

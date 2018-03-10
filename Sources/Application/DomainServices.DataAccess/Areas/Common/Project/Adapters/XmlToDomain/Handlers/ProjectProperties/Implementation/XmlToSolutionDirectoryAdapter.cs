@@ -19,8 +19,8 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
             var conditionalValue = _conditionalValueAdapter.TryAdaptingSubElement<string>(element, "SolutionDir");
 
             return conditionalValue.Evaluate(
-                whenSome: cv => MaybeFactory.CreateSome(new SolutionDirectory(cv.Condition, cv.Value)),
-                whenNone: MaybeFactory.CreateNone<SolutionDirectory>);
+                cv => MaybeFactory.CreateSome(new SolutionDirectory(cv.Condition, cv.Value)),
+                MaybeFactory.CreateNone<SolutionDirectory>);
         }
     }
 }

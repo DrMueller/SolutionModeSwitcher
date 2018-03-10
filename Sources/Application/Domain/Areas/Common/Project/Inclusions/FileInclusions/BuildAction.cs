@@ -21,6 +21,7 @@
         Page,
         AppDesigner,
         TypeScriptCompile,
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Ng", Justification = "Domain term")]
         NgDist
     }
 }

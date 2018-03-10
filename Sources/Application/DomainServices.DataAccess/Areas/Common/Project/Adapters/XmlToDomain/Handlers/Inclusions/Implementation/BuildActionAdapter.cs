@@ -106,7 +106,7 @@ namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToD
 
                 case "NgDist":
                 {
-                        return BuildAction.NgDist;
+                    return BuildAction.NgDist;
                 }
 
                 default:

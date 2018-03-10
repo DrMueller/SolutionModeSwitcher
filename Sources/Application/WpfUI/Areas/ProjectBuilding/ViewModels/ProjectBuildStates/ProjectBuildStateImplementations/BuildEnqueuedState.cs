@@ -3,25 +3,19 @@ using System.Threading.Tasks;
 
 namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels.ProjectBuildStates.ProjectBuildStateImplementations
 {
-    public class BuildErrorState : IProjectBuildState
+    public class BuildEnqueuedState : IProjectBuildState
     {
         private readonly IProjectBuildStateFactory _projectBuildStateFactory;
-        private Exception _exception;
 
-        public BuildErrorState(IProjectBuildStateFactory projectBuildStateFactory)
+        public BuildEnqueuedState(IProjectBuildStateFactory projectBuildStateFactory)
         {
             _projectBuildStateFactory = projectBuildStateFactory;
         }
 
-        public string ImageSource => "/Mmu.Sms.WpfUI;component/Assets/FA_Exclamation_Red.png";
+        public string ImageSource => "/Mmu.Sms.WpfUI;component/Assets/FA_Arrow.png";
         public bool IsBuildInProgress => false;
-        public bool IsTooltipVisible => true;
-        public string TooltipText => _exception.Message;
-
-        public void Initialize(Exception exception)
-        {
-            _exception = exception;
-        }
+        public bool IsTooltipVisible => false;
+        public string TooltipText => string.Empty;
 
         public async Task StartBuildingAsync(string filePath, Action<IProjectBuildState> stateChangedCallback)
         {

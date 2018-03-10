@@ -3,8 +3,4 @@
 
 # Neue Features
 - Queuing für Rebuild All
-
-
-
-- Rebuild All rebuildet nacheinander
-- 
+- Queueing für einzelne Rebuilds

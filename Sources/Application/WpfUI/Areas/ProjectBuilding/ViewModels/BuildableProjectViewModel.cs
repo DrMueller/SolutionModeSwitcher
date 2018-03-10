@@ -52,7 +52,7 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
 
         public async Task BuildProjectAsync()
         {
-            await _projectState.StartBuildingAsync(FilePath, ProjectBuildStateChanged);
+            await _projectState.StartBuildingAsync(FilePath, OnProjectBuildStateChanged);
         }
 
         public void Initialize(string filePath)
@@ -62,7 +62,12 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             _projectState = _projectBuildStateFactory.CreateReadyToBuildState();
         }
 
-        private void ProjectBuildStateChanged(IProjectBuildState newState)
+        public void SetAsEnqueued()
+        {
+            ProjectBuildState = _projectBuildStateFactory.CreateBuildEnqueuedState();
+        }
+
+        private void OnProjectBuildStateChanged(IProjectBuildState newState)
         {
             ProjectBuildState = newState;
         }

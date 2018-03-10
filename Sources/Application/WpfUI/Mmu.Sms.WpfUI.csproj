@@ -86,6 +86,7 @@
     <Compile Include="Areas\ProjectBuilding\Factories\IBuildableProjectViewModelFactory.cs" />
     <Compile Include="Areas\ProjectBuilding\Factories\Implementation\BuildableProjectViewModelFactory.cs" />
     <Compile Include="Areas\ProjectBuilding\ViewModels\BuildableProjectViewModel.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\ProjectBuildStateImplementations\BuildEnqueuedState.cs" />
     <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\ProjectBuildStateImplementations\BuildInProgressState.cs">
       <Generator>Extended PublicResXFileCodeGenerator</Generator>
     </Compile>
@@ -182,6 +183,7 @@
     </Resource>
     <Resource Include="Assets\FA_Cog_Green.png" />
     <Resource Include="Assets\FA_Exclamation_Red.png" />
+    <Resource Include="Assets\FA_Arrow.png" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

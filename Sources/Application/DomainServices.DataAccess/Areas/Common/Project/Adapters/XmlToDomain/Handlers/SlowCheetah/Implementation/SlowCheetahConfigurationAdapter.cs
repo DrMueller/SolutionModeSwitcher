@@ -7,13 +7,6 @@ using Mmu.Sms.DomainServices.DataAccess.Infrastructure.Xml.XmlReading;
 
 namespace Mmu.Sms.DomainServices.DataAccess.Areas.Common.Project.Adapters.XmlToDomain.Handlers.SlowCheetah.Implementation
 {
-//<PropertyGroup Label = "SlowCheetah" >
-//< SlowCheetahToolsPath >$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\..\..\..\packages\SlowCheetah.2.5.14\tools\))</SlowCheetahToolsPath>
-//<SlowCheetah_EnableImportFromNuGet Condition = " '$(SlowCheetah_EnableImportFromNuGet)'=='' " > true </ SlowCheetah_EnableImportFromNuGet >
-//< SlowCheetah_NuGetImportPath Condition=" '$(SlowCheetah_NuGetImportPath)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\Properties\SlowCheetah\SlowCheetah.Transforms.targets ))</SlowCheetah_NuGetImportPath>
-//<SlowCheetahTargets Condition = " '$(SlowCheetah_EnableImportFromNuGet)'=='true' and Exists('$(SlowCheetah_NuGetImportPath)') " >$(SlowCheetah_NuGetImportPath)</SlowCheetahTargets>
-//</PropertyGroup>
-
     public class SlowCheetahConfigurationAdapter : ISlowCheetahConfigurationAdapter
     {
         private readonly IXmlToConditionValueAdapter _conditionValueAdapter;

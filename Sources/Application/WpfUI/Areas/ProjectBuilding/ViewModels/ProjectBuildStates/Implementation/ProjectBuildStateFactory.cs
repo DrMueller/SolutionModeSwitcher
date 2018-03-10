@@ -13,6 +13,11 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels.ProjectBuildStates.Impl
             _provisioningService = provisioningService;
         }
 
+        public IProjectBuildState CreateBuildEnqueuedState()
+        {
+            return CreateState<BuildEnqueuedState>();
+        }
+
         public IProjectBuildState CreateBuildErrorState(Exception exception)
         {
             var result = CreateState<BuildErrorState>();

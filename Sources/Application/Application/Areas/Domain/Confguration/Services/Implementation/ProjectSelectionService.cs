@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;
-using Mmu.Sms.DomainServices.Areas.Common.Solution.Repositories;
-using System.Linq;
 using Mmu.Sms.Domain.Areas.Common.Solution;
+using Mmu.Sms.DomainServices.Areas.Common.Solution.Repositories;
 
 namespace Mmu.Sms.Application.Areas.Domain.Confguration.Services.Implementation
 {
