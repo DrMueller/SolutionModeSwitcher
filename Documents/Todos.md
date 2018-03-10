@@ -2,11 +2,9 @@
 - Check xmlns
 
 # Neue Features
-- Queuing für Rebuild
-
-# UI
+- Queuing für Rebuild All
 
 
-# Infrastructure
-- Resolve Conflict Warning
 
+- Rebuild All rebuildet nacheinander
+- 

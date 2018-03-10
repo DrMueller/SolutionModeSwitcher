@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+using System.Windows.Input;
 using Mmu.Sms.Application.Areas.App.Informations.Models;
 using Mmu.Sms.Application.Areas.App.Informations.Services;
 using Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;
@@ -24,6 +24,8 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
         private IReadOnlyCollection<BuildableProjectViewModel> _buildableProjects;
         private IReadOnlyCollection<SolutionModeConfigurationDto> _configurations;
         private bool _isBuildInProgress;
+        private Queue<BuildableProjectViewModel> _queudBuilds;
+        private bool _queuing;
 
         public ProjectBuildingViewModel(
             IInformationConfigurationService informationConfigurationService,
@@ -39,6 +41,7 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             informationConfigurationService.RegisterForAllTypes(InformationReceived);
 
             Informations = new ObservableCollection<Information>();
+            _queudBuilds = new Queue<BuildableProjectViewModel>();
             DisplayName = "Project Building";
         }
 
@@ -52,19 +55,9 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             }
         }
 
-        public ViewModelCommand BuildAllProjectsVmc
-        {
-            get
-            {
-                return new ViewModelCommand(
-                    "Build all",
-                    new RelayCommand(
-                        async () =>
-                        {
-                            await BuildAllProjectsAsync();
-                        }));
-            }
-        }
+        public ViewModelCommand BuildAllProjectsVmc => new ViewModelCommand(
+            "Build all",
+            new RelayCommand(BuildAllProjectsAsync));
 
         public IReadOnlyCollection<SolutionModeConfigurationDto> Configurations
         {
@@ -109,11 +102,21 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             Configurations = _configurationService.LoadAllConfigurations();
         }
 
-        private async Task BuildAllProjectsAsync()
+        public ICommand QueueBuild()
+        {
+            return new ParametredRelayCommand(
+                obj =>
+                {
+                    var buildableProject = (BuildableProjectViewModel)obj;
+                    StartQueue(buildableProject);
+                });
+        }
+
+        private void BuildAllProjectsAsync()
         {
             foreach (var proj in BuildableProjects)
             {
-                await proj.BuildProjectAsync();
+                StartQueue(proj);
             }
         }
 
@@ -129,6 +132,27 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
                 {
                     Informations.Insert(0, information);
                 });
+        }
+
+        private async void StartQueue(BuildableProjectViewModel buildableProject)
+        {
+            _queudBuilds.Enqueue(buildableProject);
+
+            if (_queuing)
+            {
+                return;
+            }
+
+            _queuing = true;
+
+            var next = _queudBuilds.Dequeue();
+            while (next != null)
+            {
+                await next.BuildProjectAsync();
+                next = _queudBuilds.Dequeue();
+            }
+
+            _queuing = false;
         }
     }
 }
