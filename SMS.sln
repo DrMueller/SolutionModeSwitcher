@@ -32,7 +32,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Sms.Application", "Sour
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Sms.DomainServices", "Sources\Application\DomainServices\Mmu.Sms.DomainServices.csproj", "{8F2D99F3-85FA-42F1-BEBC-F3E8295B429B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Sms.DomainServices.Shell", "Sources\Application\DomainServices.Infrastructure\Mmu.Sms.DomainServices.Shell.csproj", "{9DD2BEAA-BBD1-47A8-869D-5AC230D256BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Sms.DomainServices.DataAccess", "Sources\Application\DomainServices.DataAccess\Mmu.Sms.DomainServices.DataAccess.csproj", "{83F08A77-7022-4DDF-A1CA-30AA09F2DD77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmu.Sms.DomainServices.Shell", "Sources\Application\DomainServices.Shell\Mmu.Sms.DomainServices.Shell.csproj", "{9DD2BEAA-BBD1-47A8-869D-5AC230D256BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +66,10 @@ Global
 		{8F2D99F3-85FA-42F1-BEBC-F3E8295B429B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F2D99F3-85FA-42F1-BEBC-F3E8295B429B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F2D99F3-85FA-42F1-BEBC-F3E8295B429B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83F08A77-7022-4DDF-A1CA-30AA09F2DD77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83F08A77-7022-4DDF-A1CA-30AA09F2DD77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83F08A77-7022-4DDF-A1CA-30AA09F2DD77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83F08A77-7022-4DDF-A1CA-30AA09F2DD77}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9DD2BEAA-BBD1-47A8-869D-5AC230D256BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9DD2BEAA-BBD1-47A8-869D-5AC230D256BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DD2BEAA-BBD1-47A8-869D-5AC230D256BC}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -7,10 +7,11 @@ using Mmu.Sms.WpfUI.Areas.Configuration.Services;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Commands;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels;
+using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.TopLevel;
 
 namespace Mmu.Sms.WpfUI.Areas.Configuration.ViewModels
 {
-    public sealed class ProjectSelectionViewModel : ViewModelBase
+    public sealed class ProjectSelectionViewModel : TopLevelViewModelBase
     {
         private readonly IConfigurationNavigationService _configurationNavigationService;
         private readonly IExceptionHandlingService _exceptionHandler;
@@ -87,7 +88,7 @@ namespace Mmu.Sms.WpfUI.Areas.Configuration.ViewModels
                 f => new ProjectReferenceConfigurationDto
                 {
                     AbsoluteProjectFilePath = f.AbsoluteProjectFilePath,
-                    AssemblyName = f.AssemblyName
+                    ProjectName = f.AssemblyName
                 }).ToList();
 
             _configuration.ProjectReferenceConfigurations = selectedReferences;

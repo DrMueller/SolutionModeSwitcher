@@ -12,6 +12,7 @@ using Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions;
 using Mmu.Sms.WpfUI.Infrastructure.Services.MainNavigation.Initialization;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Navigation;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Commands;
+using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.TopLevel;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.Views.ViewBehaviors;
 using Mmu.Sms.WpfUI.Properties;
 
@@ -22,7 +23,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels
         private readonly IAppearanceService _appearanceService;
         private readonly IExceptionHandlingService _exceptionHandlingService;
         private readonly IMainNavigationInitializingService _mainNavigationInitializer;
-        private ViewModelBase _currentContent;
+        private TopLevelViewModelBase _currentContent;
         private string _informationText;
         private bool _isMainNavigationPaneOpen;
         private AppearanceTheme _selectedAppearanceTheme;
@@ -51,7 +52,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels
             _mainNavigationInitializer.NavigateToMainEntryPoint();
         }
 
-        public ParametredRelayCommand CloseCommand
+        public static ParametredRelayCommand CloseCommand
         {
             get
             {
@@ -76,9 +77,9 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels
             }
         }
 
-        public ViewModelCommand CloseVmc => new ViewModelCommand("Close App", CloseCommand);
+        public static ViewModelCommand CloseVmc => new ViewModelCommand("Close App", CloseCommand);
 
-        public ViewModelBase CurrentContent
+        public TopLevelViewModelBase CurrentContent
         {
             get => _currentContent;
             private set
@@ -142,7 +143,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels
             }
         }
 
-        private void NavigateToViewModelCallback(ViewModelBase viewModelBase)
+        private void NavigateToViewModelCallback(TopLevelViewModelBase viewModelBase)
         {
             CurrentContent = viewModelBase;
         }

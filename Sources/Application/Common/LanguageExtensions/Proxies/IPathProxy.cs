@@ -11,5 +11,7 @@
         string GetExtension(string path);
 
         string GetFileName(string path);
+
+        string GetTempPath();
     }
 }

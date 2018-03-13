@@ -27,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\..\..\CA_ProductionCode.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -79,16 +80,24 @@
     <Compile Include="Areas\Common\ValidationExpressions\StringNotNullOrEmptyValidationExpression.cs" />
     <Compile Include="Areas\Configuration\Dtos\SelectProjectDto.cs" />
     <Compile Include="Areas\Configuration\ValidationExpressions\FileIsSolutionFileValidationExpression.cs" />
-    <Compile Include="Areas\ProjectBuilding\Models\BuildableProjectVm.cs" />
-    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\BuildInProgressState.cs">
+    <Compile Include="Areas\ModeSwitching\ViewModelCommands\DoRevertSwitchViewModelCommand.cs" />
+    <Compile Include="Areas\ModeSwitching\ViewModelCommands\DoSwitchViewModelCommand.cs" />
+    <Compile Include="Areas\ModeSwitching\SolutionModeSwitchingCommandsContainer.cs" />
+    <Compile Include="Areas\ProjectBuilding\Factories\IBuildableProjectViewModelFactory.cs" />
+    <Compile Include="Areas\ProjectBuilding\Factories\Implementation\BuildableProjectViewModelFactory.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\BuildableProjectViewModel.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\ProjectBuildStateImplementations\BuildEnqueuedState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\ProjectBuildStateImplementations\BuildInProgressState.cs">
       <Generator>Extended PublicResXFileCodeGenerator</Generator>
     </Compile>
-    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\BuildErrorState.cs" />
-    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\ReadyToBuildState.cs" />
-    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\IProjectBuildState.cs" />
-    <Compile Include="Areas\ProjectBuilding\Services\Implementation\ProjectBuildingService.cs" />
-    <Compile Include="Areas\ProjectBuilding\Services\IProjectBuildingService.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\ProjectBuildStateImplementations\BuildErrorState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\ProjectBuildStateImplementations\ReadyToBuildState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\Implementation\ProjectBuildStateFactory.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\IProjectBuildState.cs" />
+    <Compile Include="Areas\ProjectBuilding\Services\Implementation\BuildableProjectsSearchService.cs" />
+    <Compile Include="Areas\ProjectBuilding\Services\IBuildableProjectsSearchService.cs" />
     <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildingViewModel.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\IProjectBuildStateFactory.cs" />
     <Compile Include="Areas\ProjectBuilding\Views\ProjectBuildingView.xaml.cs">
       <DependentUpon>ProjectBuildingView.xaml</DependentUpon>
     </Compile>
@@ -102,8 +111,12 @@
     <Compile Include="Infrastructure\Services\Threading\Implementation\ThreadingService.cs" />
     <Compile Include="Infrastructure\Services\Threading\IThreadingService.cs" />
     <Compile Include="Infrastructure\Wpf\DependencyProperties\DataGridDoubleClickCommandBinding.cs" />
-    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\Factories\IViewModelFactory.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\IInitializableViewModelCommand.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\IViewModelCommand.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\TopLevel\Factories\ITopLevelViewModelFactory.cs" />
     <Compile Include="Areas\Configuration\ValidationExpressions\FileExistsValidationExpression.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\TopLevel\TopLevelViewModelBase.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\IViewModelCommandsContainer.cs" />
     <Compile Include="Infrastructure\Wpf\Validation\Interfaces\IValidationExpression.cs" />
     <Compile Include="Infrastructure\Wpf\Validation\Models\PropertyValidation.cs">
       <Generator>Extended PublicResXFileCodeGenerator</Generator>
@@ -112,7 +125,9 @@
     <Compile Include="Infrastructure\Wpf\Validation\Models\ValidationContainer.cs" />
     <Compile Include="Infrastructure\Wpf\Validation\Models\ValidationErrors.cs" />
     <Compile Include="Infrastructure\Wpf\Validation\Models\ValidationResult.cs" />
-    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Properties\Annotations.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Areas\Configuration\Services\IConfigurationNavigationService.cs" />
     <Compile Include="Areas\Configuration\Services\IConfigurationService.cs" />
     <Compile Include="Areas\Configuration\Services\Implementation\ConfigurationNavigationService.cs" />
@@ -124,7 +139,7 @@
     <Compile Include="Areas\Configuration\Services\Handlers\Implementation\SelectProjectDtoMappingHandler.cs" />
     <Compile Include="Areas\Configuration\Services\Handlers\ISelectProjectDtoMappingHandler.cs" />
     <Compile Include="Areas\Configuration\ViewModels\ProjectSelectionViewModel.cs" />
-    <Compile Include="Areas\ModeSwitching\ViewModels\SolutionModeSwitchingViewModel.cs" />
+    <Compile Include="Areas\ModeSwitching\SolutionModeSwitchingViewModel.cs" />
     <Compile Include="Areas\Configuration\Views\ConfigurationDetailsView.xaml.cs">
       <DependentUpon>ConfigurationDetailsView.xaml</DependentUpon>
     </Compile>
@@ -134,7 +149,7 @@
     <Compile Include="Areas\Configuration\Views\ProjectSelectionView.xaml.cs">
       <DependentUpon>ProjectSelectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Areas\ModeSwitching\Views\SolutionModeSwitchingView.xaml.cs">
+    <Compile Include="Areas\ModeSwitching\SolutionModeSwitchingView.xaml.cs">
       <DependentUpon>SolutionModeSwitchingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Areas\Informations\UserControls\InformationGridControl.xaml.cs">
@@ -154,7 +169,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Areas\ModeSwitching\Views\SolutionModeSwitchingView.xaml">
+    <Page Include="Areas\ModeSwitching\SolutionModeSwitchingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,6 +183,7 @@
     </Resource>
     <Resource Include="Assets\FA_Cog_Green.png" />
     <Resource Include="Assets\FA_Exclamation_Red.png" />
+    <Resource Include="Assets\FA_Arrow.png" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -251,22 +267,7 @@
     </Page>
     <!--Dictionaries END-->
     <!--Extensions START-->
-    <Compile Include="Infrastructure\Extensions\DeepCopyHelper\DeepCopyArrayExtensions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\Extensions\DeepCopyHelper\DeepCopyArrayTraverse.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\Extensions\DeepCopyHelper\DeepCopyHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\Extensions\DeepCopyHelper\DeepCopyReferenceEqualityComparer.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Infrastructure\Extensions\EnumerableExtensions.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\Extensions\ObjectExtensions.cs">
       <SubType>Code</SubType>
     </Compile>
     <!--Extensions END-->
@@ -367,7 +368,7 @@
     <Compile Include="Infrastructure\Wpf\Shell\ViewModels\ViewModelContainer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\Factories\Implementation\ViewModelFactory.cs">
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\TopLevel\Factories\Implementation\TopLevelViewModelFactory.cs">
       <SubType>Code</SubType>
     </Compile>
     <!--ViewModels END-->
@@ -391,7 +392,11 @@
       <Project>{6fd0058a-97f4-4742-b674-d32632583819}</Project>
       <Name>Mmu.Sms.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DomainServices.Infrastructure\Mmu.Sms.DomainServices.Shell.csproj">
+    <ProjectReference Include="..\DomainServices.DataAccess\Mmu.Sms.DomainServices.DataAccess.csproj">
+      <Project>{83f08a77-7022-4ddf-a1ca-30aa09f2dd77}</Project>
+      <Name>Mmu.Sms.DomainServices.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DomainServices.Shell\Mmu.Sms.DomainServices.Shell.csproj">
       <Project>{9dd2beaa-bbd1-47a8-869d-5ac230d256bc}</Project>
       <Name>Mmu.Sms.DomainServices.Shell</Name>
     </ProjectReference>

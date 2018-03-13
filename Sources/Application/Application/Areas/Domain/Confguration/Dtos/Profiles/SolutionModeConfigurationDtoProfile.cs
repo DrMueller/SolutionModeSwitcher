@@ -15,7 +15,7 @@ namespace Mmu.Sms.Application.Areas.Domain.Confguration.Dtos.Profiles
                     dto =>
                     {
                         var modeFactory = ProvisioningServiceSingleton.Instance.GetService<SolutionModeConfigurationFactory>();
-                        var rerferenceConfigs = dto.ProjectReferenceConfigurations.Select(f => new ProjectReferenceConfiguration(f.AssemblyName, f.AbsoluteProjectFilePath)).ToList();
+                        var rerferenceConfigs = dto.ProjectReferenceConfigurations.Select(f => new ProjectReferenceConfiguration(f.ProjectName, f.AbsoluteProjectFilePath)).ToList();
                         var result = modeFactory.Create(dto.Id, dto.ConfigurationName, dto.SolutionFilePath, rerferenceConfigs);
                         return result;
                     });

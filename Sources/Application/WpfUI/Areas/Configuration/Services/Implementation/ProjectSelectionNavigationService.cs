@@ -10,15 +10,15 @@ namespace Mmu.Sms.WpfUI.Areas.Configuration.Services.Implementation
     public class ProjectSelectionNavigationService : IProjectSelectionNavigationService
     {
         private readonly INavigationService _navigationHandler;
-        private readonly IProvisioningService _provisioningService;
         private readonly IProjectSelectionService _projectSelectionService;
+        private readonly IProvisioningService _provisioningService;
         private readonly ISelectProjectDtoMappingHandler _selectProjectDtoMappingHandler;
 
         public ProjectSelectionNavigationService(
             INavigationService navigationHandler,
             IProvisioningService provisioningService,
             IProjectSelectionService projectSelectionService,
-            ISelectProjectDtoMappingHandler selectProjectDtoMappingHandler) 
+            ISelectProjectDtoMappingHandler selectProjectDtoMappingHandler)
         {
             _navigationHandler = navigationHandler;
             _provisioningService = provisioningService;

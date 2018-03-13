@@ -28,10 +28,9 @@ namespace Mmu.Sms.Application.Infrastructure.Ioc.Handlers
 
         private static bool IsRelevantAssembly(string assemblyFilePath)
         {
-            var result = Path.GetFileName(assemblyFilePath).ToLower().StartsWith("mmu.sms");
-
-            var fileExtensionLower = Path.GetExtension(assemblyFilePath).ToLower();
-            result = result && (fileExtensionLower == ".dll" || fileExtensionLower == ".exe");
+            var result = Path.GetFileName(assemblyFilePath).ToUpperInvariant().StartsWith("MMU.SMS", StringComparison.OrdinalIgnoreCase);
+            var fileExtensionLower = Path.GetExtension(assemblyFilePath).ToUpperInvariant();
+            result = result && (fileExtensionLower == ".DLL" || fileExtensionLower == ".EXE");
             return result;
         }
     }

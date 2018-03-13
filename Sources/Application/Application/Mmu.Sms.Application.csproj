@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\..\..\CA_ProductionCode.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -81,12 +82,6 @@
   <ItemGroup>
     <Compile Include="Areas\App\Informations\Models\InformationType.cs" />
     <Compile Include="Areas\App\Informations\Services\Implementation\Models\InfoCallbackByTypes.cs" />
-    <Compile Include="Areas\Domain\Common\Project\Factories\Implementation\ProjectConfigurationDocumentFactory.cs" />
-    <Compile Include="Areas\Domain\Common\Project\Factories\IProjectConfigurationDocumentFactory.cs" />
-    <Compile Include="Areas\Domain\Common\Project\Factories\SubFactories\Implementation\XmlProjectAssemblyReferenceFactory.cs" />
-    <Compile Include="Areas\Domain\Common\Project\Factories\SubFactories\IXmlProjectAssemblyReferenceFactory.cs" />
-    <Compile Include="Areas\Domain\Common\Solution\Factories\Implementation\SolutionConfigurationDataFactory.cs" />
-    <Compile Include="Areas\Domain\Common\Solution\Factories\ISolutionConfigurationDataFactory.cs" />
     <Compile Include="Areas\Domain\Confguration\Dtos\Profiles\SolutionModeConfigurationDtoProfile.cs" />
     <Compile Include="Areas\Domain\ProjectBuilding\Dtos\BuildableProjectDto.cs" />
     <Compile Include="Areas\Domain\ProjectBuilding\Dtos\Profiles\BuildableProjectDtoProfile.cs" />

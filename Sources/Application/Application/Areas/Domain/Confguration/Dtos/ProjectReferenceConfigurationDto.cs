@@ -3,6 +3,6 @@
     public class ProjectReferenceConfigurationDto
     {
         public string AbsoluteProjectFilePath { get; set; }
-        public string AssemblyName { get; set; }
+        public string ProjectName { get; set; }
     }
 }

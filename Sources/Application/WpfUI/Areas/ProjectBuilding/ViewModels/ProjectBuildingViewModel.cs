@@ -1,52 +1,51 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+using System.Windows.Input;
 using Mmu.Sms.Application.Areas.App.Informations.Models;
 using Mmu.Sms.Application.Areas.App.Informations.Services;
 using Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;
-using Mmu.Sms.Application.Areas.Domain.ProjectBuilding.Services;
 using Mmu.Sms.WpfUI.Areas.Configuration.Services;
-using Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models;
 using Mmu.Sms.WpfUI.Areas.ProjectBuilding.Services;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Threading;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Commands;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels;
+using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.TopLevel;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.ViewModelBehaviors;
 
 namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
 {
-    public sealed class ProjectBuildingViewModel : ViewModelBase, IMainNavigationViewModel
+    public sealed class ProjectBuildingViewModel : TopLevelViewModelBase, IMainNavigationViewModel
     {
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHandlingService _exceptionHandlingService;
-        private readonly IProjectBuildingService _projectBuildingService;
-        private readonly IProjectBuildService _projectBuildService;
+        private readonly IBuildableProjectsSearchService _projectBuildingService;
         private readonly IThreadingService _threadingService;
-        private IReadOnlyCollection<BuildableProjectVm> _buildableProjects;
+        private IReadOnlyCollection<BuildableProjectViewModel> _buildableProjects;
         private IReadOnlyCollection<SolutionModeConfigurationDto> _configurations;
         private bool _isBuildInProgress;
+        private Queue<BuildableProjectViewModel> _queudBuilds;
+        private bool _queuing;
 
         public ProjectBuildingViewModel(
             IInformationConfigurationService informationConfigurationService,
             IThreadingService threadingService,
             IConfigurationService configurationService,
-            IProjectBuildingService projectBuildingService,
-            IProjectBuildService projectBuildService,
+            IBuildableProjectsSearchService projectBuildingService,
             IExceptionHandlingService exceptionHandlingService)
         {
             _threadingService = threadingService;
             _configurationService = configurationService;
             _projectBuildingService = projectBuildingService;
-            _projectBuildService = projectBuildService;
             _exceptionHandlingService = exceptionHandlingService;
             informationConfigurationService.RegisterForAllTypes(InformationReceived);
 
             Informations = new ObservableCollection<Information>();
+            _queudBuilds = new Queue<BuildableProjectViewModel>();
             DisplayName = "Project Building";
         }
 
-        public IReadOnlyCollection<BuildableProjectVm> BuildableProjects
+        public IReadOnlyCollection<BuildableProjectViewModel> BuildableProjects
         {
             get => _buildableProjects;
             private set
@@ -56,19 +55,9 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             }
         }
 
-        public ViewModelCommand BuildAllProjectsVmc
-        {
-            get
-            {
-                return new ViewModelCommand(
-                    "Build all",
-                    new RelayCommand(
-                        async () =>
-                        {
-                            await _projectBuildingService.BuildProjectsAsync(BuildableProjects);
-                        }));
-            }
-        }
+        public ViewModelCommand BuildAllProjectsVmc => new ViewModelCommand(
+            "Build all",
+            new RelayCommand(BuildAllProjectsAsync));
 
         public IReadOnlyCollection<SolutionModeConfigurationDto> Configurations
         {
@@ -84,6 +73,13 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
         public ObservableCollection<Information> Informations { get; }
         public string NavigationDescription => "Building";
         public int NavigationSequence => 2;
+        public ICommand QueueBuild => new ParametredRelayCommand(
+            obj =>
+            {
+                var buildableProject = (BuildableProjectViewModel)obj;
+                AddProjectToQueue(buildableProject);
+                StartQueue();
+            });
 
         public ViewModelCommand SearchProjectsVmc
         {
@@ -98,7 +94,7 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
                                 async () =>
                                 {
                                     _isBuildInProgress = true;
-                                    BuildableProjects = await _projectBuildingService.SearchProjectsAsync(SelectedConfiguration, BuildProjectRequested);
+                                    BuildableProjects = await _projectBuildingService.SearchProjectsAsync(SelectedConfiguration);
                                 },
                                 () => _isBuildInProgress = false);
                         },
@@ -113,9 +109,25 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             Configurations = _configurationService.LoadAllConfigurations();
         }
 
-        private async Task BuildProjectRequested(string filePath)
+        private void AddProjectToQueue(BuildableProjectViewModel project)
         {
-            await _projectBuildService.BuildProjectAsync(filePath);
+            if (_queudBuilds.Contains(project))
+            {
+                return;
+            }
+
+            _queudBuilds.Enqueue(project);
+            project.SetAsEnqueued();
+        }
+
+        private void BuildAllProjectsAsync()
+        {
+            foreach (var proj in BuildableProjects)
+            {
+                AddProjectToQueue(proj);
+            }
+
+            StartQueue();
         }
 
         private bool CanSearchProjects()
@@ -130,6 +142,24 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
                 {
                     Informations.Insert(0, information);
                 });
+        }
+
+        private async void StartQueue()
+        {
+            if (_queuing)
+            {
+                return;
+            }
+
+            _queuing = true;
+
+            while (_queudBuilds.Count > 0)
+            {
+                var projectToBuild = _queudBuilds.Dequeue();
+                await projectToBuild.BuildProjectAsync();
+            }
+
+            _queuing = false;
         }
     }
 }

@@ -49,6 +49,11 @@
     <Compile Include="Ioc\Implementation\ProvisioningService.cs" />
     <Compile Include="Ioc\IProvisioningService.cs" />
     <Compile Include="Ioc\ProvisioningServiceSingleton.cs" />
+    <Compile Include="LanguageExtensions\DeepCopy\Handlers\DeepCopyArrayExtensions.cs" />
+    <Compile Include="LanguageExtensions\DeepCopy\Handlers\DeepCopyArrayTraverse.cs" />
+    <Compile Include="LanguageExtensions\DeepCopy\Handlers\DeepCopyReferenceEqualityComparer.cs" />
+    <Compile Include="LanguageExtensions\DeepCopy\IDeepCopyService.cs" />
+    <Compile Include="LanguageExtensions\DeepCopy\Implementation\DeepCopyService.cs" />
     <Compile Include="LanguageExtensions\Invariance\Guard.cs" />
     <Compile Include="LanguageExtensions\Invariance\Handlers\ExpressionHandler.cs" />
     <Compile Include="LanguageExtensions\Maybes\Implementation\NoneMaybe.cs" />

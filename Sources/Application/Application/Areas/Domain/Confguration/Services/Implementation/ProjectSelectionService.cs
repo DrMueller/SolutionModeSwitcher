@@ -1,25 +1,29 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;
-using Mmu.Sms.DomainServices.Areas.Common.Solution.Factories;
+using Mmu.Sms.Domain.Areas.Common.Solution;
+using Mmu.Sms.DomainServices.Areas.Common.Solution.Repositories;
 
 namespace Mmu.Sms.Application.Areas.Domain.Confguration.Services.Implementation
 {
     public class ProjectSelectionService : IProjectSelectionService
     {
         private readonly IMapper _mapper;
-        private readonly ISolutionConfigurationFileFactory _solutionConfigurationFileFactory;
+        private readonly ISolutionConfigurationFileRepository _solutionConfigurationFileRepository;
 
-        public ProjectSelectionService(ISolutionConfigurationFileFactory solutionConfigurationFileFactory, IMapper mapper)
+        public ProjectSelectionService(ISolutionConfigurationFileRepository solutionConfigurationFileRepository, IMapper mapper)
         {
-            _solutionConfigurationFileFactory = solutionConfigurationFileFactory;
+            _solutionConfigurationFileRepository = solutionConfigurationFileRepository;
             _mapper = mapper;
         }
 
         public IReadOnlyCollection<ProjectReferenceConfigurationDto> LoadProjects(string solutionFilePath)
         {
-            var solutionConfig = _solutionConfigurationFileFactory.Create(solutionFilePath);
-            var result = _mapper.Map<List<ProjectReferenceConfigurationDto>>(solutionConfig.SolutionProjectReferences.Entries);
+            var solutionConfig = _solutionConfigurationFileRepository.Load(solutionFilePath);
+            var buildableProjects = solutionConfig.SolutionProjects.Where(f => f.SolutionProjectType == SolutionProjectType.KnownToBeMsBuildFormat);
+
+            var result = _mapper.Map<List<ProjectReferenceConfigurationDto>>(buildableProjects);
             return result;
         }
     }

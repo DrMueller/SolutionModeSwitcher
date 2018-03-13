@@ -5,7 +5,7 @@ using Mmu.Sms.WpfUI.Infrastructure.Services.Appearance.Models;
 
 namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.Converters
 {
-    internal class AppearanceThemeDarkToBooleanConverter : IValueConverter
+    public class AppearanceThemeDarkToBooleanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

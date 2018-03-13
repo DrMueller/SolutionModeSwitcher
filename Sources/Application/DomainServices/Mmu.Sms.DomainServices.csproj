@@ -65,29 +65,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Common\Project\Factories\SubFactories\IAssemblyReferenceMetaDataFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\SubFactories\Implementation\AssemblyReferenceMetaDataFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\SubFactories\IProjectAssemblyReferenceFactory.cs" />
     <Compile Include="Areas\Common\Project\Factories\IAssemblyReferenceFromProjectReferenceFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\SubFactories\Implementation\ProjectAssemblyReferenceFactory.cs" />
+    <Compile Include="Areas\Common\Project\Factories\IAssemblyReferenceMetaDataFactory.cs" />
     <Compile Include="Areas\Common\Project\Factories\Implementation\AssemblyReferenceFromProjectReferenceFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\SubFactories\Implementation\ProjectBuildConfigurationFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\Implementation\ProjectConfigurationFileFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\SubFactories\Implementation\ProjectPropertiesConfigurationFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\SubFactories\Implementation\ProjectReferenceFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\SubFactories\IProjectBuildConfigurationFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\IProjectConfigurationFileFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\SubFactories\IProjectPropertiesConfigurationFactory.cs" />
-    <Compile Include="Areas\Common\Project\Factories\SubFactories\IProjectReferenceFactory.cs" />
-    <Compile Include="Areas\Common\Solution\Factories\Handlers\Implementation\SolutionProjectBlockHandler.cs" />
-    <Compile Include="Areas\Common\Solution\Factories\Handlers\ISolutionProjectBlockHandler.cs" />
-    <Compile Include="Areas\Common\Solution\Factories\Implementation\SolutionConfigDataFactory.cs" />
-    <Compile Include="Areas\Common\Solution\Factories\Implementation\SolutionConfigurationFileFactory.cs" />
-    <Compile Include="Areas\Common\Solution\Factories\Implementation\SolutionProjectReferencesFactory.cs" />
-    <Compile Include="Areas\Common\Solution\Factories\ISolutionConfigDataFactory.cs" />
-    <Compile Include="Areas\Common\Solution\Factories\ISolutionConfigurationFileFactory.cs" />
-    <Compile Include="Areas\Common\Solution\Factories\ISolutionProjectReferencesFactory.cs" />
-    <Compile Include="Areas\Common\Solution\Models\SolutionProjectBlock.cs" />
+    <Compile Include="Areas\Common\Project\Factories\Implementation\AssemblyReferenceMetaDataFactory.cs" />
+    <Compile Include="Areas\Common\Project\Repositories\IProjectConfigurationFileRepository.cs" />
+    <Compile Include="Areas\Common\Solution\Repositories\ISolutionConfigurationFileRepository.cs" />
     <Compile Include="Areas\Configuration\Factories\Implementation\SolutionModeConfigurationFactory.cs" />
     <Compile Include="Areas\Configuration\Factories\ISolutionModeConfigurationFactory.cs" />
     <Compile Include="Areas\Configuration\Repositories\ISolutionModeConfigurationRepository.cs" />
@@ -97,13 +80,10 @@
     <Compile Include="Areas\ProjectBuilding\Services\Implementation\ProjectSearchService.cs" />
     <Compile Include="Areas\ProjectBuilding\Services\IProjectBuildService.cs" />
     <Compile Include="Areas\ProjectBuilding\Services\IProjectSearchService.cs" />
-    <Compile Include="Infrastructure\MicrosoftBuild\Models\ProjectInSolution.cs" />
     <Compile Include="Infrastructure\MicrosoftBuild\Services\IProjectBuildService.cs">
       <Generator>Extended PublicResXFileCodeGenerator</Generator>
     </Compile>
-    <Compile Include="Infrastructure\MicrosoftBuild\Services\ISolutionFileService.cs" />
     <Compile Include="Infrastructure\StringParsing\IStringParsingService.cs" />
-    <Compile Include="Infrastructure\Xml\IXmlParsingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

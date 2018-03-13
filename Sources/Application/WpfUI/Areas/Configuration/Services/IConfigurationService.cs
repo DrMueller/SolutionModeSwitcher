@@ -7,8 +7,8 @@ namespace Mmu.Sms.WpfUI.Areas.Configuration.Services
     {
         void DeleteConfiguration(string configurationId);
 
-        SolutionModeConfigurationDto SaveConfiguration(SolutionModeConfigurationDto configuration);
-
         IReadOnlyCollection<SolutionModeConfigurationDto> LoadAllConfigurations();
+
+        SolutionModeConfigurationDto SaveConfiguration(SolutionModeConfigurationDto configuration);
     }
 }

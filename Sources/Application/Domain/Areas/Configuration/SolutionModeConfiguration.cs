@@ -20,9 +20,9 @@ namespace Mmu.Sms.Domain.Areas.Configuration
             ProjectReferenceConfigurations = projectReferenceConfigurations;
         }
 
-        public IReadOnlyCollection<ProjectReferenceConfiguration> ProjectReferenceConfigurations { get; }
-        public string Id { get; }
         public string ConfigurationName { get; }
+        public string Id { get; }
+        public IReadOnlyCollection<ProjectReferenceConfiguration> ProjectReferenceConfigurations { get; }
         public string SolutionFilePath { get; }
     }
 }

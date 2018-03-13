@@ -4,7 +4,8 @@ using System.Linq;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Navigation;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Commands;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels;
-using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.Factories.Implementation;
+using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.TopLevel;
+using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.TopLevel.Factories;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.ViewModelBehaviors;
 
 namespace Mmu.Sms.WpfUI.Infrastructure.Services.MainNavigation.Initialization.Implementation
@@ -12,13 +13,13 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Services.MainNavigation.Initialization.Im
     public class MainNavigationInitializingService : IMainNavigationInitializingService
     {
         private readonly INavigationService _navigationService;
-        private readonly ViewModelFactory _viewModelFactory;
+        private readonly ITopLevelViewModelFactory _topLevelViewModelFactory;
         private IReadOnlyCollection<ViewModelCommand> _navigationViewModelCommands;
 
-        public MainNavigationInitializingService(INavigationService navigationService, ViewModelFactory viewModelFactory)
+        public MainNavigationInitializingService(INavigationService navigationService, ITopLevelViewModelFactory topLevelViewModelFactory)
         {
             _navigationService = navigationService;
-            _viewModelFactory = viewModelFactory;
+            _topLevelViewModelFactory = topLevelViewModelFactory;
         }
 
         public IReadOnlyCollection<ViewModelCommand> GetOrderedMainNavigationEntries()
@@ -65,13 +66,13 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Services.MainNavigation.Initialization.Im
             return result.AsReadOnly();
         }
 
-        private IEnumerable<ViewModelBase> GetNavigatableViewModels()
+        private IEnumerable<TopLevelViewModelBase> GetNavigatableViewModels()
         {
             var navigatableTypes = GetNavigatableViewModelTypes();
             var result = navigatableTypes.Select(
                 f =>
                 {
-                    var vm = _viewModelFactory.CreateViewModel(f);
+                    var vm = _topLevelViewModelFactory.CreateViewModel(f);
                     return vm;
                 });
 

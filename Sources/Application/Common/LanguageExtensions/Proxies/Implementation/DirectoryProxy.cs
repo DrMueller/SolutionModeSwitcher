@@ -6,6 +6,16 @@ namespace Mmu.Sms.Common.LanguageExtensions.Proxies.Implementation
 {
     public class DirectoryProxy : IDirectoryProxy
     {
+        public void CreateDirectory(string path)
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        public bool Exists(string path)
+        {
+            return Directory.Exists(path);
+        }
+
         public IReadOnlyCollection<string> GetFiles(string path)
         {
             var result = Directory.GetFiles(path).ToList();
