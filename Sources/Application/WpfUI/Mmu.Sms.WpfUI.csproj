@@ -79,13 +79,11 @@
     <Compile Include="Areas\Common\ValidationExpressions\StringNotNullOrEmptyValidationExpression.cs" />
     <Compile Include="Areas\Configuration\Dtos\SelectProjectDto.cs" />
     <Compile Include="Areas\Configuration\ValidationExpressions\FileIsSolutionFileValidationExpression.cs" />
-    <Compile Include="Areas\ProjectBuilding\Models\BuildableProjectVm.cs" />
-    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\BuildInProgressState.cs">
-      <Generator>Extended PublicResXFileCodeGenerator</Generator>
-    </Compile>
-    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\BuildErrorState.cs" />
-    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\Implementation\ReadyToBuildState.cs" />
-    <Compile Include="Areas\ProjectBuilding\Models\ProjectStates\IProjectBuildState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\BuildableProjectViewModel.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\Implementation\BuildErrorState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\Implementation\BuildInProgressState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\Implementation\ReadyToBuildState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\IProjectBuildState.cs" />
     <Compile Include="Areas\ProjectBuilding\Services\Implementation\ProjectBuildingService.cs" />
     <Compile Include="Areas\ProjectBuilding\Services\IProjectBuildingService.cs" />
     <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildingViewModel.cs" />

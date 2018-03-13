@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models.ProjectStates.Implementation
+namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels.ProjectBuildStates.Implementation
 {
     public class ReadyToBuildState : IProjectBuildState
     {

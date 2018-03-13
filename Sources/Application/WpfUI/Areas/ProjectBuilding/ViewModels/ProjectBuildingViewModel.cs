@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Mmu.Sms.Application.Areas.App.Informations.Models;
 using Mmu.Sms.Application.Areas.App.Informations.Services;
 using Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;
 using Mmu.Sms.Application.Areas.Domain.ProjectBuilding.Services;
 using Mmu.Sms.WpfUI.Areas.Configuration.Services;
-using Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models;
 using Mmu.Sms.WpfUI.Areas.ProjectBuilding.Services;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Threading;
@@ -23,9 +23,11 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
         private readonly IProjectBuildingService _projectBuildingService;
         private readonly IProjectBuildService _projectBuildService;
         private readonly IThreadingService _threadingService;
-        private IReadOnlyCollection<BuildableProjectVm> _buildableProjects;
+        private IReadOnlyCollection<BuildableProjectViewModel> _buildableProjects;
         private IReadOnlyCollection<SolutionModeConfigurationDto> _configurations;
         private bool _isBuildInProgress;
+        private Queue<BuildableProjectViewModel> _queudBuilds;
+        private bool _queuing;
 
         public ProjectBuildingViewModel(
             IInformationConfigurationService informationConfigurationService,
@@ -44,9 +46,10 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
 
             Informations = new ObservableCollection<Information>();
             DisplayName = "Project Building";
+            _queudBuilds = new Queue<BuildableProjectViewModel>();
         }
 
-        public IReadOnlyCollection<BuildableProjectVm> BuildableProjects
+        public IReadOnlyCollection<BuildableProjectViewModel> BuildableProjects
         {
             get => _buildableProjects;
             private set
@@ -56,19 +59,9 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             }
         }
 
-        public ViewModelCommand BuildAllProjectsVmc
-        {
-            get
-            {
-                return new ViewModelCommand(
-                    "Build all",
-                    new RelayCommand(
-                        async () =>
-                        {
-                            await _projectBuildingService.BuildProjectsAsync(BuildableProjects);
-                        }));
-            }
-        }
+        public ViewModelCommand BuildAllProjectsVmc => new ViewModelCommand(
+            "Build all",
+            new RelayCommand(BuildAllProjectsAsync));
 
         public IReadOnlyCollection<SolutionModeConfigurationDto> Configurations
         {
@@ -113,6 +106,24 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             Configurations = _configurationService.LoadAllConfigurations();
         }
 
+        public ICommand QueueBuild()
+        {
+            return new ParametredRelayCommand(
+                obj =>
+                {
+                    var buildableProject = (BuildableProjectViewModel)obj;
+                    StartQueueAsync(buildableProject);
+                });
+        }
+
+        private void BuildAllProjectsAsync()
+        {
+            foreach (var proj in BuildableProjects)
+            {
+                StartQueueAsync(proj);
+            }
+        }
+
         private async Task BuildProjectRequested(string filePath)
         {
             await _projectBuildService.BuildProjectAsync(filePath);
@@ -130,6 +141,27 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
                 {
                     Informations.Insert(0, information);
                 });
+        }
+
+        private async void StartQueueAsync(BuildableProjectViewModel buildableProject)
+        {
+            _queudBuilds.Enqueue(buildableProject);
+
+            if (_queuing)
+            {
+                return;
+            }
+
+            _queuing = true;
+
+            var next = _queudBuilds.Dequeue();
+            while (next != null)
+            {
+                await next.BuildProjectAsync();
+                next = _queudBuilds.Dequeue();
+            }
+
+            _queuing = false;
         }
     }
 }

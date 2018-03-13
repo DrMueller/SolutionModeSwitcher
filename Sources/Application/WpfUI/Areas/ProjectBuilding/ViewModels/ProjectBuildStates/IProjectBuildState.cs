@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.Models.ProjectStates
+namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels.ProjectBuildStates
 {
     public interface IProjectBuildState
     {
