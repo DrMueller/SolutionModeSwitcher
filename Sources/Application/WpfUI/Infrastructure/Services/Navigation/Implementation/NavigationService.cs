@@ -7,18 +7,18 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Services.Navigation.Implementation
     public class NavigationService : INavigationService
     {
         private readonly INavigationConfigurationService _navigationHandlerConfiguration;
-        private readonly IViewModelFactory _viewModelFactory;
+        private readonly ITopLevelViewModelFactory _toplevelViewModelFactory;
 
-        public NavigationService(INavigationConfigurationService navigationHandlerConfiguration, IViewModelFactory viewModelFactory)
+        public NavigationService(INavigationConfigurationService navigationHandlerConfiguration, ITopLevelViewModelFactory toplevelViewModelFactory)
         {
             _navigationHandlerConfiguration = navigationHandlerConfiguration;
-            _viewModelFactory = viewModelFactory;
+            _toplevelViewModelFactory = toplevelViewModelFactory;
         }
 
         public void NavigateTo<T>()
             where T : ViewModelBase
         {
-            var targetViewModel = _viewModelFactory.CreateViewModel<T>();
+            var targetViewModel = _toplevelViewModelFactory.CreateViewModel<T>();
             _navigationHandlerConfiguration.NavigationRequestedCallbacks.ForEach(f => f.Invoke(targetViewModel));
         }
 

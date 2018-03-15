@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Windows.Data;
 using System.Windows.Input;
 using Mmu.Sms.Application.Areas.App.Informations.Models;
 using Mmu.Sms.Application.Areas.App.Informations.Services;
 using Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;
-using Mmu.Sms.Application.Areas.Domain.ProjectBuilding.Services;
 using Mmu.Sms.WpfUI.Areas.Configuration.Services;
 using Mmu.Sms.WpfUI.Areas.ProjectBuilding.Services;
 using Mmu.Sms.WpfUI.Infrastructure.Services.Exceptions;
@@ -16,16 +16,16 @@ using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.ViewModelBehaviors;
 
 namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
 {
-    public sealed class ProjectBuildingViewModel : ViewModelBase, IMainNavigationViewModel
+    public sealed class ProjectBuildingViewModel : TopLevelViewModelBase, IMainNavigationViewModel
     {
+        private readonly IBuildableProjectSearchService _buildableProjectSearchService;
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHandlingService _exceptionHandlingService;
-        private readonly IProjectBuildingService _projectBuildingService;
-        private readonly IProjectBuildService _projectBuildService;
         private readonly IThreadingService _threadingService;
-        private IReadOnlyCollection<BuildableProjectViewModel> _buildableProjects;
+        private ICollectionView _buildableProjects;
         private IReadOnlyCollection<SolutionModeConfigurationDto> _configurations;
         private bool _isBuildInProgress;
+        private string _projectsFilter;
         private Queue<BuildableProjectViewModel> _queudBuilds;
         private bool _queuing;
 
@@ -33,23 +33,21 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             IInformationConfigurationService informationConfigurationService,
             IThreadingService threadingService,
             IConfigurationService configurationService,
-            IProjectBuildingService projectBuildingService,
-            IProjectBuildService projectBuildService,
+            IBuildableProjectSearchService buildableProjectSearchService,
             IExceptionHandlingService exceptionHandlingService)
         {
             _threadingService = threadingService;
             _configurationService = configurationService;
-            _projectBuildingService = projectBuildingService;
-            _projectBuildService = projectBuildService;
+            _buildableProjectSearchService = buildableProjectSearchService;
             _exceptionHandlingService = exceptionHandlingService;
             informationConfigurationService.RegisterForAllTypes(InformationReceived);
 
             Informations = new ObservableCollection<Information>();
-            DisplayName = "Project Building";
             _queudBuilds = new Queue<BuildableProjectViewModel>();
+            DisplayName = "Project Building";
         }
 
-        public IReadOnlyCollection<BuildableProjectViewModel> BuildableProjects
+        public ICollectionView BuildableProjects
         {
             get => _buildableProjects;
             private set
@@ -78,6 +76,30 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
         public string NavigationDescription => "Building";
         public int NavigationSequence => 2;
 
+        public string ProjectsFilter
+        {
+            get => _projectsFilter;
+            set
+            {
+                if (_projectsFilter == value)
+                {
+                    return;
+                }
+
+                _projectsFilter = value;
+                BuildableProjects.Refresh();
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand QueueBuild => new ParametredRelayCommand(
+            obj =>
+            {
+                var buildableProject = (BuildableProjectViewModel)obj;
+                AddProjectToQueue(buildableProject);
+                StartQueue();
+            });
+
         public ViewModelCommand SearchProjectsVmc
         {
             get
@@ -91,7 +113,9 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
                                 async () =>
                                 {
                                     _isBuildInProgress = true;
-                                    BuildableProjects = await _projectBuildingService.SearchProjectsAsync(SelectedConfiguration, BuildProjectRequested);
+                                    var buildableProjects = await _buildableProjectSearchService.SearchProjectsAsync(SelectedConfiguration);
+                                    BuildableProjects = CollectionViewSource.GetDefaultView(buildableProjects);
+                                    BuildableProjects.Filter += FilterBuildableProject;
                                 },
                                 () => _isBuildInProgress = false);
                         },
@@ -106,32 +130,40 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             Configurations = _configurationService.LoadAllConfigurations();
         }
 
-        public ICommand QueueBuild()
+        private void AddProjectToQueue(BuildableProjectViewModel project)
         {
-            return new ParametredRelayCommand(
-                obj =>
-                {
-                    var buildableProject = (BuildableProjectViewModel)obj;
-                    StartQueueAsync(buildableProject);
-                });
+            if (_queudBuilds.Contains(project))
+            {
+                return;
+            }
+
+            _queudBuilds.Enqueue(project);
+            project.SetAsEnqueued();
         }
 
         private void BuildAllProjectsAsync()
         {
-            foreach (var proj in BuildableProjects)
+            foreach (BuildableProjectViewModel proj in BuildableProjects)
             {
-                StartQueueAsync(proj);
+                AddProjectToQueue(proj);
             }
-        }
 
-        private async Task BuildProjectRequested(string filePath)
-        {
-            await _projectBuildService.BuildProjectAsync(filePath);
+            StartQueue();
         }
 
         private bool CanSearchProjects()
         {
             return SelectedConfiguration != null && !_isBuildInProgress;
+        }
+
+        private bool FilterBuildableProject(object obj)
+        {
+            if (string.IsNullOrEmpty(ProjectsFilter))
+            {
+                return true;
+            }
+            var project = (BuildableProjectViewModel)obj;
+            return project.FileName.ToUpperInvariant().Contains(ProjectsFilter.ToUpper());
         }
 
         private void InformationReceived(Information information)
@@ -143,10 +175,8 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
                 });
         }
 
-        private async void StartQueueAsync(BuildableProjectViewModel buildableProject)
+        private async void StartQueue()
         {
-            _queudBuilds.Enqueue(buildableProject);
-
             if (_queuing)
             {
                 return;
@@ -154,11 +184,10 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
 
             _queuing = true;
 
-            var next = _queudBuilds.Dequeue();
-            while (next != null)
+            while (_queudBuilds.Count > 0)
             {
-                await next.BuildProjectAsync();
-                next = _queudBuilds.Dequeue();
+                var projectToBuild = _queudBuilds.Dequeue();
+                await projectToBuild.BuildProjectAsync();
             }
 
             _queuing = false;

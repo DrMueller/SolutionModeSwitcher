@@ -19,10 +19,6 @@ namespace Mmu.Sms.Domain.Areas.Common.Project
             OutputType = outputType;
         }
 
-        public string AssemblyName { get; }
-        public ProjectOutputType OutputType { get; }
-        public string RootNamespace { get; }
-
         public string AssemblyFileName
         {
             get
@@ -31,5 +27,9 @@ namespace Mmu.Sms.Domain.Areas.Common.Project
                 return result;
             }
         }
+
+        public string AssemblyName { get; }
+        public ProjectOutputType OutputType { get; }
+        public string RootNamespace { get; }
     }
 }

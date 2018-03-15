@@ -17,8 +17,8 @@
         }
 
         public string ConfigurationName { get; }
-        public string PlatformName { get; }
         public string OutputPath { get; }
+        public string PlatformName { get; }
         public PlatformTarget PlatformTarget { get; }
     }
 }

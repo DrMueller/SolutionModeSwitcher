@@ -13,7 +13,7 @@ using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.ViewModelBehaviors;
 
 namespace Mmu.Sms.WpfUI.Areas.ModeSwitching.ViewModels
 {
-    public sealed class SolutionModeSwitchingViewModel : ViewModelBase, IMainNavigationViewModel
+    public sealed class SolutionModeSwitchingViewModel : TopLevelViewModelBase, IMainNavigationViewModel
     {
         private readonly IConfigurationService _configurationService;
         private readonly IExceptionHandlingService _exceptionHandler;

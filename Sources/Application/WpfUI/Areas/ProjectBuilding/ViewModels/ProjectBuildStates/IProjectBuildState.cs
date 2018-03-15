@@ -10,9 +10,6 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels.ProjectBuildStates
         bool IsTooltipVisible { get; }
         string TooltipText { get; }
 
-        Task StartBuildingAsync(
-            string filePath,
-            Func<string, Task> buildRequestedCallback,
-            Action<IProjectBuildState> stateChangedCallback);
+        Task StartBuildingAsync(string filePath, Action<IProjectBuildState> stateChangedCallback);
     }
 }

@@ -79,14 +79,19 @@
     <Compile Include="Areas\Common\ValidationExpressions\StringNotNullOrEmptyValidationExpression.cs" />
     <Compile Include="Areas\Configuration\Dtos\SelectProjectDto.cs" />
     <Compile Include="Areas\Configuration\ValidationExpressions\FileIsSolutionFileValidationExpression.cs" />
+    <Compile Include="Areas\ProjectBuilding\Factories\IBuildableProjectViewModelFactory.cs" />
+    <Compile Include="Areas\ProjectBuilding\Factories\Implementation\BuildableProjectViewModelFactory.cs" />
+    <Compile Include="Areas\ProjectBuilding\Services\IBuildableProjectSearchService.cs" />
+    <Compile Include="Areas\ProjectBuilding\Services\Implementation\BuildableProjectSearchService.cs" />
     <Compile Include="Areas\ProjectBuilding\ViewModels\BuildableProjectViewModel.cs" />
-    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\Implementation\BuildErrorState.cs" />
-    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\Implementation\BuildInProgressState.cs" />
-    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\Implementation\ReadyToBuildState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\Implementation\ProjectBuildStateFactory.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\StateImplementations\BuildEnqueuedState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\StateImplementations\BuildErrorState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\StateImplementations\BuildInProgressState.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\StateImplementations\ReadyToBuildState.cs" />
     <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\IProjectBuildState.cs" />
-    <Compile Include="Areas\ProjectBuilding\Services\Implementation\ProjectBuildingService.cs" />
-    <Compile Include="Areas\ProjectBuilding\Services\IProjectBuildingService.cs" />
     <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildingViewModel.cs" />
+    <Compile Include="Areas\ProjectBuilding\ViewModels\ProjectBuildStates\IProjectBuildStateFactory.cs" />
     <Compile Include="Areas\ProjectBuilding\Views\ProjectBuildingView.xaml.cs">
       <DependentUpon>ProjectBuildingView.xaml</DependentUpon>
     </Compile>
@@ -100,8 +105,10 @@
     <Compile Include="Infrastructure\Services\Threading\Implementation\ThreadingService.cs" />
     <Compile Include="Infrastructure\Services\Threading\IThreadingService.cs" />
     <Compile Include="Infrastructure\Wpf\DependencyProperties\DataGridDoubleClickCommandBinding.cs" />
-    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\Factories\IViewModelFactory.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\Factories\Implementation\TopLevelViewModelFactory.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\Factories\ITopLevelViewModelFactory.cs" />
     <Compile Include="Areas\Configuration\ValidationExpressions\FileExistsValidationExpression.cs" />
+    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\TopLevelViewModelBase.cs" />
     <Compile Include="Infrastructure\Wpf\Validation\Interfaces\IValidationExpression.cs" />
     <Compile Include="Infrastructure\Wpf\Validation\Models\PropertyValidation.cs">
       <Generator>Extended PublicResXFileCodeGenerator</Generator>
@@ -166,6 +173,7 @@
     </Resource>
     <Resource Include="Assets\FA_Cog_Green.png" />
     <Resource Include="Assets\FA_Exclamation_Red.png" />
+    <Resource Include="Assets\FA_Arrow.png" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -363,9 +371,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Infrastructure\Wpf\Shell\ViewModels\ViewModelContainer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Infrastructure\Wpf\Shell\ViewModels\Factories\Implementation\ViewModelFactory.cs">
       <SubType>Code</SubType>
     </Compile>
     <!--ViewModels END-->

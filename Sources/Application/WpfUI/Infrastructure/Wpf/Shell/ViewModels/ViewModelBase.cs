@@ -17,7 +17,6 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels
             _validationContainer = new ValidationContainer(ErrorsChanged, this);
         }
 
-        public abstract string DisplayName { get; protected set; }
         public bool HasErrors => _validationContainer.HasErrors;
 
         public IEnumerable GetErrors(string propertyName)

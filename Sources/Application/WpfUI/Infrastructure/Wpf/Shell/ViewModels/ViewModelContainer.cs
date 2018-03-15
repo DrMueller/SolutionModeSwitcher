@@ -51,18 +51,13 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels
             _mainNavigationInitializer.NavigateToMainEntryPoint();
         }
 
-        public ParametredRelayCommand CloseCommand
-        {
-            get
-            {
-                return new ParametredRelayCommand(
-                    o =>
-                    {
-                        var closable = (IClosable)o;
-                        closable.Close();
-                    });
-            }
-        }
+        public static ParametredRelayCommand CloseCommand =>
+            new ParametredRelayCommand(
+                o =>
+                {
+                    var closable = (IClosable)o;
+                    closable.Close();
+                });
 
         public ICommand CloseMainNavigationPane
         {

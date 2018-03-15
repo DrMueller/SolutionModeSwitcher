@@ -17,9 +17,9 @@ namespace Mmu.Sms.Domain.Areas.Common.Solution
             AbsoluteProjectFilePath = absoluteProjectFilePath;
         }
 
+        public string AbsoluteProjectFilePath { get; }
         public string AssemblyName { get; }
         public string BlockText { get; }
         public string Guid { get; }
-        public string AbsoluteProjectFilePath { get; }
     }
 }

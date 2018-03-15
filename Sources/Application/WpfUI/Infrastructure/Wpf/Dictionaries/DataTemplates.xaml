@@ -72,7 +72,12 @@
         <Image
             x:Name="Img"
             dp:EventCommandBinding.EventName="MouseDown"
-            dp:EventCommandBinding.Command="{Binding BuildProjectCommand, Mode=OneWay}"
+            dp:EventCommandBinding.CommandParameter="{Binding .}"
+            dp:EventCommandBinding.Command="{Binding
+                Path=DataContext.QueueBuild,
+                Mode=OneWay,
+                RelativeSource={RelativeSource FindAncestor,
+                AncestorType={x:Type UserControl}}}"
             Height="20"
             HorizontalAlignment="Left"
             Source="{Binding ImageSource, Mode=OneWay}"

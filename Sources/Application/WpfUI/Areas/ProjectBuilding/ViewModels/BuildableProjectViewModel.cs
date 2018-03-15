@@ -1,26 +1,22 @@
-﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
+using Mmu.Sms.Common.LanguageExtensions.Proxies;
 using Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels.ProjectBuildStates;
-using Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels.ProjectBuildStates.Implementation;
 using Mmu.Sms.WpfUI.Infrastructure.Wpf.Commands;
-using Mmu.Sms.WpfUI.Properties;
+using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels;
 
 namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
 {
-    public class BuildableProjectViewModel : INotifyPropertyChanged
+    public class BuildableProjectViewModel : ViewModelBase
     {
-        private readonly Func<string, Task> _buildRequestedCallback;
+        private readonly IPathProxy _pathProxy;
+        private readonly IProjectBuildStateFactory _projectBuildStateFactory;
         private IProjectBuildState _projectState;
 
-        public BuildableProjectViewModel(string filePath, string fileName, Func<string, Task> buildRequestedCallback)
+        public BuildableProjectViewModel(IPathProxy pathProxy, IProjectBuildStateFactory projectBuildStateFactory)
         {
-            _buildRequestedCallback = buildRequestedCallback;
-            FilePath = filePath;
-            FileName = fileName;
-            _projectState = new ReadyToBuildState();
+            _pathProxy = pathProxy;
+            _projectBuildStateFactory = projectBuildStateFactory;
         }
 
         public ICommand BuildProjectCommand
@@ -35,8 +31,8 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
             }
         }
 
-        public string FileName { get; }
-        public string FilePath { get; }
+        public string FileName { get; private set; }
+        public string FilePath { get; private set; }
         public string ImageSource => _projectState.ImageSource;
         public bool IsBuildInProgress => _projectState.IsBuildInProgress;
         public bool IsTooltipVisible => _projectState.IsTooltipVisible;
@@ -56,23 +52,24 @@ namespace Mmu.Sms.WpfUI.Areas.ProjectBuilding.ViewModels
 
         public async Task BuildProjectAsync()
         {
-            await _projectState.StartBuildingAsync(
-                FilePath,
-                _buildRequestedCallback,
-                ProjectBuildStateChanged);
+            await _projectState.StartBuildingAsync(FilePath, OnProjectBuildStateChanged);
         }
 
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public void Initialize(string filePath)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            FilePath = filePath;
+            FileName = _pathProxy.GetFileName(filePath);
+            _projectState = _projectBuildStateFactory.CreateReadyToBuildState();
         }
 
-        private void ProjectBuildStateChanged(IProjectBuildState newState)
+        public void SetAsEnqueued()
+        {
+            ProjectBuildState = _projectBuildStateFactory.CreateBuildEnqueuedState();
+        }
+
+        private void OnProjectBuildStateChanged(IProjectBuildState newState)
         {
             ProjectBuildState = newState;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

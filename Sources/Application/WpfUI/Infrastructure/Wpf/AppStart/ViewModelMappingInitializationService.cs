@@ -12,8 +12,8 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.AppStart
     // http://www.ikriv.com/dev/wpf/DataTemplateCreation/
     internal static class ViewModelMappingInitializationService
     {
-        private const string ViewSuffix = "View";
         private const string ViewmodelSuffix = "ViewModel";
+        private const string ViewSuffix = "View";
 
         internal static void Initialize()
         {
@@ -86,9 +86,9 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.AppStart
             internal static TypeWithNormalizedNameList GetViewModels()
             {
                 var viewModelTypes = Assembly.GetExecutingAssembly().GetTypes().Where(
-                    f => typeof(ViewModelBase).IsAssignableFrom(f) &&
+                    f => typeof(TopLevelViewModelBase).IsAssignableFrom(f) &&
                         !f.IsAbstract &&
-                        f.Name.EndsWith(ViewmodelSuffix)).ToList();
+                        f.Name.EndsWith(ViewmodelSuffix, StringComparison.OrdinalIgnoreCase)).ToList();
 
                 return MapToNormalizedNames(viewModelTypes, ViewmodelSuffix);
             }
@@ -97,7 +97,7 @@ namespace Mmu.Sms.WpfUI.Infrastructure.Wpf.AppStart
             {
                 var viewTypes = Assembly.GetExecutingAssembly().GetTypes().Where(
                     f => typeof(UserControl).IsAssignableFrom(f) &&
-                        f.Name.EndsWith(ViewSuffix)).ToList();
+                        f.Name.EndsWith(ViewSuffix, StringComparison.OrdinalIgnoreCase)).ToList();
 
                 return MapToNormalizedNames(viewTypes, ViewSuffix);
             }

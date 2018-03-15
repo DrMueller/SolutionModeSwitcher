@@ -19,11 +19,6 @@ namespace Mmu.Sms.DomainServices.Shell.Areas.Infrastructure.Xml
             return null;
         }
 
-        public string TryParsingSubElementStringValue(XElement element, string subElementLocalName)
-        {
-            return TryGettingValueOfSubElement(element, subElementLocalName);
-        }
-
         public T TryParsingSubElementEnumValue<T>(XElement element, string subElementLocalName, T defaultValue)
         {
             var stringValue = TryParsingSubElementStringValue(element, subElementLocalName);
@@ -33,8 +28,13 @@ namespace Mmu.Sms.DomainServices.Shell.Areas.Infrastructure.Xml
                 return defaultValue;
             }
 
-            var enumValue = (T) Enum.Parse(typeof(T), stringValue, true);
+            var enumValue = (T)Enum.Parse(typeof(T), stringValue, true);
             return enumValue;
+        }
+
+        public string TryParsingSubElementStringValue(XElement element, string subElementLocalName)
+        {
+            return TryGettingValueOfSubElement(element, subElementLocalName);
         }
 
         private static string TryGettingValueOfSubElement(XContainer element, string subElementLocalName)

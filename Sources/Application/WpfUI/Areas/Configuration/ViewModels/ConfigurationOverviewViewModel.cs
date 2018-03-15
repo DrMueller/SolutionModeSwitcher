@@ -10,7 +10,7 @@ using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels.ViewModelBehaviors;
 
 namespace Mmu.Sms.WpfUI.Areas.Configuration.ViewModels
 {
-    public sealed class ConfigurationOverviewViewModel : ViewModelBase, IMainNavigationViewModel
+    public sealed class ConfigurationOverviewViewModel : TopLevelViewModelBase, IMainNavigationViewModel
     {
         private readonly IConfigurationNavigationService _configurationNavigationService;
         private readonly IConfigurationService _configurationService;

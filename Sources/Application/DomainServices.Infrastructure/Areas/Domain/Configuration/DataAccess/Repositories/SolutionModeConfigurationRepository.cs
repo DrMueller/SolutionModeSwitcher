@@ -65,17 +65,17 @@ namespace Mmu.Sms.DomainServices.Shell.Areas.Domain.Configuration.DataAccess.Rep
             return Load(model.Id);
         }
 
-        private SolutionModeConfiguration CreateModelFromJsonData(string jsonData)
-        {
-            var entity = JsonConvert.DeserializeObject<SolutionModeConfigurationEntity>(jsonData);
-            var result = _mapper.Map<SolutionModeConfiguration>(entity);
-            return result;
-        }
-
         private string CreateFilePath(string configurationId)
         {
             var fileName = _pathProxy.ChangeExtension(configurationId, ".json");
             var result = _pathProxy.Combine(_configurationDirectory, fileName);
+            return result;
+        }
+
+        private SolutionModeConfiguration CreateModelFromJsonData(string jsonData)
+        {
+            var entity = JsonConvert.DeserializeObject<SolutionModeConfigurationEntity>(jsonData);
+            var result = _mapper.Map<SolutionModeConfiguration>(entity);
             return result;
         }
     }

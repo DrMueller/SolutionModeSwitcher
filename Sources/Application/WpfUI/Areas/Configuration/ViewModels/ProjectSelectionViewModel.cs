@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using Mmu.Sms.Application.Areas.Domain.Confguration.Dtos;
 using Mmu.Sms.Common.LanguageExtensions.Maybes;
 using Mmu.Sms.WpfUI.Areas.Configuration.Dtos;
@@ -10,12 +12,13 @@ using Mmu.Sms.WpfUI.Infrastructure.Wpf.Shell.ViewModels;
 
 namespace Mmu.Sms.WpfUI.Areas.Configuration.ViewModels
 {
-    public sealed class ProjectSelectionViewModel : ViewModelBase
+    public sealed class ProjectSelectionViewModel : TopLevelViewModelBase
     {
         private readonly IConfigurationNavigationService _configurationNavigationService;
         private readonly IExceptionHandlingService _exceptionHandler;
         private SolutionModeConfigurationDto _configuration;
-        private IReadOnlyCollection<SelectProjectDto> _projects;
+        private ICollectionView _projects;
+        private string _projectsFilter;
 
         public ProjectSelectionViewModel(
             IExceptionHandlingService exceptionHandler,
@@ -65,7 +68,7 @@ namespace Mmu.Sms.WpfUI.Areas.Configuration.ViewModels
 
         public override string DisplayName { get; protected set; }
 
-        public IReadOnlyCollection<SelectProjectDto> Projects
+        public ICollectionView Projects
         {
             get => _projects;
             set
@@ -75,15 +78,32 @@ namespace Mmu.Sms.WpfUI.Areas.Configuration.ViewModels
             }
         }
 
+        public string ProjectsFilter
+        {
+            get => _projectsFilter;
+            set
+            {
+                if (_projectsFilter == value)
+                {
+                    return;
+                }
+
+                _projectsFilter = value;
+                Projects.Refresh();
+                OnPropertyChanged();
+            }
+        }
+
         public void Initialize(SolutionModeConfigurationDto configuration, IReadOnlyCollection<SelectProjectDto> projects)
         {
             _configuration = configuration;
-            Projects = projects;
+            Projects = CollectionViewSource.GetDefaultView(projects);
+            Projects.Filter += FilterProject;
         }
 
         private void ApplySelectedProjects()
         {
-            var selectedReferences = Projects.Where(f => f.IsSelected).Select(
+            var selectedReferences = Projects.SourceCollection.Cast<SelectProjectDto>().Where(f => f.IsSelected).Select(
                 f => new ProjectReferenceConfigurationDto
                 {
                     AbsoluteProjectFilePath = f.AbsoluteProjectFilePath,
@@ -91,6 +111,16 @@ namespace Mmu.Sms.WpfUI.Areas.Configuration.ViewModels
                 }).ToList();
 
             _configuration.ProjectReferenceConfigurations = selectedReferences;
+        }
+
+        private bool FilterProject(object obj)
+        {
+            if (string.IsNullOrEmpty(ProjectsFilter))
+            {
+                return true;
+            }
+            var project = (SelectProjectDto)obj;
+            return project.AssemblyName.ToUpperInvariant().Contains(ProjectsFilter.ToUpper());
         }
     }
 }
